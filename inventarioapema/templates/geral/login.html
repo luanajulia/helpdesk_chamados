@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block titulo %}Inventario Apema{% endblock%}</title>
+  <link rel="stylesheet" href="../static/css/style.css">
+
+</head>
+{% block body %}
+<body>
+    <main>
+      <div>
+        <h1>Acesso</h1>
+        <img src="../static/img/logotipo_apema.png" alt="logo apema">
+        {% block formulario %}
+        <form method="POST" action="">
+            <div class="col-md-4">
+                <label for="inputEmail4" class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" id="inputEmail4">
+            </div>
+            <div class="col-md-4">
+                <label for="inputPassword4" class="form-label">Password</label>
+                <input type="password" name="senha" class="form-control" id="inputPassword4">
+            </div>
+            <div class="col-md-4">
+            <button type='login' value='login' class='btn btn-primary' placeholder="Login" text-aligner="center">
+            </div>
+        </form>
+        {% endblock %}
+      </div>
+    </main>
+</body>
+{% endblock %}
+
+</html>

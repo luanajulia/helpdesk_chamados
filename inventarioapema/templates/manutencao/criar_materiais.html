@@ -1,0 +1,53 @@
+{% extends "homepage.html" %}
+
+{% block titulo %}
+        Cadastro
+        {% endblock %}
+{% block body %}
+<body>
+    <main>
+      <div>
+        <h1>Cadastro Materiais</h1>
+        <a href="{{ url_for('adcionar') }}">
+          <img src="../static/img/logotipo_apema.png" class="logo"></a>
+          
+            <form method="POST">
+              <label for="codigo" class="form-label">Codigo</label>
+              <input type="text" class="form-control" id="codigo" name="codigo">
+
+              <label for="equipamento" class="form-label">Equipamento</label>
+              <input type="text" class="form-control" id="equipamento" name="equipamento">
+
+              <label for="localizacao" class="form-label">localizacao</label>
+              <select id="localizacao" name="localizacao" class="form-select">
+                <option value="Caldeiraria" selected>Caldeiraria</option>
+                <option value="Teste">Teste</option>
+                <option value="Soldas">Soldas</option>
+                <option value="Expedição">Expedição</option>
+                <option value="Prensas">Prensas</option>
+                <option value="Pintura">Pintura</option>
+                <option value="CST">CST</option>
+                <option value="Tampas">Tampas</option>
+                <option value="Corte">Corte</option>
+                <option value="Radiador">Radiador</option>
+              </select>
+
+              <label for="caracteristica" class="form-label">Caracteristica</label>
+              <input type="text" class="form-control" id="caracteristica" name="caracteristica">
+
+              <label for="prev" class="form-label">Prev</label>
+                  <select id="prev" name="prev" class="form-select">
+                    <option value=" " selected>Escolha</option>
+                    <option value="S">S</option>
+                  </select>
+              <label for="pred" class="form-label">Pred</label>
+              <select id="pred" name="pred" class="form-select">
+                <option value=" " selected>Escolha</option>
+                <option value="S">S</option>
+              </select>
+          
+          <br>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+{% endblock %}

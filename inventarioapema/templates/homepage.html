@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block titulo %}Identificação Apema{% endblock%}</title>
+  <link rel="stylesheet" href="../static/css/style.css">
+
+</head>
+<body>
+    <main>
+      <div>
+        <h1>Identificação </h1>
+        <img src="../static/img/logotipo_apema.png" alt="logo apema">
+        <form method="POST" action="">
+        <label for="email" class="sr-only">E-mail</label>
+
+          <input 
+            type="email" 
+            id="email"
+            name="email"
+            class="form-control mb-2"
+            placeholder="Email"
+            required
+            autofocus
+        >
+        <label for="inputPassword" class="sr-only">Senha</label>
+        <input 
+            type="password" 
+            id="senha"
+            name="senha"
+            class="form-control mb-2"
+            placeholder="Senha"
+            required
+        >
+        <button class="btn btn-lg btn-primary btn-block" type="submit" style="width: 50%; ">
+          Entrar
+      </button>
+        </form>
+      </div>
+    </main>
+
+</html>

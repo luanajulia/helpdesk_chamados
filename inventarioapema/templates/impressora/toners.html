@@ -1,0 +1,52 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class="perfil">
+        <div style="margin: 20px;">
+        <h1>Toners </h1>
+        <div class="grupo" >
+            <br>
+            <span class="badge bg-primary" style="font-size: 18px; padding-top: 9px;  top: 110px;">Modelo Toners: {% for quants in quant %}{{ quants.quat }} {% endfor %}</span> 
+            <a href="{{ url_for('criartoner') }}" class="btn btn-success" >ADCIONAR</a> 
+        </div>
+        <script>
+            // Obtém uma referência para o botão de impressão
+            const imprimirBtn = document.getElementById('imprimirBtn');
+            imprimirBtn.addEventListener('click', function() {
+                const div = document.getElementById('status');
+                window.print(div);
+            });
+            </script>
+        <div class="status" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <input type="text" id="valor_busca" class="form-control" style="width: 600px; display: inline; margin-right: 5px;  "/>
+        <input type="submit" value="Pesquisar" onclick="myFunction()" style="background-color: #008cff; border-color: #008cff; border-radius: 5px; font-size: 16px; color: white; padding: 5px;" />
+
+        <script>
+        function myFunction() {
+            var valor_busca = document.getElementById("valor_busca").value;
+        location.href = "search_toners/"+valor_busca;
+        }
+        </script>
+    </div>
+</div>
+<table class="table table-striped" style=" margin: 20px; width: -webkit-fill-available;">
+            <tr>
+                <th scope="col">Quantidade de Toner<a href="{{ url_for('quant_toners') }}" style="display: inline-flex;  color: #000;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+                <th scope="col">Modelo do Toner<a href="{{ url_for('toners') }}" style="display: inline-flex;  color: #000;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            <tr>
+                {% for toners in toners %}
+                <td>{{toners["quant_toners"]}}</td>
+                <td>{{toners["toners"]}}</td>
+                <td><a style="width: 100px;" href='{{url_for("delete_toners",id=toners.id)}}' class='btn btn-danger' onclick='return confirm("Voce tem certeza, que deseja excluir  {{ toners.toners }}?")'>Deletar</a></td>
+                <td><a style="width: 100px;" href='{{url_for("edit_toners",id=toners.id)}}' class='btn btn-primary'>Editar</a></td>
+            </tr> 
+            {% endfor %}
+        </table>
+    </div>
+</body>
+{% endblock %}

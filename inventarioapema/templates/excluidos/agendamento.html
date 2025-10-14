@@ -1,0 +1,101 @@
+{% extends "home.html" %}
+
+{% block body %}
+<body>
+    <body style="background-color: #e6e6e6;">
+        <div class="logo">
+            <a href="{{ url_for('login') }}">
+                <img src="../static/img/logotipo_apema.png" class="logo" style=" z-index: 1;"></a>
+        </div>
+        <div class="header">
+            <div class="navegacao">
+            <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+            <ul>
+            <li class="list ">
+                <a href="{{ url_for('perfil', id_usuario=current_user.id) }}">
+                    <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                    <span class="title">Perfil</span>
+                </a>
+            </li>
+            <br>
+            <li class="list">
+                <a href="{{ url_for('portal', id_usuario=current_user.id) }}">
+                    <span class="icon"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></span>
+                    <span class="title">Chamados</span>
+                </a>
+            </li>
+            <br>
+            <li class="list">
+                <a href="{{ url_for('historico', id_usuario=current_user.id) }}">
+                    <span class="icon"><ion-icon name="receipt-outline"></ion-icon></span>
+                    <span class="title">Historico</span>
+                </a>
+            </li>
+            <br>
+            <li class="list">
+                <a href="{{ url_for('reuniao', id_usuario=current_user.id) }}">
+                    <span class="icon"><ion-icon name="pricetag-outline"></ion-icon></span>
+                    <span class="title">Reunioes</span>
+                </a>
+            </li>
+            <br>
+            <li class="list active">
+                <a href="{{ url_for('agendamento') }}">
+                    <span class="icon"><ion-icon name="today-outline"></ion-icon></span>
+                    <span class="title">Agendamento</span>
+                </a>
+            </li>
+            <br>
+            <li class="list ">
+                <a href="{{ url_for('ramais') }}">
+                    <span class="icon"><ion-icon name="call-outline"></ion-icon></ion-icon></span>
+                    <span class="title">Ramais</span>
+                </a>
+            </li>
+            </ul>
+            <script>
+            const list = document.querySelectorAll('.list');
+            function activeLink(){
+                list.forEach((item) =>
+                item.classList.remove('active'));
+                this.classList.add('active');
+            }
+                list.forEach((item) =>
+                item.addEventListener('click', activeLink));
+        </script>
+        </div>
+    </div>
+    <div class='perfil'>
+      <h1>Agendamento de reuniões com notbook</h1>
+            {% block formulario %}
+            <form method="POST" enctype="multipart/form-datass">
+                {{ form.csrf_token }}
+                
+                {{ form.username.label(class="label") }}
+                <br>
+                {{ form.username(class="input") }}
+                <br>
+                {{ form.sala.label(class="label" ) }}
+                <br>
+                {{ form.sala(class="input") }}
+                <br>
+                {{ form.horario.label(class="label") }}
+                <br>
+                {{ form.horario(class="input") }}
+                <br>
+                {{ form.data.label(class="label") }}
+                <br>
+                {{ form.data(class="input") }}
+                <br>
+                <br>
+                {{ form.enviar() }}
+            </form>
+            {% endblock %}
+        </div>
+    </main>
+    <div class="coluna" style="background-color: #103a78;">
+        <p style="background: #103a78;">S2</p>
+    </div>
+</body>
+{% endblock %}

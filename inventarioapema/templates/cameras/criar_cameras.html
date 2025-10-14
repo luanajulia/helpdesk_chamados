@@ -1,0 +1,52 @@
+{% extends "home.html" %}
+
+{% block body %}
+
+<body>
+    <main>
+      <div>
+        <div style="width: 500px;margin: 20px;">
+        <h1>Cadastro Cameras</h1>
+            <form method="POST">
+
+                <label for="cameras" class="form-label">Modelo da Camera</label>
+                <select id="cameras" name="cameras" class="form-select">
+                    <option value="Vip 3240 IA" selected>Vip 3240 IA</option>
+                    <option value="Vip S3020 G2">Vip S3020 G2</option>
+                    <option value="VHD 1010">VHD 1010</option>
+                </select>
+
+                <label for="departamento" class="form-label">Departamento</label>
+                <select id="departamento" name="departamento" class="form-select">
+                  <option value="Administrativo" selected>Administrativo</option>
+                  <option value="Almoxarifado">Almoxarifado</option>
+                  <option value="Compras">Compras</option>
+                  <option value="Engenharia">Engenharia</option>
+                  <option value="Expedicao">Expedicao</option>
+                  <option value="Faturamento Engenharia" selected>Faturamento Engenharia</option>
+                  <option value="Inspetores">Inspetores</option>
+                  <option value="Lideres">Lideres</option>
+                  <option value="Manutenção">Manutenção</option>
+                  <option value="Marketing">Markenting</option>
+                  <option value="PCP">PCP</option>
+                  <option value="Portaria">Portaria</option>
+                  <option value="Processos">Processos</option>
+                  <option value="Qualidade">Qualidade</option>
+                  <option value="SIPAT">SIPAT</option>
+                  <option value="RH">RH</option>
+                  <option value="Vendas">Vendas</option>
+
+                </select>
+
+              <br>
+
+              <label for="quant_cameras" class="form-label">Quant. de Cameras</label>
+              <input type="number" class="form-control" id="quant_cameras" name="quant_cameras">
+
+                <br>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div></div>
+    </main>
+</body>
+{% endblock %}

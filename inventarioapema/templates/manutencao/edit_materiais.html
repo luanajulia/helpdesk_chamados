@@ -1,0 +1,72 @@
+{% extends "home.html" %}
+
+{% block body %}
+{% for equipamento in equipamentos %}
+    <div class='perfil'>
+        <h1>Editar Equipamento</h1>
+        </div>
+        <div class='col-18 mx-auto'>
+          <form method='post' action='{{url_for("edit_equipamentos",id=equipamento.id)}}'  style="width: 600px; left: 14.5%; top: 220px; z-index: -1;">
+            <div class='form-group'>
+              <label>Codigo:</label>
+              <input type='text' name='codigo'  class='form-control' value='{{ equipamento.codigo }}'>
+            </div>
+            <br>
+            <div class='form-group'>
+                <label>Equipamento:</label>
+                <input type='text' name='equipamento'  class='form-control' value='{{ equipamento.equipamento}}'>
+            </div>
+            <br>
+            <div class='form-group'>
+                <label>Localização:</label>
+                <input type='text' name='localizacao'  class='form-control' value='{{ equipamento.localizacao}}'>
+            </div>
+            <br>
+            <div class='form-group'>
+                <label>Prev:</label>
+                  <select class="form-select" style="width: 300px; position: relative; left: 190px; top: -30px;"  id="autoSizingSelect" name='prev' value="{{ equipamento.prev }}">
+                    <option  value="{{ equipamento.prev }}" >{{ equipamento.prev }}</option>
+                    <option value="S">S</option>
+                    <option value=" "> </option>
+                  </select>
+            </div>
+            <br>
+            <div class='form-group'>
+                <label>Pred:</label>
+                  <select class="form-select" style="width: 300px; position: relative; left: 190px; top: -30px;"  id="autoSizingSelect" name='pred' value="{{ equipamento.pred }}">
+                    <option  value="{{ equipamento.pred }}" >{{ equipamento.pred }}</option>
+                    <option value="S">S</option>
+                    <option value=" "> </option>
+                  </select>
+            </div>
+            <br>
+            <div class='form-group'>
+                <label>Caracteristicas:</label>
+                <input type='text' name='caracteristica'  class='form-control' value='{{ equipamento.caracteristica }}'>
+            </div>
+            <br>
+            <br>
+            <div class='form-group'>
+              {% if equipamento.desativado != 'desativado' %}
+              <label>Status do equipamento: </label>
+              <select class="form-select" style="width: 300px; position: relative; left: 200px; top: -30px;"  id="autoSizingSelect" name='desativado' value="{{ equipamento.desativado }}">
+                <option  value="{{ equipamento.desativado }}" >ativado</option>
+                <option value="desativado">Desativar</option>
+              </select>
+                {% else %}
+                <label>Status do equipamento: </label>
+              <select class="form-select" style="width: 300px; position: relative; left: 200px; top: -30px;"  id="autoSizingSelect" name='desativado' value="{{ equipamento.desativado }}">
+                <option  value="{{ equipamento.desativado }}" >desativado</option>
+                <option value=" ">Ativar</option>
+              </select>
+              {% endif %}
+            </div>
+            <br>
+            <div class='form-group'>
+            <button type='submit' value='Submit' class='btn btn-primary'>Enviar</button>
+          </div>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+{% endblock %}

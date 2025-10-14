@@ -1,0 +1,220 @@
+{% extends "home.html" %}
+
+{% block body %}
+<div class='perfil'>
+</div>
+<div style="margin: 50px;">
+<script>
+    // Obtém uma referência para o botão de impressão
+    const imprimirBtn = document.getElementById('imprimirBtn');
+
+
+    imprimirBtn.addEventListener('click', function () {
+        const div = document.getElementById('status');
+        window.print(div);
+    });
+</script>
+<style>
+    table {
+     border: 0px double #333; 
+     border-collapse: solid; 
+     width: 100%;
+     border-spacing: 7px 11px;
+    }
+    tbody {
+     padding-bottom: 0px;
+     padding-left: 15px;
+     padding-right: 15px;
+     padding-top: 15px;
+     border: 0px solid #000000;
+     border-spacing: 20px 11px;
+     font-size: 16px;
+    }
+    td{
+     border: 1px solid #000000;
+
+    }
+    thead {
+     padding: 15px; 
+     border: 0px solid #000000;
+     border-spacing: 20px 11px;
+    }
+</style>
+
+<div id="table" name="table">
+    <table class="fixo" style=" left: 15%; border: 0px  solid black;  border-right-width: 0px;  width: 850px; border-spacing: 7px 11px;">
+            <tbody >
+                <tr>
+                    <td colspan="2" style="width: 600px; font-size: 30px; text-align: center; font-family: Arial, Helvetica, sans-serif;" > <b>SISTEMA DE APONTAMENTO </b></td>
+					<td style="width: 218px; position: relative; border-left: 0px  solid black;"><img src="../static/img/flex.jpg" class="tabimg" width="250px" height="100px" ></td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td class="tabelado" style="width: 290px;"><b>APONTAMENTO: </b></td>
+                    <td colspan="2" class="tabelado" style="width: 995px;"> ATUALIZADO ATÉ  {% for data in datas %} {{data["date"]|datetimeformat('%d/%m/%Y')}} {% endfor %}</td>
+                </tr>
+                <tr>
+                    <td class="tabelado" style="width: 290px; "><b>PERÍODO: </b></td>
+                    <td colspan="2" class="tabelado" style="width: 995px; text-align: center;">7:00 as 16:48</td>
+                </tr>
+                <tr>
+                    <td class="tabelado" style="width: 290px;"><b>DIÁRIA: </b></td>
+                    <td colspan="2" class="tabelado" style="width: 995px; text-align: center;">8:48</td>
+                </tr>
+            </tbody>
+            <tbody>
+
+                <tr>
+                    <td class="tabelado" style="width: 950px;"><b>Vendas</b></td>
+                    <td class="tabelado" style="width: 995px;"><b>SALDO ACUMULADO</b></td>
+                    <td class="tabelado" style="width: 995px;"><b>OBS</b></td>
+
+                </tr>
+                {% for row in rows %}
+                {% if row.RA_CC == "3111     " %}
+                    <tr>
+                        <td class="tabelado" style="width: 950px;">{{row["RA_NOME"]}}</td>
+                        <td class="tabelado" style="width: 995px; text-align: center;">{{row["saldo"]}} </td>
+                        <td class="tabelado" style="width: 995px; text-align: center;">
+                        {% if row.status == "Positivo" %}
+                        <span style="color: green; " >{{row.status}} </span>
+                        {% else %}
+                        <span style="color: red;" >{{row.status}} </span>
+                        {% endif %} </td>
+                        {% if departamento == "RH" %}
+                        <td><a type="btn btn-primary" href="{{url_for("controle_banco", mat=row["RA_MAT"])}}" class="btn btn-primary">+</a></td>
+                        {% endif %}
+                    </tr>
+                {% endif %}
+                {% endfor %}
+                {% for pessoa in pessoas %}
+                {% if pessoa.RA_CC == "3111     " %}
+                    <tr>
+                        <td class="tabelado" style="width: 950px;">{{pessoa["RA_NOME"]}}</td>
+                        <td class="tabelado" style="width: 995px; text-align: center;">{% for saldo in saldos %}{% for matricula in matriculas %}{% if saldo.idColaborador == matricula.idColaborador %}{% if saldo.MatColaborador == pessoa.RA_MAT %} {{saldo.Saldo}} {% endif %} {% endif %}{% endfor %}{% endfor %}  </td>
+                        <td class="tabelado" style="width: 995px; text-align: center;">
+                        {% for saldo in saldos %}
+                        {% for matricula in matriculas %}
+                        {% if saldo.idColaborador == matricula.idColaborador %}
+                        {% if saldo.MatColaborador == pessoa.RA_MAT %} 
+                        {% if saldo.status == "Positivo" %}
+                        <span style="color: green;" >{{saldo.status}} </span>
+                        {% else %}
+                        <span style="color: red;" >{{saldo.status}} </span>
+                        {% endif %} 
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                        {% endfor %} </td>
+                        {% if departamento == "RH" %}
+                        <td><a type="btn btn-primary" href="{{url_for("controle_banco_pj", mat=pessoa["RA_MAT"])}}" class="btn btn-primary">+</a></td>
+                        {% endif %}
+                    </tr>
+                {% endif %}
+                {% endfor %}
+                <tr>
+                    <td class="tabelado" style="width: 950px;"><b>Faturamento</b></td>
+                    <td class="tabelado" style="width: 995px;"><b>SALDO ACUMULADO</b></td>
+                    <td class="tabelado" style="width: 995px;"><b>OBS</b></td>
+
+                </tr>
+                {% for row in rows %}
+                {% if row.RA_CC == "3113     " %}
+                    <tr>
+                        <td class="tabelado" style="width: 950px;">{{row["RA_NOME"]}}</td>
+                        <td class="tabelado" style="width: 995px; text-align: center;">{{row["saldo"]}} </td>
+                        <td class="tabelado" style="width: 995px; text-align: center;">
+                        {% if row.status == "Positivo" %}
+                        <span style="color: green; " >{{row.status}} </span>
+                        {% else %}
+                        <span style="color: red;" >{{row.status}} </span>
+                        {% endif %} </td>
+                        {% if departamento == "RH" %}
+                        <td><a type="btn btn-primary" href="{{url_for("controle_banco", mat=row["RA_MAT"])}}" class="btn btn-primary">+</a></td>
+                        {% endif %}
+                    </tr>
+                {% endif %}
+                {% endfor %}
+                {% for pessoa in pessoas %}
+                {% if pessoa.RA_CC == "3113" %}
+                    <tr>
+                        <td class="tabelado" style="width: 950px;">{{pessoa["RA_NOME"]}}</td>
+                        <td class="tabelado" style="width: 995px; text-align: center;">{% for saldo in saldos %}{% for matricula in matriculas %}{% if saldo.idColaborador == matricula.idColaborador %}{% if saldo.MatColaborador == pessoa.RA_MAT %} {{saldo.Saldo}} {% endif %} {% endif %}{% endfor %}{% endfor %}  </td>
+                        <td class="tabelado" style="width: 995px; text-align: center;">{% for saldo in saldos %}
+                        {% for matricula in matriculas %}
+                        {% if saldo.idColaborador == matricula.idColaborador %}
+                        {% if saldo.MatColaborador == pessoa.RA_MAT %} 
+                        {% if saldo.status == "Positivo" %}
+                        <span style="color: green;" >{{saldo.status}} </span>
+                        {% else %}
+                        <span style="color: red;" >{{saldo.status}} </span>
+                        {% endif %} 
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                        {% endfor %}</td>
+                        {% if departamento == "RH" %}
+                        <td><a type="btn btn-primary" href="{{url_for("controle_banco_pj", mat=pessoa["RA_MAT"])}}" class="btn btn-primary">+</a></td>
+                        {% endif %}
+                    </tr>
+                {% endif %}
+                {% endfor %}
+                <tr>
+                    <td class="tabelado" style="width: 950px;"><b>Marketing</b></td>
+                    <td class="tabelado" style="width: 995px;"><b>SALDO ACUMULADO</b></td>
+                    <td class="tabelado" style="width: 995px;"><b>OBS</b></td>
+
+                </tr>
+                {% for row in rows %}
+                {% if row.RA_CC == "3115     " %}
+                    <tr>
+                        <td class="tabelado" style="width: 950px;">{{row["RA_NOME"]}}</td>
+                        <td class="tabelado" style="width: 995px; text-align: center;">{{row["saldo"]}} </td>
+                        <td class="tabelado" style="width: 995px; text-align: center;">
+                        {% if row.status == "Positivo" %}
+                        <span style="color: green; " >{{row.status}} </span>
+                        {% else %}
+                        <span style="color: red;" >{{row.status}} </span>
+                        {% endif %} </td>
+                        {% if departamento == "RH" %}
+                        <td><a type="btn btn-primary" href="{{url_for("controle_banco", mat=row["RA_MAT"])}}" class="btn btn-primary">+</a></td>
+                        {% endif %}
+                    </tr>
+                {% endif %}
+                {% endfor %}
+                {% for pessoa in pessoas %}
+                {% if pessoa.RA_CC == "3115" %}
+                    <tr>
+                        <td class="tabelado" style="width: 950px;">{{pessoa["RA_NOME"]}}</td>
+                        <td class="tabelado" style="width: 995px; text-align: center;">{% for saldo in saldos %}{% for matricula in matriculas %}{% if saldo.idColaborador == matricula.idColaborador %}{% if saldo.MatColaborador == pessoa.RA_MAT %} {{saldo.Saldo}} {% endif %} {% endif %}{% endfor %}{% endfor %}  </td>
+                        <td class="tabelado" style="width: 995px; text-align: center;">
+                        {% for saldo in saldos %}
+                        {% for matricula in matriculas %}
+                        {% if saldo.idColaborador == matricula.idColaborador %}
+                        {% if saldo.MatColaborador == pessoa.RA_MAT %} 
+                        {% if saldo.status == "Positivo" %}
+                        <span style="color: green;" >{{saldo.status}} </span>
+                        {% else %}
+                        <span style="color: red;" >{{saldo.status}} </span>
+                        {% endif %} 
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                        {% endfor %} </td>
+                        {% if departamento == "RH" %}
+                        <td><a type="btn btn-primary" href="{{url_for("controle_banco_pj", mat=pessoa["RA_MAT"])}}" class="btn btn-primary">+</a></td>
+                    {% endif %}
+                    </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+            {% if departamento == "RH" %}
+            <a class="btn btn-primary" style="left: 60%; position: relative; width: 7%;" href="{{ url_for("departamento_banco") }}">Retornar</a>
+            {% endif %}
+    </table>
+
+</div>
+</div>
+</body>
+{% endblock %}

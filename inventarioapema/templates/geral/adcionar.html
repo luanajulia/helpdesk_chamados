@@ -1,0 +1,47 @@
+{% extends "home.html" %}
+
+{% block body %}
+
+        <script>
+            const list = document.querySelectorAll('.list');
+            function activeLink(){
+                list.forEach((item) =>
+                item.classList.remove('active'));
+                this.classList.add('active');
+            }
+                list.forEach((item) =>
+                item.addEventListener('click', activeLink));
+        </script>
+        </div>
+    </div>
+    <div class='perfil'>
+        <h1>Adicionar</h1>
+        <a href="{{ url_for('criarconta') }}">
+            <img src="../static/img/usuarios.png" class="user" style=" z-index: 1;">
+            <h2 class="user" style="top: 480px; left: 18%; font-size: 36px; color: #103a78;">Adicionar<br>Usuarios</h2></a>
+
+        <a href="{{ url_for('computador') }}">
+            <img src="../static/img/computadores.png" class="computer" style=" z-index: 1;">
+            <h2 class="computer" style="top: 460px;  font-size: 36px; color: #103a78; text-align: center;">Adicionar<br>Computadores</h2></a>
+
+        <a href="{{ url_for('criar_impressoras') }}">
+            <img src="../static/img/impressoras.png" class="impre" style=" z-index: 1;">
+            <h2 class="impre" style="top: 470px; left: 36%; font-size: 36px; color: #103a78; text-align: center;">Adicionar<br>Impressoras</h2></a>
+
+        <a href="{{ url_for('criartoner') }}">
+            <img src="../static/img/toners.png" class="toner" style=" z-index: 1;">
+            <h2 class="toner" style="top: 480px; left: 78%; font-size: 36px; color: #103a78;  text-align: center;">Adicionar<br>Toners</h2></a>
+
+        <a href="{{ url_for('criarcameras') }}">
+            <img src="../static/img/cameras.png" class="came" style=" z-index: 1;">
+            <h2 class="came" style="top: 810px; left: 28%; font-size: 36px; color: #103a78; text-align: center;">Adicionar<br>Cameras</h2></a>
+
+        
+        <a href="{{ url_for('criarantena') }}">
+            <img src="../static/img/antenas.png" class="ant" style=" z-index: 1;">
+            <h2 class="ant" style="top: 810px; left: 69%; font-size: 36px; color: #103a78; text-align: center;">Adcionar<br>Antenas</h2></a>
+
+    
+    </div>
+</div>
+{% endblock %}

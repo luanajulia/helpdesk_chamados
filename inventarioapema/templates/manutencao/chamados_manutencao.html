@@ -1,0 +1,100 @@
+{% extends "home.html" %}
+
+{% block body %}
+<div class="perfil">
+    <div style="margin: 20px;">
+    <h1>Ordem de serviço de Manutenção</h1>
+    <div class="status" style=" left: 49%; top: 20px;">
+        {% for ativosstatus in ativosstatus %}
+        {% for desativado in desativado %}
+        {% for concluido in concluido %}
+        {% for aberto in aberto %}
+        <a  class="btn btn-primary" style="width: 115px;">Novo: {{ ativosstatus|first }}</a>
+        <a  class="btn btn-warning text-dark" >Atribuido: {{ desativado|first }} </a>
+        <a class="btn btn-success"  >Fechado: {{ concluido|first }} </a>
+        <a class="btn btn-danger" style="width: 115px;" >Reaberto: {{ aberto|first }} </a>
+        <a href="" class="btn btn-light" id="imprimirBtn"  style="width: 115px;">Imprimir <ion-icon name="print-outline"></ion-icon></a>
+        <a href="{{ url_for('static', filename='arquivoquery.xlsx')}}"  role="button" class="btn btn-success" style="width: 115px;" >Excel</a>
+        {% endfor %}
+        {% endfor %}
+        {% endfor %}
+        {% endfor %}
+    </div>
+    <script>
+        // Obtém uma referência para o botão de impressão
+        const imprimirBtn = document.getElementById('imprimirBtn');
+        
+        
+        imprimirBtn.addEventListener('click', function() {
+            const div = document.getElementById('status');
+            window.print(div);
+        });
+        </script>
+        <table class="table table-striped" style=" margin: 20px; width: -webkit-fill-available;">
+        <thead>
+            <tr>
+                <th scope="col">Num.OS</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Departamento</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Data Abertura</th>
+                <th scope="col">Status</th>
+                <th scope="col">Tecnico</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for chamados in chamados %}
+            <tr>
+                <td style="width: 70px;">{{ chamados.id }}</td>
+                <td>{{ chamados.username }}</td>
+                <td>{{ chamados.email }}</td>
+                <td>{{ chamados.departamento }}</td>
+                <td>{{ chamados.tipo }}  </td>
+                <td>{{ chamados["data"]|datetimeformat("%d/%m/%Y") }}</td>
+                {% if chamados.status == 'novo' %}
+                <td><a type="button" style="width: 100px;" class="btn btn-outline-primary" href="#" >Novo</a></td>
+                {% else %}
+                {% if chamados.status == 'atribuido' %}
+                <td ><a type="button" style="width: 100px;" class="btn btn-outline-warning text-dark" href="#" >Atribuido</a></td>
+                {% else %}
+                {% if chamados.status == 'fechado' %}
+                <td ><a type="button" style="width: 100px;"  class="btn btn-outline-success" href="#" >Fechado</a></td>
+                {% else %}
+                {% if chamados.status == 'reaberto' %}
+                <td ><a type="button" style="width: 100px;"  class="btn btn-outline-danger" href="#" >Reaberto</a></td>
+                {% endif %}
+                {% endif %}
+                {% endif %}
+                {% endif %}
+                {% if chamados.tecnico  %}
+                <td>{{ chamados.tecnico }}</td>
+                {% else %}
+                <td>   </td>
+                {% endif %}
+                {% if chamados.status == 'novo' %}
+                <td ><a  href='{{url_for("edit_chamados_manutencao",id=chamados.id)}}' class='btn btn-primary'>Editar</a></td>
+                <td ><a href='{{url_for("os_manutencao",id=chamados.id)}}' class="btn btn-light"  style="width: 100px;">Imprimir</a></td>
+                {% endif %}
+                {% if chamados.status == 'atribuido' %}
+                <td ><a href='{{url_for("edit_chamados_manutencao",id=chamados.id)}}' class='btn btn-primary'>Editar</a></td></td>
+                <td ><a href='{{url_for("os_manutencao",id=chamados.id)}}' class="btn btn-light"  style="width: 100px;">Imprimir</a></td>
+                {% endif %}
+                {% if chamados.status == 'fechado' %}
+                <td>   </td>
+                <td ><a href='{{url_for("os_manutencao_completa",id=chamados.id)}}' class="btn btn-light"  style="width: 100px;">Imprimir</a></td>
+                {% if current_user.nivel == 'Administrador' %}
+                <td ><a  href='{{url_for("delete_os",id=chamados.id)}}' class='btn btn-danger' onclick='return confirm("Voce tem certeza, que deseja excluir?")'>Deletar</a></td>
+                {% endif %}
+                {% endif %}
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+</div>
+</div>
+</body>
+{% endblock %}

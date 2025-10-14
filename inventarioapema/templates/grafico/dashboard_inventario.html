@@ -1,0 +1,541 @@
+{% extends "home.html" %}
+{% block body %}
+<div class="perfil">
+  <h1>Graficos</h1>
+  </div>
+  <a href="" class="btn btn-light" id="imprimirBtn"  style="width: 115px; left: 80%; position: relative;"> Imprimir <ion-icon name="print-outline"></ion-icon></a>
+  <script>
+    // Obtém uma referência para o botão de impressão
+    const imprimirBtn = document.getElementById('imprimirBtn');
+    
+    imprimirBtn.addEventListener('click', function() {
+        const div = document.getElementById('status');
+        window.print(div);
+    });
+    </script>
+  <div class="dropdown" style="left: 80%; position: relative;">
+    <button class="dropbtn" >Inventarios</button>
+    <div class="dropdown-content" >
+      <a  style="width: 100%;" href="{{ url_for('dashboard') }}">Chamados</a>
+      <a  style="width: 100%;" href="{{ url_for('dashboard_inventario') }}">Equipamentos</a>
+    </div>
+  </div>
+  <div class="grid-stack-item-content">
+ <a href="{{ url_for('computadores') }}" id="bn_897081154" class="card big-number  filter-dates filter-dates_mod filter-location filter-manufacturer filter-group_tech filter-user_tech" title="">
+    <span class="content">
+      {% for ativos in ativos %}       
+    <div  title="Software" style="width: 100%; font-size: 22px;">Computadores</div>   
+      <span title="0" class="formatted-number" data-precision="0" style="width: 100%; font-size: 20px;">
+          <span class="number">{{ ativos|first }}</span>
+          <span class="icon"><ion-icon name="desktop-outline"></ion-icon></span>
+       </span></span>
+       {% endfor %}
+ </a>
+ <br>
+ <a href="{{ url_for('impressoras') }}" id="bn_897081154" style="left: 61%; top: -80px; background-color: #91eeff; color: #20b6e8; width: 200px;" class="card big-number  filter-dates filter-dates_mod filter-location filter-manufacturer filter-group_tech filter-user_tech" title="">
+  <span class="content">
+      {% for impres in impres %}       
+  <div  title="Software" style="width: 100%; font-size: 22px;">Impressora</div>   
+    <span title="0" class="formatted-number" data-precision="0" style="width: 100%; font-size: 20px;">
+        <span class="number">{{ impres|first }}</span>
+        <span class="icon"><ion-icon name="print-outline"></ion-icon></span>
+     </span></span>
+     {% endfor %}
+</a>
+<br>
+<a href="{{ url_for('toners') }}" id="bn_897081154" style="left: 72%;top: -210px; background-color: #b1eeb1; color: #60b52f; width: 200px;" class="card big-number  filter-dates filter-dates_mod filter-location filter-manufacturer filter-group_tech filter-user_tech" title="">
+ <span class="content"> 
+  {% for aberto in aberto %}      
+ <div  title="Software" style="width: 100%; font-size: 22px;">Toners</div>   
+   <span title="0" class="formatted-number" data-precision="0" style="width: 100%; font-size: 20px;">
+       <span class="number">{{ aberto|first }}</span>
+       <span class="icon"><ion-icon name="water-outline"></ion-icon></span>
+     {% endfor %}
+    </span></span>
+</a>
+</div>
+<div class="grid-stack-item-content">
+  <a href="{{ url_for('antenas') }}" id="bn_897081154" style="top: -200px; background-color: #ecd8ba; color: #ff9900; width: 200px;" class="card big-number  filter-dates filter-dates_mod filter-location filter-manufacturer filter-group_tech filter-user_tech" title="">
+     <span class="content">      
+      {% for desativado in desativado %}  
+     <div  title="Software" style="width: 100%; font-size: 22px;">Antenas</div>   
+       <span title="0" class="formatted-number" data-precision="0" style="width: 100%; font-size: 20px;">
+           <span class="number">{{ desativado|first }}</span>
+      <span class="icon"><ion-icon name="radio-outline"></ion-icon></span>
+        </span></span>
+     {% endfor %}
+
+  </a>
+  <br>
+  <a href="{{ url_for('cameras') }}" id="bn_897081154" style="left: 61%; top: -330px; background-color: #e4b7fa; color: #8936b3; width: 200px;" class="card big-number  filter-dates filter-dates_mod filter-location filter-manufacturer filter-group_tech filter-user_tech" title="">
+   <span class="content">    
+    {% for concluido in concluido %}   
+   <div  title="Software" style="width: 100%; font-size: 22px;">Cameras</div>   
+     <span title="0" class="formatted-number" data-precision="0" style="width: 100%; font-size: 20px;">
+         <span class="number">{{ concluido|first }}</span>
+         <span class="icon"><ion-icon name="videocam-outline"></ion-icon></span>
+     {% endfor %}
+    </span></span> 
+ </a>
+ <br>
+
+ </div>
+ <div>
+  <canvas id="processador" class="processador" ></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<h6 style=" font-size: 22px; top: 195px;">Processador por Maquina </h6>
+<script>
+let status_data = JSON.parse({{ status | tojson }})
+
+const ctx3 = document.getElementById('processador');
+  new Chart(ctx3, {
+    type: 'doughnut',
+         data: {
+          type: 'line',
+          text: 'Processador por Maquinas',
+          labels: ['Sem Registro', 'Ryzen 5', 'i3', 'i5', 'i7'],
+          datasets: [{
+          label: 'quantidade',
+          data: status_data,
+          backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(75, 192, 192)',
+          'rgb(255, 205, 86)',
+          'rgb(201, 203, 207)',
+          'rgb(54, 162, 235)'
+          ],
+          borderWidth: 1,
+          hoverBorderColor: "black",
+          hoverBorderWidth: 2,
+          pointHoverRadius: 5,
+          customCanvasBackgroundColor: 'rgb(255, 99, 132)'
+        }],
+      },
+        options: {
+          plugins: {
+            legend: {
+                position: "right",
+                    labels: {
+                    fontColor: "gray"
+                },
+                display: true,
+        },
+      },
+
+            elements: {
+                hitRadius: 3,
+            },
+          
+        onClick: (event, elements, chart) => {
+          if (elements[0]) {            
+            const i = elements[0].index;
+            window.open("{{ url_for('computadores') }}");
+    }
+    }}})
+</script>
+
+<div>
+  <canvas id="memoria" class="memoria"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<h6 class="h12" style="left: 79%; top: 474px;">Memoria por Maquina </h6>
+<script>
+let chamados_data = JSON.parse({{ chamados | tojson }})
+
+const ctx4 = document.getElementById('memoria');
+  new Chart(ctx4, {
+    type: 'doughnut',
+         data: {
+          type: 'line',
+          text: 'Processador por Maquinas',
+          labels: ['12GB', '16GB', '32GB', '4GB' ,'6GB', '8GB', 'Sem Registro'],
+          datasets: [{
+          label: 'quantidade',
+          data: chamados_data,
+          backgroundColor: [
+          'rgb(231, 70, 69)',
+          'rgb(251, 119, 86)',
+          'rgb(250, 205, 96)',
+          'rgb(253, 250, 102)',
+          'rgb(254, 252, 191)',
+          'rgb(129, 233, 230)',
+          'rgb(72, 214, 210)',
+          'rgb(42, 111, 219)',
+          'rgb(18, 44, 145)'
+          ],
+          borderWidth: 1,
+          hoverBorderColor: "black",
+          hoverBorderWidth: 2,
+          pointHoverRadius: 5,
+          customCanvasBackgroundColor: 'rgb(255, 99, 132)'
+        }],
+          },
+        options: {
+          plugins: {
+            legend: {
+                position: "right",
+                    labels: {
+                    fontColor: "gray"
+                },
+                display: true,
+        },
+      },
+
+            elements: {
+                hitRadius: 3,
+            },
+          
+        onClick: (event, elements, chart) => {
+          if (elements[0]) {            
+            const i = elements[0].index;
+            window.open("{{ url_for('computadores') }}");
+    }
+    }}})
+</script>
+
+<div>
+  <canvas id="pie" class="pie" ></canvas>
+</div>
+<h6 class="h14">Tipo de Maquinas</h6>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Udemology/chartjs-plugin-sorting@main/chartjs-plugin-sorting.js"></script>
+<script>
+let usuarios_data = JSON.parse({{ usuarios | tojson }})
+const stackedBar = document.getElementById('pie');
+
+new Chart(stackedBar , {
+  type: 'bar',
+  data: {
+  
+    labels: ['Notbook', 'Computador'],
+    datasets: [{
+      label: ['Tipo'],
+      data: usuarios_data,
+      backgroundColor: [
+          'rgb(13, 71, 161)',
+          'rgb(21, 101, 192)',
+          'rgb(25, 118, 210)',
+          'rgb(30, 136, 229)',
+          'rgb(33, 150, 243)',
+          'rgb(66, 165, 245)',
+          'rgb(100, 181, 246)',
+          'rgb(187, 222, 251)',
+          'rgb(179, 229, 252)',
+          'rgb(129, 212, 250)',
+          'rgb(79, 195, 247)',
+          'rgb(3, 169, 244)',
+          'rgb(3, 155, 229)',
+          'rgb(2, 136, 209)',
+          'rgb(2, 119, 189)',
+          'rgb(2, 119, 189)',
+          'rgb(1, 87, 155)'
+          ],
+          borderWidth: 1,
+          hoverBorderColor: "black",
+          hoverBorderWidth: 2,
+          pointHoverRadius: 5
+  }],
+    series: [{
+  dataSorting: {
+      enabled: true
+  },
+  data: usuarios_data
+}]
+},
+    options: {
+
+            elements: {
+                hitRadius: 3,
+        },
+      onClick: (event, elements, chart) => {
+        if (elements[0]) {            
+          const i = elements[0].index;
+          window.open("{{ url_for('computadores') }}");
+        }
+  }}})
+</script>
+<div>
+  <canvas id="impressoras" class="impressoras"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<h2 class="h8">Impressoras </h2>
+<script>
+let impressoras_data = JSON.parse({{ impressoras | tojson }})
+const imp = document.getElementById('impressoras');
+  new Chart(imp, {
+    type: 'doughnut',
+         data: {
+          type: 'doughnut',
+          text: 'Status do Chamado',
+          labels: ['HP_Colorida', 'Kiocera', 'Samsung', 'Plotter'],
+          datasets: [{
+          label: 'status',
+          data: impressoras_data,
+          backgroundColor: [
+          'rgb(153, 153, 255)',
+          'rgb(107, 125, 179)',
+          'rgb(187, 153, 255)',
+          'rgb(153, 255, 255)',
+          'rgb(129, 179, 54)'
+          ],
+          borderWidth: 1,
+          hoverBorderColor: "black",
+          hoverBorderWidth: 2,
+          pointHoverRadius: 5,
+        }],
+          },
+        options: {
+        title: {
+            display: true,
+            position: 'top',
+            text: ['Título','Subtítulo'],
+            fontSize: 14
+        },
+            legend: {
+                position: "right",
+                    labels: {
+                    fontColor: "gray"
+                },
+                display: true,
+        },
+
+            elements: {
+                hitRadius: 3,
+            },
+        onClick: (event, elements, chart) => {
+          if (elements[0]) {            
+            const i = elements[0].index;
+            window.open('http://127.0.0.1:5000/' + chart.data.labels[i]);
+          }
+    }}})
+</script>
+<div>
+  <canvas id="disco" class="disco"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<h6 class="h13">Disco por Maquina </h6>
+<script>
+  let depart_data = JSON.parse({{ depart | tojson }})
+  const ctx8 = document.getElementById('disco');
+
+  new Chart(ctx8, {
+    type: 'bar',
+    data: {
+      labels: ['HD 1000', 'HD 2000', 'HD 500', 'Sem Registro', 'SSD 250', 'SSD 480', 'SSD 512', 'SSD 650'],
+      datasets: [{
+        label: 'Disco Rigido',
+        data: depart_data,
+        backgroundColor: [
+            'rgb(247, 164, 0)',
+            'rgb(58, 158, 253)',
+            'rgb(62, 68, 145)',
+            'rgb(41, 42, 115)',
+            'rgb(26, 27, 75)'],
+          borderWidth: 1,
+          hoverBorderColor: "black",
+          hoverBorderWidth: 2,
+          pointHoverRadius: 5
+      }],
+          },
+      options: {
+          title: {
+              display: true,
+              position: 'top',
+              text: ['Título','Subtítulo'],
+              fontSize: 14
+          },
+              legend: {
+                  position: "right",
+                      labels: {
+                      fontColor: "gray"
+                  },
+                  display: true,
+          },
+
+              elements: {
+                  hitRadius: 3,
+              },
+          onClick: (event, elements, chart) => {
+            if (elements[0]) {            
+              const i = elements[0].index;
+              window.open("{{ url_for('computadores') }}");
+            }
+    }}})
+</script>
+<div>
+  <canvas id="antena" class="antena"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<h3 class="h7">Antenas</h3>
+<script>
+  let antenas_data = JSON.parse({{ antenas | tojson }})
+  const ctx6 = document.getElementById('antena');
+
+  new Chart(ctx6, {
+    type: 'bar',
+    data: {
+      labels: ['Antena_6', 'Antena_Fininha', 'Antena_LR', 'Antena_Pro-1'],
+      datasets: [{
+        label: 'Antenas',
+        data: antenas_data,
+        backgroundColor: [
+            'rgb(254, 250, 134)',
+            'rgb(129, 233, 230)',
+            'rgb(72, 214, 210)',
+            'rgb(42, 111, 219)',
+            'rgb(18, 44, 145)'],
+          borderWidth: 1,
+          borderColor: [
+            'rgb(240, 236, 106)',
+            'rgb(79, 196, 192)',
+            'rgb(57, 172, 168)',
+            'rgb(35, 86, 169)',
+            'rgb(14, 32, 103)'],
+          hoverBorderColor: "black",
+          hoverBorderWidth: 2,
+          pointHoverRadius: 5
+      }],
+          },
+      options: {
+          title: {
+              display: true,
+              position: 'top',
+              text: ['Título','Subtítulo'],
+              fontSize: 14
+          },
+              legend: {
+                  position: "right",
+                      labels: {
+                      fontColor: "gray"
+                  },
+                  display: true,
+          },
+
+              elements: {
+                  hitRadius: 3,
+              },
+          onClick: (event, elements, chart) => {
+            if (elements[0]) {            
+              const i = elements[0].index;
+              window.open('http://127.0.0.1:5000/' + chart.data.labels[i]);
+            }
+    }}})
+</script>
+<div>
+  <canvas id="ton" class="ton"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<h6 class="h9">Impressora vs Toners</h6>
+<script>
+let toner_data = JSON.parse({{ toners | tojson }})
+let impressora_data = JSON.parse({{ impressoras | tojson }})
+const ctx7 = document.getElementById('ton');
+  new Chart(ctx7, {
+      type: 'bar',
+      data: {
+          labels: ['HP_Colorida', 'Kiocera', 'Samsung', 'Plotter'],
+          datasets: [{
+            label: "Impressoras",
+            backgroundColor: "rgba(0,51,90,0.8)",
+            borderColor: "rgba(0,51,90,0.9)",
+            borderWidth: 2,
+            hoverBackgroundColor: "rgba(0,51,90,0.9)",
+            hoverBorderColor: "rgba(0,51,90,1)",
+            data: impressora_data
+          }, {
+            label: "Toners",
+            backgroundColor: "rgba(0,130,229,0.8)",
+            borderColor: "rgba(0,130,229,0.9)",
+            borderWidth: 2,
+            hoverBackgroundColor: "rgba(0,130,229,0.9)",
+            hoverBorderColor: "rgba(0,130,229,1)",
+            data: toner_data
+          }],
+    },
+        options: {
+        title: {
+            display: true,
+            position: 'top',
+            text: ['Título','Subtítulo'],
+            fontSize: 14
+        },
+            legend: {
+                position: "right",
+                    labels: {
+                    fontColor: "gray"
+                },
+                display: true,
+        },
+
+            elements: {
+                hitRadius: 3,
+            },
+        onClick: (event, elements, chart) => {
+          if (elements[0]) {            
+            const i = elements[0].index;
+            window.open('http://127.0.0.1:5000/' + chart.data.labels[i]);
+          }
+    }}})
+</script>
+<div>
+  <canvas id="cam" class="cam"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<h2 class="h10">Cameras </h2>
+<script>
+let cameras_data = JSON.parse({{ cameras | tojson }})
+const cam = document.getElementById('cam');
+  new Chart(cam, {
+    type: 'doughnut',
+         data: {
+          type: 'doughnut',
+          text: 'Status do Chamado',
+          labels: [ 'VHD_1010', 'Vip_3240_IA', 'Vip_S3020_G2'],
+          datasets: [{
+          label: 'cameras',
+          data: cameras_data,
+          backgroundColor: [
+          'rgb(84, 210, 210)',
+          'rgb(7, 36, 72)',
+          'rgb(248, 170, 75)',
+          'rgb(68, 194, 253)',
+          'rgb(52, 48, 144)'
+          ],
+          borderWidth: 1,
+          hoverBorderColor: "black",
+          hoverBorderWidth: 2,
+          pointHoverRadius: 5
+      }],
+    },
+        options: {
+        title: {
+            display: true,
+            position: 'top',
+            text: ['Título','Subtítulo'],
+            fontSize: 14
+        },
+            legend: {
+                position: "right",
+                    labels: {
+                    fontColor: "gray"
+                },
+                display: true,
+        },
+
+            elements: {
+                hitRadius: 3,
+            },
+        onClick: (event, elements, chart) => {
+          if (elements[0]) {            
+            const i = elements[0].index;
+            window.open('http://127.0.0.1:5000/' + chart.data.labels[i]);
+          }
+    }}})
+</script>
+
+  </body>
+</head>
+</html>
+
+ {% endblock %}

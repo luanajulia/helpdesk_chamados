@@ -1,0 +1,39 @@
+{% extends "home.html" %}
+
+{% block body %}
+
+    <div class='perfil'>
+        <h1>Buscas para:{{impressoras.nome_impressora }}</h1>
+        <div class="status" style="top: 60px;">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+                <input type="text" id="valor_busca" class="form-control" style="width: 600px; display: inline; margin-right: 5px;  "/>
+                <input type="submit" value="Pesquisar" onclick="myFunction()" style="background-color: #008cff; border-color: #008cff; border-radius: 5px; font-size: 16px; color: white; padding: 5px;" />
+        
+                <script>
+                function myFunction() {
+                    var valor_busca = document.getElementById("valor_busca").value;
+                location.href = "search_cameras/"+valor_busca;
+                }
+                </script>
+            </div>
+    <table class="table" style=" width: 1600px; z-index: -1;">
+        <tr>
+            <th scope="col">Nome da Impressora<a href="{{ url_for('impressoras') }}" style="display: inline-flex;  color: #000;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+                <th scope="col">Modelo impressoras<a href="{{ url_for('modelo_impressora') }}" style="display: inline-flex;  color: #000;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+                <th scope="col">Departamento<a href="{{ url_for('departamento_impressora') }}" style="display: inline-flex;  color: #000;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+                <th scope="col">IP<a href="{{ url_for('ip_impressora') }}" style="display: inline-flex;  color: #000;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+            </tr>
+            <tr>
+                <td>{{impressoras.nome_impressora }}</td>
+                <td>{{impressoras.modelo_impressora }}</td>
+                <td>{{impressoras.departamento }}</td>
+                <td>{{impressoras.ip }}</td>
+                <td><a style="width: 150px;" href='{{url_for("delete_impressoras",id=impressoras.id)}}' class='btn btn-danger' onclick='return confirm("Voce tem certeza, que deseja excluir  {{ impressoras.nome_impressora }}?")'>Deletar</a></td>
+                <td><a style="width: 150px;" href='{{url_for("edit_impressoras",id=impressoras.id)}}' class='btn btn-primary'>Editar</a></td>
+            </tr>
+        </table>
+    </div>
+    
+</body>
+{% endblock %}

@@ -1,0 +1,138 @@
+{% extends "home.html" %}
+
+{% block body %}
+<div class='perfil'>
+</div>
+<div style="margin: 50px;">
+<script>
+    // Obtém uma referência para o botão de impressão
+    const imprimirBtn = document.getElementById('imprimirBtn');
+
+
+    imprimirBtn.addEventListener('click', function () {
+        const div = document.getElementById('status');
+        window.print(div);
+    });
+</script>
+<style>
+    table {
+     border: 0px double #333; 
+     border-collapse: solid; 
+     width: 100%;
+     border-spacing: 7px 11px;
+    }
+    tbody {
+     padding-bottom: 0px;
+     padding-left: 15px;
+     padding-right: 15px;
+     padding-top: 15px;
+     border: 0px solid #000000;
+     border-spacing: 20px 11px;
+     font-size: 20px;
+    }
+    td{
+     border: 1px solid #000000;
+
+    }
+    thead {
+     padding: 15px; 
+     border: 0px solid #000000;
+     border-spacing: 20px 11px;
+    }
+</style>
+<div class="butoes" style="left: 90%; position: relative; width: 7%; display: inline-flex; ">
+<a class="btn btn-success"  href="{{ url_for("recalculo", mat=mat) }}">Recalcular</a>
+<a class="btn btn-primary"  href="{{ url_for("colaboradores_banco") }}">Retornar</a>
+</div>
+<div id="table" name="table">
+    <table class="fixo" style=" left: 15%; border: 0px  solid black;  border-right-width: 0px;  width: 1400px; border-spacing: 7px 11px;">
+            <tbody >
+                <tr>
+                    <td colspan="11"  style="width: 1047px; font-size: 20px; text-align: center; font-family: Arial, Helvetica, sans-serif;" > <b>SISTEMA DE APONTAMENTO <br>PERÍODO: 01/01/2025 a  {% for data in datas %} {{data["date"]|datetimeformat('%d/%m/%Y')}} {% endfor %}</b></td>
+					<td style="width: 218px; position: relative; border-left: 0px  solid black;"><img src="../static/img/flex.jpg" class="tabimg" width="250px" height="100px" ></td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td class="tabelado" style="width: 290px;"><b>NOME: </b></td>
+                    <td colspan="11" class="tabelado" style="width: 995px;">{% for dado in dados %}{{ dado["RA_NOME"] }}{% endfor %}</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td colspan="3" class="tabelado" style="width: 300px;"><b>PERÍODO:</b></td>
+                    <td colspan="3" class="tabelado" style="width: 240px;"> 07:00 as 16:48</td>
+                    <td colspan="3" class="tabelado" style="width: 300px;"><b>DIÁRIA:</b></td>
+                    <td colspan="3" class="tabelado" style="width: 240px;">08:48:00</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td class="tabelado" rowspan="2" style="width: 160px; text-align: center;"><b>Data</b></td>
+                    <td class="tabelado" colspan="5" style="width: 360px; text-align: center;">Período Adicionado</td>
+                    <td class="tabelado" colspan="5" style="width: 360px; text-align: center;">Período Reduzido</td>
+                    <td class="tabelado" rowspan="2" style="width: 150px; text-align: center;"><b>Saldo</b></td>
+                </tr>
+                <tr>
+                    <td class="tabelado" colspan="2" style="text-align: center;">De</td>
+                    <td class="tabelado" colspan="2" style="text-align: center;">Ate</td>
+                    <td class="tabelado" style="text-align: center;">Total</td>
+                    <td class="tabelado" colspan="2" style="text-align: center;">De</td>
+                    <td class="tabelado" colspan="2" style="text-align: center;">Ate</td>
+                    <td class="tabelado" style="text-align: center;">Total</td>
+
+                </tr>
+                <tr>
+                    <form method="POST" action="{{url_for("controle_banco_form", mat=mat)}}">
+                        <td class="tabelado"><input type="date" max="{% for datas_atuais in datas_atuais%}{{datas_atuais}}{% endfor %}" class="form-control" id="data" name="data" required ></td>
+                        <td class="tabelado"><input type="time" class="form-control" id="trabalhado_ini" name="trabalhado_ini"></td>
+                        <td class="tabelado"><input type="time" class="form-control" id="intervalo_ini" name="intervalo_ini"></td>
+                        <td class="tabelado"><input type="time" class="form-control" id="intervalo_fin" name="intervalo_fin"></td>
+                        <td class="tabelado"><input type="time" class="form-control" id="trabalhado_fin" name="trabalhado_fin"></td>
+                        <td class="tabelado"></td>
+                        <td class="tabelado"><input type="time" class="form-control" id="compensado_ini" name="compensado_ini"></td>
+                        <td class="tabelado"><input type="time" class="form-control" id="intervaloc_ini" name="intervaloc_ini"></td>
+                        <td class="tabelado"><input type="time" class="form-control" id="intervaloc_fin" name="intervaloc_fin"></td>
+                        <td class="tabelado"><input type="time" class="form-control" id="compensado_fin" name="compensado_fin"></td>
+                        <td class="tabelado"></td>
+                        <td class="tabelado"><button type="submit" class="btn btn-primary"  >ENVIAR</button></td>
+                    </form>
+                </tr>
+                {% for row in rows %}
+                {% if row.deletado != 's' %}
+                <tr>
+                    <td class="tabelado">{{ row.Data|datetimeformat('%d/%m/%Y') }}</td>
+                    <td class="tabelado">{{row.Trabalhado_ini}}</td>
+                    {% if row.Intervalo_ini %}
+                    <td class="tabelado">{{row.Intervalo_ini}}</td>
+                    <td class="tabelado">{{row.Intervalo_fin}}</td>
+                    {% else %}
+                    <td class="tabelado"></td>
+                    <td class="tabelado"></td>
+                    {% endif %}
+                    <td class="tabelado">{{row.Trabalhado_fin}}</td>
+                    <td class="tabelado">{{row.Trabalhado_total}}</td>
+                    <td class="tabelado">{{row.Compensado_ini}}</td>
+                    {% if row.Intervaloc_ini %}
+                    <td class="tabelado">{{row.Intervaloc_ini}}</td>                    
+                    <td class="tabelado">{{row.intervaloc_fin}}</td>
+                    {% else %}
+                    <td class="tabelado"></td>
+                    <td class="tabelado"></td>
+                    {% endif %}
+                    <td class="tabelado">{{row.Compensado_fin}}</td>
+                    <td class="tabelado">{{row.Compensado_total}}</td>
+                    <td class="tabelado" style="text-align: center;">{{row.Saldo}}</td>
+                    <td class="tabelado"     style="width: 120px;" ><a type="submit" href="{{ url_for("delete", id=row.idColaborador)}}" style="width: 102px;"  class="btn btn-danger"  >DELETAR</a></td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                
+            </tbody>
+    </table>
+</div>
+</div>
+</div>
+</body>
+</body>
+{% endblock %}

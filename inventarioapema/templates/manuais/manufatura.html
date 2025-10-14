@@ -1,0 +1,28 @@
+{% extends "home.html" %}
+
+{% block body %}
+<div style="margin: 20px;">
+    <div class='perfil'>
+        <h1>Base de Conhecimento protheus</h1>
+        <div style="display: inline-flex; width: -webkit-fill-available; margin-left: 760px; margin-top: 200px;">
+        <div class="inventario">
+        <a href="{{ url_for('manuais_videos_pcp') }}">
+            <img src="../static/img/pcp.png" class="user" >
+        <h2 class="user">PCP</h2></a>
+        </div>
+
+    </div>
+    
+    </div></div>
+    <style>
+        .inventario{
+            margin: 50px;
+            margin-bottom: 0px;
+            margin-top: 0px;
+        
+        }
+        h2{
+            text-align: center;
+        }
+        </style>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class="perfil">
+        <h1>Equipamentos </h1>
+        <div class="grupo" >
+            <br>
+            <a href="" class="btn btn-light" id="imprimirBtn"  style="width: 115px;"> Imprimir <ion-icon name="print-outline"></ion-icon></a>
+        </div>
+        <script>
+            // Obtém uma referência para o botão de impressão
+            const imprimirBtn = document.getElementById('imprimirBtn');
+            imprimirBtn.addEventListener('click', function() {
+                const div = document.getElementById('status');
+                window.print(div);
+            });
+            </script>
+        <div class="status" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <input type="text" id="valor_busca" class="form-control" style="width: 600px; display: inline; margin-right: 5px;  "/>
+        <input type="submit" value="Pesquisar" onclick="myFunction()" style="background-color: #008cff; border-color: #008cff; border-radius: 5px; font-size: 16px; color: white; padding: 5px;" />
+
+        <script>
+        function myFunction() {
+            var valor_busca = document.getElementById("valor_busca").value;
+        location.href = "search_toners/"+valor_busca;
+        }
+        </script>
+    </div>
+    <div id="table" name="table" style="width: 100%;">
+        <table class="table"  style="width: 1600px; z-index: 5;">
+            <tr>
+                <th scope="col">Codigo<a href="{{ url_for('equipamentos') }}" style="display: inline-flex;  color: #000; padding: 0; width: 20px;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+                <th scope="col">Equipamento<a href="{{ url_for('codigo') }}" style="display: inline-flex;  color: #000; padding: 0; width: 20px;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+                <th scope="col">Localização<a href="{{ url_for('localização') }}" style="display: inline-flex;  color: #000; padding: 0; width: 20px;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+                <th scope="col">Prev<a href="{{ url_for('prev') }}" style="display: inline-flex;  color: #000; padding: 0; width: 20px;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+                <th scope="col"></th>
+                <th scope="col">Pred<a href="{{ url_for('pred') }}" style="display: inline-flex;  color: #000; padding: 0; width: 20px;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+                <th scope="col">Caracteristica<a href="{{ url_for('caracteristica') }}" style="display: inline-flex;  color: #000; padding: 0; width: 20px;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+            </tr>
+            <tr>
+            <tr style="border-style: dotted;">
+                <td>{{ codigo.codigo }}</td>
+                <td style="width: 400px;">{{ codigo.equipamento }}</td>
+                <td>{{ codigo.localizacao }}</td>
+                {% if codigo.prev == 'S' %}
+                <td type="button"  class="badge bg-success">S    </td>
+                <td></td>
+                {% else %}
+                <td  type="button"  class="badge bg-danger">N     </td>
+                <td></td>
+                {% endif %}
+                {% if codigo.pred == 'S' %}
+                <td type="button"  class="badge bg-success">S</td>
+                {% else %}
+                <td  type="button"  class="badge bg-danger">N</td>
+                
+                {% endif %}
+                <td  style="width: 350px;">{{ codigo.caracteristica }}</td>
+                <td><a style="width: 100px;" href='{{url_for("delete_materiais",id=codigo.id)}}' class='btn btn-danger' onclick='return confirm("Voce tem certeza, que deseja excluir  {{ codigo.equipamento }}?")'>Deletar</a></td>
+                <td><a style="width: 100px;" href='{{url_for("edit_equipamentos", id=codigo.id)}}' class='btn btn-primary'>Editar</a></td>
+            </tr>
+</table>
+    </div>
+</body>
+{% endblock %}

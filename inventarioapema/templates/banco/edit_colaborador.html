@@ -1,0 +1,27 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class='perfil'>
+        <h1>Editar Colaborador</h1>
+        <div class='col-18 mx-auto'>
+          <form method='post' action='{{url_for("edit_colaborador",id=colaboradores.id)}}'  style="width: 600px; left: 14.5%; top: 220px; z-index: -1;">
+            <div class='form-group'>
+                <label class="label">Nome de Usuario:</label>
+                <input  type='text' name='colaborador' value="{{ colaboradores.colaborador }}" required class="input"  >
+              </div>
+            <div class='form-group'>
+                <label class="label">Departamento</label>
+                <input  type='text' name='departamento'  value="{{ colaboradores.departamento }}" required class="input" >
+              </div>
+              <div class='form-group'>
+                <label class="label">Matricula</label>
+                <input  type='text' name='matricula' value="{{ colaboradores.matricula }}"  required class="input" >
+              </div>
+            <br>
+            <div class='form-group'>
+            <button type='submit' value='Submit' class='btn btn-primary'>Enviar</button>
+          </div>
+          </form>
+        </div>
+      </div>
+{% endblock %}

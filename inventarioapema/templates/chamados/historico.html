@@ -1,0 +1,68 @@
+{% extends "home.html" %}
+
+{% block body %}
+        <div style="margin: 20px;">
+            <h1>Historico de Chamados Realizados </h1>
+        </div> 
+            <table class="table table-striped" style=" margin: 20px; width: -webkit-fill-available;">
+                <tr>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Departamento</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Data de criação</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Tecnico</th>
+                    <th scope="col"></th>
+                </tr>
+                {% for chamados in chamados %}
+                <tr>
+                    <td>{{ chamados.username }}</td>
+                    <td>{{ chamados.departamento }}</td>
+                    <td>{{ chamados.tipo }}</td>
+                    <td>{{ chamados["data"]|datetimeformat("%d/%m/%Y") }}</td>
+                            {% if chamados.status == 'novo' %}
+                            <td type="button" style="width: 90px;"  class="btn btn-outline-primary">Novo</td> 
+                            <td> </td>
+                            <td></td>
+                            {% else %}
+                            {% if chamados.status == 'atribuido' %}
+                            <td><button type="button" style="width: 90px;"  class="btn btn-outline-warning text-dark">Atribuido</button></td>
+                            <td>{{ chamados.atribuido }}</td>
+                            {% else %}
+                            {% if chamados.status == 'fechado' %}
+                            <td><button type="button" style="width: 90px;"  class="btn btn-outline-success">Fechado</button></td>
+                            <td>{{chamados.atribuido}}</td>
+                            <td><a href='{{url_for("edit_chamados",id=chamados.id)}}' class="btn btn-primary"  >Descrição</a></td>
+                            {% endif %}
+                            {% endif %}
+                            {% endif %}
+                </tr>
+                {% endfor %}
+                {% for historico in historico %}
+                <tr>
+                    <td>{{ historico.username }}</td>
+                    <td>{{ historico.departamento }}</td>
+                    <td>{{ historico.tipo }}</td>
+                    <td>{{ historico["datas"]|datetimeformat("%d/%m/%Y") }}</td>
+                            {% if historico.status == 'novo' %}
+                            <td><button type="button" style="width: 90px;"  class="btn btn-outline-primary">Novo</button></td> <td></td>
+                            <td><a href='{{url_for("os_manutencao",id=historico.id)}}' class="btn btn-light" >Imprimir</a></td>
+                            {% else %}
+                            {% if historico.status == 'atribuido' %}
+                            <td><button type="button" style="width: 90px;"  class="btn btn-outline-warning text-dark">Atribuido</button></td>
+                            <td>{% if historico.tecnico %} {{ historico.tecnico }} {% else %}  {% endif %}</td>
+                            {% else %}
+                            {% if historico.status == 'fechado' %}
+                            <td><button type="button" style="width: 90px;"  class="btn btn-outline-success">Fechado</button></td>
+                            <td>{% if historico.tecnico %} {{ historico.tecnico }} {% else %}  {% endif %}</td>
+                            <td ><a href='{{url_for("os_manutencao_completa",id=historico.id)}}' class="btn btn-light"  >Imprimir</a></td>
+                            {% endif %}
+                            {% endif %}
+                            {% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </body>
+{% endblock %}
+</html>

@@ -1,0 +1,54 @@
+{% extends "home.html" %}
+
+{% block body %}
+
+<body>
+    <main>
+      <div>
+        <div style="margin: 20px; width: 500px;">
+      <h1>Enviar Chamado</h1>
+    
+            {% for usuario in usuarios %}
+            <form method="POST" action="" enctype="multipart/form-data" >
+              
+                    <label for="tipo" class="form-label">Tipo</label>
+                     <select id="tipo" name="tipo"  class="form-select" >
+                      <option selected value="Outro">Escolha...</option>
+                        <option value="Impressora" selected>Impressora</option>
+                        <option value="Power Bi">Power Bi</option>
+                        <option value="Telefone">Telefone</option>
+                        <option value="Computador">Computador</option>
+                        <option value="Toner">Toner</option>
+                        <option value="Protheus">Protheus</option>
+                        <option value="Outro">Outro</option>
+                      </select>
+                  <label for="status" class="form-label">Status</label><br>
+                  <select id="status" name="status"  class="form-select" >
+                    <option value="novo" selected>Novo</option>
+                    <option value="atribuido">Atribuido</option>
+                    <option value="fechado">Fechado</option>
+                  </select>
+                <div class='form-group'>
+                    <label class="form-label">Nome de Usuario:</label>
+                    <input  type='text' name='username'  required  class="form-control"  value='{{usuario.username}}' readonly>
+                  </div>
+                <div class='form-group'>
+                    <label class="form-label">Departamento</label>
+                    <input  type='text' name='departamento' required class="form-control" value='{{usuario.departamento}}' readonly>
+                  </div>
+                <div class='form-group'>
+                    <label class="form-label">E-mail</label>
+                    <input type='text' name='email' required  class="form-control"  value='{{usuario.email}}' readonly>
+                  </div>
+                  <div>
+                <label for="descricao" class="form-label">Descricao</label>
+                <textarea type="text" class="form-control" id="descricao"   name="descricao" cols="35" rows="10" ></textarea><br>
+                  <button type="submit" class="btn btn-primary" >Enviar</button>
+                </div>
+            </form>
+            {% endfor %}
+
+        </div>
+    </main>
+</body>
+{% endblock %}

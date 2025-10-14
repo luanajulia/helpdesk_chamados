@@ -1,0 +1,27 @@
+{% extends "home.html" %}
+
+{% block body %}
+<body>
+    <div style="margin: 20px;">
+        <h1>Lista de Ramais</h1>
+        
+        <table class="table table-striped" style=" margin: 20px; width: -webkit-fill-available;">
+        <tr>
+            <th scope="col">Usuario</th>
+            <th scope="col">Email </th>
+            <th scope="col">Departamento</th>
+            <th scope="col">Ramal</th>
+        </tr>
+        <tr>
+            {% for usuarios in usuarios %}
+        <tr>
+            <td >{{ usuarios.username }}</td>
+            <td>{{ usuarios.email }}</td>
+            <td>{{ usuarios.departamento }}</td>
+            <td>{{ usuarios.ramal }}</td>
+        </tr>
+            {% endfor %}
+    </table>
+</div>
+</body>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "home.html" %}
+
+{% block body %}
+{% for impressora in impressoras %}
+    <div class='perfil'>
+        <h1>Editar Impressora</h1>
+        <div class="status" style="left: 280px;">
+        <a href="{{ url_for('impressoras') }}" class="btn btn-link" style="display: inline-flex;  padding-right: 0%;  z-index: -1; width: 150px;">Impressoras <ion-icon name="chevron-forward"></ion-icon></a>
+        </div>
+        <div class='col-18 mx-auto'>
+          <h2 style="left: 16.5%;">Editar {{impressora.nome_impressora}}</h2>
+          <form method='post' action='{{url_for("edit_impressoras",id=impressora.id)}}'  style="width: 600px; left: 14.5%; top: 220px; z-index: -1;">
+            <div class='form-group'>
+              <label>Nome da Impressoras</label>
+              <input type='text' name='nome_impressora' required class='form-control' value='{{ impressora.nome_impressora}}'>
+            </div>
+            <br>
+            <div class='form-group'>
+                <label>Modelo</label>
+                <input type='text' name='modelo_impressora' required class='form-control' value='{{impressora.modelo_impressora}}'>
+              </div>
+              <br>
+            <div class='form-group'>
+                <label>Departamento</label>
+                <input type='text' name='departamento' required class='form-control' value='{{impressora.departamento}}'>
+              </div>
+            <br>
+            <div class='form-group'>
+                <label>IP</label>
+                <input type='text' name='ip' required class='form-control' value='{{ impressora.ip}}'>
+              </div>
+            <br>
+            <div class='form-group'>
+            <button type='submit' value='Submit' class='btn btn-primary'>Enviar</button>
+          </div>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+{% endblock %}

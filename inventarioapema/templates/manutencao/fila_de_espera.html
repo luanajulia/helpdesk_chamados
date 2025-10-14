@@ -1,0 +1,36 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class="perfil"  style="margin: 20px;">
+        <h1>Fila de Espera</h1>
+        <table class="table table-striped" style=" margin: 20px; width: -webkit-fill-available;">
+            <tr>
+                <th scope="col">Usuario</th>
+                <th scope="col">Tipo de problemas</th>
+                <th scope="col">Data</th>
+                <th scope="col">Status</th>
+            </tr>
+            <tr>
+                {% for chamados in chamados %}
+            <tr>
+                <td >{{ chamados.username }}</td>
+                <td>{{ chamados.tipo }}</td>
+                <td>{{ chamados["data"]|datetimeformat("%d/%m/%Y") }}</td>
+                {% if chamados.status == 'novo' %}
+                <td ><a  type="button" style="width: 90px;" class="btn btn-outline-primary">Novo</a></td>
+                {% else %}
+                {% if chamados.status == 'atribuido' %}
+                <td ><a  type="button" style="width: 90px;" class="btn btn-outline-warning text-dark">Atribuido</a></td>
+                {% else %}
+                {% if chamados.status == 'reaberto' %}
+                <td><a type="button" style="width: 90px;"  class="btn btn-outline-danger">Reaberto</a></td>
+                {% endif %}    
+                {% endif %}
+                {% endif %}
+            </tr>
+                {% endfor %}
+        </table>
+    </div>
+    
+</body>
+{% endblock %}

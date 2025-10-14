@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block titulo %}<title>PortalApema</title>{% endblock %}
+    <link rel="stylesheet" href="../static/css/home.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+{% block body %}
+<body>
+    <body style="background-color: #e6e6e6;">
+        <div class="logo">
+            <a href="{{ url_for('login') }}">
+                <img src="../static/img/logotipo_apema.png" class="logo" style=" z-index: 1;"></a>
+        </div>
+        <div class="header">
+            <div class="navegacao">
+            <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+            <ul>
+            <li class="list ">
+                <a href="{{ url_for('perfil', id_usuario=current_user.id) }}">
+                    <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                    <span class="title">Perfil</span>
+                </a>
+            </li>
+            <br>
+            <li class="list">
+                <a href="{{ url_for('portal', id_usuario=current_user.id) }}">
+                    <span class="icon"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></span>
+                    <span class="title">Chamados</span>
+                </a>
+            </li>
+            <br>
+            <li class="list">
+                <a href="{{ url_for('historico', id_usuario=current_user.id) }}">
+                    <span class="icon"><ion-icon name="receipt-outline"></ion-icon></span>
+                    <span class="title">Historico</span>
+                </a>
+            </li>
+            <br>
+            <li class="list active">
+                <a href="{{ url_for('reuniao', id_usuario=current_user.id) }}">
+                    <span class="icon"><ion-icon name="pricetag-outline"></ion-icon></span>
+                    <span class="title">Reunioes</span>
+                </a>
+            </li>
+            <br>
+            <li class="list">
+                <a href="{{ url_for('agendamento') }}">
+                    <span class="icon"><ion-icon name="today-outline"></ion-icon></span>
+                    <span class="title">Agendamento</span>
+                </a>
+            </li>
+            <br>
+            <li class="list ">
+                <a href="{{ url_for('ramais') }}">
+                    <span class="icon"><ion-icon name="call-outline"></ion-icon></ion-icon></span>
+                    <span class="title">Ramais</span>
+                </a>
+            </li>
+            </ul>
+            <script>
+            const list = document.querySelectorAll('.list');
+            function activeLink(){
+                list.forEach((item) =>
+                item.classList.remove('active'));
+                this.classList.add('active');
+            }
+                list.forEach((item) =>
+                item.addEventListener('click', activeLink));
+        </script>
+            </div>
+        </div>
+        <div class="perfil">
+            <h1>Historico de Chamados Realizados </h1>
+            <div class="perfil">
+                <h1>Suas Reunioes</h1>
+                <div class="status" style="
+                width: 1900px;
+                height: 500px;
+            ">
+                   
+                </div>
+            <table class="table" style="top: 210px;">
+                <tr>
+                    <th scope="col">usuario</th>
+                    <th scope="col">Sala</th>
+                    <th scope="col">Horario</th>
+                    <th scope="col">Data</th>
+                </tr>
+                {% for reuniao in reuniao %}
+                <tr>
+                    <td>{{ reuniao.username }}</td>
+                    <td>{{ reuniao.sala }}</td>
+                    <td>{{ reuniao.horario }}</td>
+                    <td>{{ reuniao.data }}</td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <div class="coluna" style="background-color: #103a78;">
+                <p style="background: #103a78;">S2</p>
+            </div>
+        </div>
+    </body>
+{% endblock %}
+</html>

@@ -1,0 +1,54 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class='perfil' style="margin: 20px;" >
+    <div style="width: 500px;">
+      <h1>Ausencia Colaborador</h1>
+            <form method="POST" action="" enctype="multipart/form-data" style="left: 309px; z-index: -5; top: 142px;">
+                {% for colaborador in colaboradores %}
+                <div class='form-group'>
+                    <label class="form-label">Nome de Usuario:</label>
+                    <input  type='text' name='colaborador'  required class="form-control" value="{{ colaborador.colaborador }}" >
+                  </div>
+                <div class='form-group'>
+                    <label class="form-label">Departamento</label>
+                    <input  type='text' name='departamento' required class="form-control"  value="{{ colaborador.departamento }}">
+                  </div>
+                  <div class='form-group'>
+                    <label class="form-label">Matricula</label>
+                    <input  type='text' name='matricula' required class="form-control"  value="{{ colaborador.matricula }}">
+                  </div>
+                  <div class='form-group'>
+                    <label class="form-label">Data</label>
+                    <br>
+                    <input  type='date' name='data' required class="form-control"  value="{{ colaborador.data }}">
+                  </div>
+                  <div class='form-group'>
+                    <label class="form-label">Tipo de Ausencia</label>
+                    <br>
+                    <input type="text" class="form-control" name="tipo_ausencia" value="{{ colaborador.tipo_ausencia }}">
+                  </div>
+                  <div class='form-group'>
+                    <label class="form-label">Periodo Ausencia</label>
+                    <br>
+                    <input  type='text' name='periodo_ausencia' required class="form-control" value="{{ colaborador.periodo_ausencia }}" >
+                  </div>
+                  <div class='form-group'>
+                    <label class="form-label">Motivo Ausencia</label>
+                    <br>
+                    <input  type='text' name='motivo' required class="form-control" value="{{ colaborador.motivo }}" >
+                  </div>
+                  <div class='form-group'>
+                    <label class="form-label">Para uso da chefia/gerencia</label>
+                    <br>
+                    <input type="text" class="form-control" name="gerencia" value="{{ colaborador.gerencia }}">
+                  </div>
+                <br>
+                <button type='submit' value='Submit' class='btn btn-primary'>Enviar</button>
+            </form>
+            {% endfor %}
+        </div>
+    </main>
+  </div>
+</body>
+{% endblock %}

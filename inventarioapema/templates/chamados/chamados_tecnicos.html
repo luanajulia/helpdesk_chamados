@@ -1,0 +1,48 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class='perfil'>
+        <h1>Chamados Atribuidos </h1>
+        <div class="status" style="left: 110%;">
+            <a href="{{ url_for('dashboard') }}" class="btn btn-link" style="display: inline-flex;  padding-right: 0%;  z-index: -1; width: 110px;">Graficos <ion-icon name="chevron-forward"></ion-icon></a>
+            <a href="{{ url_for('chamados') }}" class="btn btn-link"  style="display: inline-flex; padding-left: 0%;  width: 150px;" >Chamados <ion-icon name="chevron-forward"></ion-icon></a><br>
+            </div>
+
+        <div id="table" name="table" style="width: 170px; top:100px;">
+        <table class="table" style=" width: 1600px; top: 208px;" >
+            <tr>
+                <th scope="col">Usuario</th>
+                <th scope="col">Tipo de problemas</th>
+                <th scope="col">Departamento</th>
+                <th scope="col">Data</th>
+            </tr>
+            <tr> 
+            {% for chamados in chamados %}
+                <td>{{ chamados.username }}</td>
+                <td>{{ chamados.tipo }}</td>
+                <td>{{ chamados.departamento }}</td>
+                <td>{{ chamados.data_criacao.strftime('%d/%m/%Y') }}</td>
+                {% if chamados.status == 'novo' %}
+                <td  type="button" style="padding-top: 0px; padding-bottom: 0px;"><a style="width: 90px; padding-left: 9px;" class="btn btn-outline-primary">Novo</a></td>
+                {% else %}
+                {% if chamados.status == 'atribuido' %}
+                <td  type="button"  style="padding-top: 0px; padding-bottom: 0px;"><a style="width: 90px;  padding-left: 9px;" class="btn btn-outline-warning text-dark"  >Atribuido</a></td>
+                {% else %}
+                {% if chamados.status == 'fechado' %}
+                <td  type="button"  style="padding-top: 0px; padding-bottom: 0px;"><a  style="width: 90px; padding-left: 9px;" class="btn btn-outline-success" >Fechado</a></td>
+                {% else %}
+                {% if chamados.status == 'reaberto' %}
+                <td  type="button"  style="padding-top: 0px; padding-bottom: 0px;"><a  style="width: 90px; padding-left: 9px;" class="btn btn-outline-danger"  >Reaberto</a></td>
+                {% endif %}
+                {% endif %}
+                {% endif %}
+                {% endif %}
+                <td style="padding-top: 0px;"><a style="width: 100px;" href='{{url_for("edit_chamados",id=chamados.id)}}' class='btn btn-primary'>Editar</a></td></td>
+                <td style="padding-top: 0px;"><a href='{{url_for("descricaoadm", id=chamados.id)}}' class='btn btn-primary' style="width: 100%; background-color: black;border-color: black;">Descrição</a></td>
+            </tr>
+            {% endfor %} 
+        </table>
+        </div>
+    </div>
+</body>
+{% endblock %}

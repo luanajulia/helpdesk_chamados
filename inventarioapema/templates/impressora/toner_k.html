@@ -1,0 +1,27 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class="perfil">
+        <h1>Toners - Kiocera  Ecosys m4125idn</h1>
+        <div class="voltar_status">
+        <a href="{{ url_for('inventario') }}" class="btn btn-link" style="display: inline-flex;  padding-right: 0%;  z-index: -1; width: 110px;">Inventario <ion-icon name="chevron-forward"></ion-icon></a>
+        <a href="{{ url_for('toners') }}" class="btn btn-link"  style="display: inline-flex; padding-left: 0%;  width: 110px;" >Toners <ion-icon name="chevron-forward"></ion-icon></a><br>
+        </div>
+        <table class="table" style="top: 210px; left: 15%; width: 1600px;">
+            <tr>
+                <th scope="col">Quantidade de Toner</th>
+                <th scope="col">Modelo do Toner</th>
+            </tr>
+            <tr>
+                {% for toners in toners %}
+                {% if toners.toners == 'Kiocera  Ecosys m4125idn' %}
+                <td>{{toners["quant_toners"]}}</td>
+                <td>{{toners["toners"]}}</td>
+                <td><a style="width: 100px;" href='{{url_for("delete_toners",id=toners.id)}}' class='btn btn-danger' onclick='return confirm("Voce tem certeza, que deseja excluir  {{ toners.toners }}?")'>Deletar</a></td>
+                <td><a href='{{url_for("edit_toners",id=toners.id)}}' class='btn btn-primary'>Editar</a></td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+</body>
+{% endblock %}

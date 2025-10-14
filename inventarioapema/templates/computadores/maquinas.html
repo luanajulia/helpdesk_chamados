@@ -1,0 +1,67 @@
+{% extends "home.html" %}
+
+{% block body %}
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="../static/img/logotipo_apema.png" class="logo">
+        </div>
+        <a href="{{ url_for('perfil', id_usuario=current_user.id) }}">Perfil</a>
+        <br>
+        <a href="{{ url_for('chamados') }}">Chamados</a>
+        <br>
+        <a href="{{ url_for('dashboard') }}">Graficos</a>
+        <br>
+        <div class="dropdown">
+            <button class="dropbtn">Software</button>
+            <div class="dropdown-content">
+              <a href="{{ url_for('cadastro') }}">Cadastro</a>
+              <a href="{{ url_for('software') }}">Softwares</a>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="dropdown">
+            <button class="dropbtn">Usuarios</button>
+            <div class="dropdown-content">
+              <a href="{{ url_for('criarconta') }}">Cadastro</a>
+              <a href="{{ url_for('usuarios') }}">Usuarios</a>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="dropdown">
+            <button class="dropbtn">Computadores</button>
+            <div class="dropdown-content">
+              <a href="{{ url_for('computador') }}">Cadastro</a>
+              <a href="{{ url_for('computadores') }}">Computadores</a>
+            </div>
+        </div>
+    </div>
+    <div class="perfil">
+        <h1>Computadores - Cadastrados</h1>
+        <table class="table">
+            <tr>
+                <th scope="col">Nome de usuario</th>
+                <th scope="col">Nome(TE)</th>
+                <th scope="col">Processador</th>
+                <th scope="col">memoria</th>
+                <th scope="col">Disco Rigido</th>
+                <th scope="col">Disco Rigido 2</th>
+                <th scope="col">Tipo</th>
+            </tr>
+            <tr>
+                <td>{{ computadores.usuario }}</td>
+                <td>{{ computadores.te }}</td>
+                <td>{{ computadores.processador }}</td>
+                <td>{{ computadores.memoria }}</td>
+                <td>{{ computadores.disco_rigido }}</td>
+                <td>{{ computadores.disco_rigido_2 }}</td>
+                <td>{{ computadores.tipo }}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+{% endblock %}

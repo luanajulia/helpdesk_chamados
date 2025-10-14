@@ -1,0 +1,37 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class='perfil'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <h1>Centro de Custo</h1>
+        <div class="grupo">
+            <br>
+            <span class="badge bg-primary" style="font-size: 18px; padding-top: 9px;  top: 110px;">Usuarios: </span> 
+        </div>
+        <div class="status" id="status" name="status">
+        <form method="post" name="centro_custo" id="centro_custo" action='{{url_for("centro_custo")}}' style="position: relative; top: -50px; left: -50px;">
+            <input type="text" id="usuario" placeholder="Pesquise para adcionar pessoas" name="usuario" class="form-control" style="width: 600px; display: inline; margin-right: 5px;  "/>
+            <input type="submit"  value="Adcionar" onclick="myFunction()" style="background-color: #008cff; border-color: #008cff; border-radius: 5px; font-size: 16px; color: white; padding: 5px;" />
+        </form>
+        </div>
+            <div id="table" name="table" style="width: 100%;">
+            <table class="table"  style="width: 1600px;">
+                <tr>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Centro de Custo</th>
+                    <th scope="col">Retirar permissao</th>
+                </tr>
+                <tr>
+                    {% for usuarios in usuarios %}
+                <tr>
+                    <td >{{ usuarios.usuario }}</td>
+                    <td>{{ usuarios.departamento }}</td>
+                    <td><a style="width: 100px;" href='{{url_for("delete_cc",id=usuarios.id)}}' class='btn btn-danger' onclick='return confirm("Voce tem certeza, que deseja excluir ?")'>Deletar</a></td>
+                   
+                </tr>
+            {% endfor %}
+    </table>
+</div> 
+</div>
+</body>
+{% endblock %}

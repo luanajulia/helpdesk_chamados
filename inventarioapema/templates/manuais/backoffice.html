@@ -1,0 +1,30 @@
+{% extends "home.html" %}
+
+{% block body %}
+<div class='perfil'>
+    <h1>Base de Conhecimento - Financeiro <ion-icon name="cash-outline"></ion-icon></h1>
+<div id="conteudo" style="margin: 20px;">
+    <a  href="{{url_for("cnab")}}"><div style="width: 500px;" class="alert alert-primary" role="alert">
+        CNAB V12 AP01
+    </div></a>
+    <a  href="{{url_for("fluxo_caixa")}}"> <div style="width: 500px;" class="alert alert-primary" role="alert" >
+        FLUXO DE CAIXA V12 AP01
+    </div></a>
+
+    <a  href="{{url_for("telecobranca")}}"><div style="width: 500px;" class="alert alert-primary" role="alert">
+        TELECOBRANÇA V12 AP01
+    </div></a>
+
+    <a  href="{{url_for("contas_pagar")}}"><div style="width: 500px;" class="alert alert-primary" role="alert">
+        CONTAS A PAGAR V12 AP02
+    </div></a>
+    <a  href="{{url_for("contas_receber")}}"><div style="width: 500px;" class="alert alert-primary" role="alert">
+        CONTAS A RECEBER V12 AP02
+    </div></a>
+    <a  href="{{url_for("tesouraria")}}"><div style="width: 500px;" class="alert alert-primary" role="alert">
+        TESOURARIA V12 AP04
+    </div></a>
+</div>
+
+</div>
+{% endblock %}

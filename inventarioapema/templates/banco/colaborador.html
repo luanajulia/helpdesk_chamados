@@ -1,0 +1,36 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class='perfil'style="margin: 20px;">
+        <h1>Colaboradores - Cadastrados</h1>
+
+                <table class="table table-striped" style=" margin: 20px; width: -webkit-fill-available;">
+                <tr>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Departamento</th>
+                    <th scope="col">Matricula</th>
+                    <th scope="col">Ausência</th>
+                    <th scope="col">Extras</th>
+                    <th scope="col"><a style="width: 100px;" href='{{url_for("criarcolaborador")}}' class='btn btn-primary'>Adicionar</a></th>
+                    <th scope="col"></th>
+
+                </tr>
+                <tr>
+                    {% for colaboradores in colaboradores %}
+                    {% if id == colaboradores.responsavel %}
+                <tr>
+                    <td>{{ colaboradores.colaborador }}</td>
+                    <td>{{ colaboradores.departamento }}</td>
+                    <td>{{ colaboradores.matricula }}</td>
+                    <td><a style="width: 100px;" href='{{url_for("ausencia",id_usuario=colaboradores.id)}}' class='btn btn-success'>Ausência</a></td>
+                    <td><a style="width: 100px;" href='{{url_for("adcionar_horas",id_usuario=colaboradores.id)}}' class='btn btn-primary'>Extra</a></td>
+                    <td><a style="width: 100px;" href='{{url_for("edit_colaborador",id=colaboradores.id)}}' class='btn btn-info'>Editar</a></td>
+                    <td><a href='{{url_for("delete_colaboradores",id=colaboradores.id)}}' class="btn btn-danger"  style="width: 100px;" onclick='return confirm("Voce tem certeza, que deseja excluir {{ colaboradores.colaborador }}?")' >Deletar</a></td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+    </table>
+</div> 
+</div>
+</body>
+{% endblock %}

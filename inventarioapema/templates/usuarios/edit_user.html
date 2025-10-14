@@ -1,0 +1,49 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class='perfil'>
+      {% for usuario in usuarios %}
+        <div class="status" style="left: 280px;">
+        <a href="{{ url_for('usuarios') }}" class="btn btn-link" style="display: inline-flex;  padding-right: 0%;  z-index: -1; width: 150px;">Usuarios <ion-icon name="chevron-forward"></ion-icon></a>
+        </div>
+        <div class='col-18 mx-auto'>
+          <h2 style="left: 15%;">Editar {{usuario.username}}</h2>
+          <form method='post' action='{{url_for("edit_user",user_id=user_id)}}' style="width: 600px; left: 14.5%; top: 220px; z-index: -1;">
+            <div class='form-group'>
+              <label>Nome</label>
+              <input type='text' name='username' required class='form-control' value='{{usuario.username}}'>
+            </div>
+            <br>
+            <div class='form-group'>
+                <label>Departamento</label>
+                <input type='text' name='departamento' required class='form-control' value='{{usuario.departamento}}'>
+              </div>
+              <br>
+              <div class='form-group'>
+                <label>Ramal</label>
+                <input type='text' name='ramal' required class='form-control' value='{{usuario.ramal}}'>
+              </div>
+              <br>
+            <div class='form-group'>
+              <label>E-mail</label>
+              <input type='text' name='email' required class='form-control' value='{{usuario.email}}'>
+            </div>
+            <br>
+            <select class="form-select"  id="autoSizingSelect" name='nivel' value="{{ usuario.nivel }}">
+              <option value="{{ usuario.nivel }}">{{ usuario.nivel }}</option>
+              <option value="usuario" >Usuario</option>
+              <option value="gestor">Gestor</option>
+              <option value="Tecnico">Tecnico</option>
+              <option value="Administrador">Administrador</option>
+              <option value="Manutenção">Manutenção</option>
+            </select>
+            <br>
+            <div class='form-group'>
+            <button type='submit' value='Submit' class='btn btn-primary'>Enviar</button>
+          </div>
+          </form>
+          {% endfor %}
+        </div>
+      </div>
+      </body>
+{% endblock %}

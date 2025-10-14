@@ -1,0 +1,54 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class="perfil">
+        <h1>Softwares</h1>
+        <div class="grupo">
+            <a href="{{ url_for('inventario') }}" class="btn btn-link" style="display: inline-flex; padding-top: 9px; width: 100%;">Inventario <ion-icon name="chevron-forward"></ion-icon></a><br>
+            <span class="badge bg-primary" style="font-size: 18px; padding-top: 9px;  top: 110px;">Softwares: {{ colaboradores|length }}</span> 
+            <a href="" class="btn btn-light" id="imprimirBtn"  style="width: 115px;"> Imprimir <ion-icon name="print-outline"></ion-icon></a>
+        </div>
+        <script>
+            // Obtém uma referência para o botão de impressão
+            const imprimirBtn = document.getElementById('imprimirBtn');
+            
+            
+            imprimirBtn.addEventListener('click', function() {
+                const div = document.getElementById('status');
+                window.print(div);
+            });
+            </script>
+        <div class="status" >
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+                <input type="text" id="valor_busca" class="form-control" style="width: 600px; display: inline; margin-right: 5px;  "/>
+                <input type="submit" value="Pesquisar" onclick="myFunction()" style="background-color: #008cff; border-color: #008cff; border-radius: 5px; font-size: 16px; color: white; padding: 5px;" />
+        
+                <script>
+                function myFunction() {
+                    var valor_busca = document.getElementById("valor_busca").value;
+                location.href = "search_soft/"+valor_busca;
+                }
+                </script>
+            </div>
+    <div id="table" name="table" style="width: 100%;">
+        <table class="table" style="width: 1600px;">
+            <tr>
+                <th scope="col">Nome do Software</th>
+                <th scope="col">Data de Validação</th>
+                <th scope="col">Versão</th>
+                <th scope="col">Quantidade de usuario</th>
+            </tr>
+            {% for softwares in softwares %}
+            <tr>
+                <td>{{ softwares["nome"]}}</td>
+                <td>{{ softwares["validade"]}}</td>
+                <td>{{ softwares["versao"]}}</td>
+                <td>{{ softwares["usando"]}}</td>
+                <td><a style="width: 100%;" href='{{url_for("delete_softwares",id=softwares.id)}}' class='btn btn-danger' onclick='return confirm("Voce tem certeza, que deseja excluir  {{ softwares.nome }}?")'>Deletar</a></td>
+                <td><a style="width: 100%;" href='{{url_for("edit_softwares",id=softwares.id)}}' class='btn btn-primary'>Editar</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

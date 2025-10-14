@@ -1,0 +1,42 @@
+{% extends "home.html" %}
+
+{% block body %}
+
+<body>
+    <main>
+      <div>
+        <h1>Computadores</h1>
+        <div style="width: 500px;margin: 20px;">
+        <form method="POST" action="">
+          <label for="usuario" class="form-label">Nome do Usuario</label>
+          <input type="text" class="form-control" id="usuario" name="usuario">
+
+          <label for="te" class="form-label">Nome da Maquina</label>
+          <input type="text" class="form-control" id="te" name="te">
+
+          <label for="processador" class="form-label">Processador</label>
+          <input type="text" class="form-control" id="processador" name="processador">
+
+          <label for="memoria" class="form-label">Memoria</label>
+          <input type="text" class="form-control" id="memoria" name="memoria">
+
+          <label for="disco_rigido" class="form-label">Disco Rigido</label>
+          <input type="text" class="form-control" id="disco_rigido" name="disco_rigido">
+
+          <label for="disco_rigido_2" class="form-label">Disco Rigido 2</label>
+          <input type="text" class="form-control" id="disco_rigido_2" name="disco_rigido_2">
+
+          <label for="tipo" class="form-label">Tipo</label>
+          <input type="text" class="form-control" id="tipo" name="tipo">
+
+          <label for="monitores" class="form-label">Monitores</label>
+          <input type="text" class="form-control" id="monitores" name="monitores">
+
+          <br>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+          </div>
+      </div>
+    </main>
+</body>
+{% endblock %}

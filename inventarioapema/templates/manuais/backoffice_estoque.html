@@ -1,0 +1,20 @@
+{% extends "home.html" %}
+
+{% block body %}
+<div class='perfil'>
+    <h1>Base de Conhecimento - Estoque Custo <ion-icon name="cube-outline"></ion-icon></h1>
+<div id="conteudo" style="margin: 20px;">
+    <a  href="{{url_for("custos")}}"><div style="width: 500px;" class="alert alert-primary" role="alert">
+      PROTHEUS CUSTOS II V12 AP02 OK
+    </div></a>
+    <a  href="{{url_for("estoque")}}"><div style="width: 500px;" class="alert alert-primary" role="alert">
+      PROTHEUS ESTOQUE V12 AP01 OK
+    </div></a>
+    <a  href="{{url_for("estoque_avancado")}}"><div style="width: 500px;" class="alert alert-primary" role="alert">
+      PROTHEUS ESTOQUE AVANÇADO V12 AP01 OK
+    </div></a>
+   
+
+
+</div>
+{% endblock %}

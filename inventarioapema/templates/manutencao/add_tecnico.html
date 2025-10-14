@@ -1,0 +1,25 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class='perfil' style="margin: 20px;">
+        <h1>Adcionar Tecnico</h1>
+        <div class="grupo" style="left: 80%; top: 50px; z-index: 5;">
+          <a href="{{ url_for('add_tecnico') }}" class="btn btn-primary"  style="width: 115px; ">Adicionar</a>
+          <a href="{{ url_for('tecnicos_desativado') }}" class="btn btn-danger"  style="width: 115px; "> Desativado </a>
+          <a href="{{ url_for('tech')}}"  role="button" class="btn btn-success" style="width: 115px; " >Tecnicos</a>
+          <br>
+      </div>
+      <div style="width: 500px;margin: 20px;">
+          <form method="POST" action="" enctype="multipart/form-data" style="left: 260px; z-index: -5;">
+            
+            <label for="usuario" class="form-label">Nome de Usuario</label>
+            <input type="text" class="form-control" id="username" name="username">
+              <br>
+              <label for="nivel" class="form-label">Nivel de Usuario</label>
+            <input type="text" class="form-control" id="nivel" name="nivel">
+              <br>
+              <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+      </div>
+{% endblock %}

@@ -1,0 +1,259 @@
+{% extends "home.html" %}
+
+{% block body %}
+   <div class="perfil" style="margin: 20px;">
+    <h1>Descricao do Chamado</h1>
+    <div class="status" style="left: 250%;">
+        <a href="" class="btn btn-light" id="imprimirBtn"  style="width: 115px;"> Imprimir <ion-icon name="print-outline"></ion-icon></a>
+    </div>
+   </div>
+   <script>
+    // Obtém uma referência para o botão de impressão
+    const imprimirBtn = document.getElementById('imprimirBtn');
+    
+    
+    imprimirBtn.addEventListener('click', function() {
+        const div = document.getElementById('status');
+        window.print(div);
+    });
+    </script>
+   <style>
+    table {
+     border: 4px double #333; 
+     border-collapse: separate; 
+     width: 100%;
+     border-spacing: 7px 11px;
+    }
+    td {
+     padding: 5px; 
+     border: 1px solid #000000;
+     border-spacing: 7px 11px;
+    }
+   </style>
+   {% for dados in dados  %}
+        <div id="table" name="table">
+            <table class="fixo"  style=" left: 15%; border: 1px  solid black;  border-right-width: 1px;  width: 1075px; " >
+                <thead style="background: none; color: black; height: 50px; border: 1px;" >
+                    <tr>
+                        <th colspan="2" style="text-decoration: none; width: 836px; font-size: 20px; text-align: center; font-family: Arial, Helvetica, sans-serif;"><b>FORMULÁRIO CONTROLE DE AUSÊNCIA</b></td>
+                        <th ><img style="left: 50%;position: relative;"  src="../static/img/logotipo_apema.png" class="tabimg" ></a></td>
+                    </tr>
+                <thead>
+                <tbody style="border-collapse: separate; border-spacing: 20px 15px;">
+                    <tr>
+                        <td class="tabelado"  style="width: 270px; height: 60px;  ">DATA: {{ dados.data|datetimeformat('%d/%m/%Y') }}</td>
+                        <td class="tabelado"  colspan="2" style="width: 764px;">DEPARTAMENTO: {{ dados.departamento }}</td>
+                    </tr>
+                    <tr >
+                        <td class="matricula"  colspan="2" style="width: 764px; height: 45px; border: 1px solid #000000; border-spacing: 20px 11px; ">COLABORADOR: {{ dados.colaborador }}</td>
+                        <td class="matricula"   style="width: 764px; height: 45px; border: 1px solid #000000; border-spacing: 20px 11px;">MATRICULA: {% if dados.matricula == None %}   {% else %} {{ dados.matricula }} {% endif %}</td>
+                    </tr>
+                    <tr>
+                        <td class="tabelado"  colspan="3" style="width: 764px;">TIPO DE AUSÊNCIA:<br><br>
+                        {% if dados.tipo_ausencia == "atraso" %}
+                        <div class="atraso" style="width: 33%; display: inline-flex;"><input type="checkbox" style="width: 40px; height: 40px; margin:0 12px 0 0; vertical-align: middle; position: relative; top: -5px; " checked> ATRASO</div>
+                        {% else %}
+                        <div class="atraso" style="width: 33%; display: inline-flex;"><input type="checkbox" style="width: 40px; height: 40px; margin:0 12px 0 0; vertical-align: middle; position: relative; top: -5px; " > ATRASO</div>
+                        {% endif %}
+                        {% if dados.tipo_ausencia == "falta" %}
+                        <div class="atraso" style="width: 33%; display: inline-flex;"><input type="checkbox" style="width: 40px; height: 40px; margin:0 12px 0 0; vertical-align: middle; position: relative; top: -5px;" checked> FALTA</div>
+                        {% else %}
+                        <div class="atraso" style="width: 33%; display: inline-flex;"><input type="checkbox" style="width: 40px; height: 40px; margin:0 12px 0 0; vertical-align: middle; position: relative; top: -5px;" > FALTA</div>
+                        {% endif %}
+                        {% if dados.tipo_ausencia == "saida" %}
+                        <div class="atraso" style="width: 33%; display: inline-flex;"><input type="checkbox" style="width: 40px; height: 40px; margin:0 12px 0 0; vertical-align: middle; position: relative; top: -5px;" checked> SAÍDA ANTECIPADA</div><br>
+                        {% else %}
+                        <div class="atraso" style="width: 33%; display: inline-flex;"><input type="checkbox" style="width: 40px; height: 40px; margin:0 12px 0 0; vertical-align: middle; position: relative; top: -5px;"> SAÍDA ANTECIPADA</div><br>
+                        {% endif %}
+                        {% if dados.tipo_ausencia == "afastamento" %}
+                        <div class="atraso" style="width: 33%; display: inline-flex;"><input type="checkbox" style="width: 40px; height: 40px; margin:0 12px 0 0; vertical-align: middle; position: relative; top: -1px;" checked> AFASTAMENTO</div>
+                        {% else %}
+                        <div class="atraso" style="width: 33%; display: inline-flex;"><input type="checkbox" style="width: 40px; height: 40px; margin:0 12px 0 0; vertical-align: middle; position: relative; top: -1px;"> AFASTAMENTO</div>
+                        {% endif %}
+                        {% if dados.tipo_ausencia == "outros" %}
+                        <div class="atraso" style="width: 33%; display: inline-flex;"><input type="checkbox" style="width: 40px; height: 40px; margin:0 12px 0 0; vertical-align: middle; position: relative; top: -1px;" checked> OUTROS</div>
+                        {% else %}
+                        <div class="atraso" style="width: 33%; display: inline-flex;"><input type="checkbox" style="width: 40px; height: 40px; margin:0 12px 0 0; vertical-align: middle; position: relative; top: -1px;"> OUTROS</div>
+                        {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tabelado"  colspan="3" style="width: 764px; height: 45px; ">PERÍODO DA AUSÊNCIA: {{ dados.periodo_ausencia }}</td>
+                    </tr>
+                    <tr>
+                        <td class="tabelado"  colspan="3" style="width: 764px; height: 45px; ">MOTIVO DA AUSÊNCIA: {{ dados.motivo }}</td>
+                    </tr>
+                    <tr>
+                        <td class="tabelado"  colspan="3" style="width: 764px;">PARA USO DA CHEFIA/GERÊNCIA:<br><br>
+                        {% if dados.gerencia == "abonar" %}
+                        <div class="atraso" style="width: 24%; display: inline-flex;"><input type="checkbox" style="width: 40px; height: 40px; margin:0 12px 0 0; vertical-align: middle; position: relative; top: -5px;" checked>ABONAR</div>
+                        {% else %}
+                        <div class="atraso" style="width: 24%; display: inline-flex;"><input type="checkbox" style="width: 40px; height: 40px; margin:0 12px 0 0; vertical-align: middle; position: relative; top: -5px;">ABONAR</div>
+                        {% endif %}
+                        {% if dados.gerencia == "descontar" %}
+                        <div class="atraso" style="width: 24%; display: inline-flex;"><input type="checkbox" style="width: 40px; height: 40px; margin:0 12px 0 0; vertical-align: middle; position: relative; top: -5px;" checked> DESCONTAR</div>
+                        {% else %}
+                        <div class="atraso" style="width: 24%; display: inline-flex;"><input type="checkbox" style="width: 40px; height: 40px; margin:0 12px 0 0; vertical-align: middle; position: relative; top: -5px;"> DESCONTAR</div>
+                        {% endif %}
+                        {% if dados.gerencia == "banco" %}
+                        <div class="atraso" style="width: 24%; display: inline-flex;"><input type="checkbox" style="width: 40px; height: 40px; margin:0 12px 0 0; vertical-align: middle; position: relative; top: -5px;" checked> BANCO DE HORAS</div>
+                        {% else %}
+                        <div class="atraso" style="width: 24%; display: inline-flex;"><input type="checkbox" style="width: 40px; height: 40px; margin:0 12px 0 0; vertical-align: middle; position: relative; top: -5px;"> BANCO DE HORAS</div>
+                        {% endif %}
+                        {% if dados.gerencia == "atestado" %}
+                        <div class="atraso" style="width: 24%; display: inline-flex;"><input type="checkbox" style="width: 40px; height: 40px; margin:0 12px 0 0; vertical-align: middle; position: relative; top: -5px;" checked> ATESTADO MEDICO</div>
+                        {% else %}
+                        <div class="atraso" style="width: 24%; display: inline-flex;"><input type="checkbox" style="width: 40px; height: 40px; margin:0 12px 0 0; vertical-align: middle; position: relative; top: -5px;"> ATESTADO MEDICO</div>
+                        {% endif %}
+                    </td>
+                    </tr>
+                    <tr>
+                        <td class="tabelado" >AUTORIZAÇÃO:</td>
+                        <td class="tabelado" style="width: 365px; height: 60px;" >PORTARIA:</td>
+                        <td class="tabelado" >RH:</td>
+                    </tr>
+                </tbody>
+                <td colspan="3" style="width: 1075px; border-left: 0px; border-right: 0px; border-bottom: 0px;" >F.06-19 Rev. 03(IT-06.27)</td>
+            </table>
+           
+        </div>
+		{% endfor %}
+</div>
+<style>
+.tabimg{
+    max-width: 150px;
+    max-height: 100px;
+}
+    @media  print {
+        html, body {
+            width: 210mm;
+            height: 297mm;        
+        }
+        p{
+            top: 978px; 
+            left: 0px; 
+            width: 500px;
+            position: relative;
+        }
+        /* esconder tudo */
+        body * {
+          visibility: hidden;
+        }
+        .impressoras{
+            position: relative;
+            top: 50px;
+        }
+        .ton{
+            position: relative;
+            top: -300px;
+        }
+        .cam{
+            position: relative;
+            top: 100px;
+        }
+        .software{
+            position: relative;
+            top: 200px;
+        
+        }
+        .antena{
+            position: relative;
+            top: 600px;
+        }
+        .pie{
+            position: relative;
+            top: -670px;
+        }
+        .memoria{
+            position: relative;
+            top: -640px;
+        }
+        .h7{
+            position: relative;
+            top: 200px;
+            width: 500px;
+            z-index: 2; 
+        }
+        .linha{
+            top: -340px;
+        }
+        h5{
+            position: relative;
+            top: 140px;
+            width: 500px; 
+        }
+    
+        .torta{
+            top: 140px;
+        }
+        h4{
+            width: 500px;
+        }
+        .h9{
+            position: relative;
+            top: -700px;
+            width: 500px; 
+        }
+        .h10{
+            position: relative;
+            top: -300px;
+            width: 500px; 
+        }
+        .h11{
+            position: relative;
+            top: -150px;
+            width: 500px;
+        }
+        .h12{
+            position: relative;
+            top: -990px;
+            width: 500px;  
+        }
+        .h14{
+            position: relative;
+            top: -1070px;
+        }
+        
+    
+        div a {
+            height: 50px;
+            width: 20px;
+        }
+        
+        h2{
+            position: absolute;
+            left: -270px;
+            top: -250px;
+            width: 500px;
+        }
+        .bloco-imagem img{
+            position: relative;
+            left: -50px;
+            top: -80px;
+        }
+    
+        /* exibir somente o que tem na div para imprimir */
+        #status, #table * {
+          visibility: visible;
+        }
+        #table {
+            position: relative;
+            left: 0;
+            top: 0;
+            width: 20%;
+            height: 0%;
+            font-size: 18px;
+            width: 0;
+        }
+        .fixo{
+            top: -200px;
+        }
+        
+        th,
+        td {
+            padding: 0;
+          }
+     }
+    </style>
+</body>
+{% endblock %}

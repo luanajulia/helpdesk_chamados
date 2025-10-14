@@ -1,0 +1,29 @@
+{% extends "home.html" %}
+
+{% block body %}
+{% for antena in antenas %}
+    <div class='perfil'>
+        <h1>Editar Antenas</h1>
+        <div class="status" style="left: 280px;">
+        <a href="{{ url_for('antenas') }}" class="btn btn-link" style="display: inline-flex;  padding-right: 0%;  z-index: -1; width: 150px;">Antenas <ion-icon name="chevron-forward"></ion-icon></a>
+        </div>
+        <div class='col-18 mx-auto'>
+          <form method='post' action='{{url_for("edit_antenas",id=antena.id)}}'  style="width: 600px; left: 16.5%; top: 220px; z-index: -1;">
+            <div class='form-group'>
+              <label>Nome da Antena:</label>
+              <input type='text' name='antenas' required class='form-control' value='{{ antena.antenas }}'>
+            </div>
+            <br>
+            <div class='form-group'>
+                <label>Local:</label>
+                <input type='text' name='departamento' required class='form-control' value='{{antena.departamento}}'>
+            </div>
+            <br>
+            <div class='form-group'>
+            <button type='submit' value='Submit' class='btn btn-primary'>Enviar</button>
+          </div>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+{% endblock %}

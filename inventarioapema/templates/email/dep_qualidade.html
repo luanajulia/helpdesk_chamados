@@ -1,0 +1,291 @@
+<p>Bom dia,<br> Segue a abaixo o controle de banco de horas dos colaboradores <p>
+    <table style=" border: 1px solid #333;">
+        <tbody  >
+            <tr>
+                <td colspan="3" style="width: 600px; font-size: 30px; text-align: center; font-family: Arial, Helvetica, sans-serif; border: 1px solid #333;" > <b>CONTROLE DE BANCO DE HORAS </b></td>
+            </tr>
+        </tbody>
+        <tbody >
+            <tr>
+                <td class="tabelado" style="width: 290px; border: 1px solid #333;"><b>BANCO DE HORAS: </b></td>
+                <td  colspan="2" class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;"> ATUALIZADO ATÉ {% for data in datas %} {{data["date"]|datetimeformat('%d/%m/%Y')}} {% endfor %}</td>
+            </tr>
+            <tr>
+                <td class="tabelado" style="width: 290px;border: 1px solid #333; "><b>JORNADA DE TRABALHO: </b></td>
+                <td  colspan="2" class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">7:00 as 16:48</td>
+            </tr>
+            <tr>
+                <td  class="tabelado" style="width: 290px; border: 1px solid #333;"><b>JORNADA DIARIA: </b></td>
+                <td  colspan="2" class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">8:48</td>
+            </tr>
+        </tbody>
+        <tbody >
+               
+                <tr>
+                    <td class="tabelado" style="width: 950px;"><b>Administração Qualidade </b></td>
+                    <td class="tabelado" style="width: 995px;"><b>SALDO ACUMULADO</b></td>
+                    <td class="tabelado" style="width: 995px;"><b>OBS</b></td>
+    
+                </tr>
+                {% for row in rows %}
+                {% if row.centro_custo == "7111     " %}
+                    <tr>
+                    <td class="tabelado" style="width: 950px; border: 1px solid #333;">{{row.nome}}</td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">{{row.Saldo}} </td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">
+                    {% if row.status == "Positivo" %}
+                    <span style="color: green;" >{{row.status}} </span>
+                    {% else %}
+                    <span style="color: red;" >{{row.status}} </span>
+                    {% endif %} </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                {% for row in pessoas %}
+                {% if row.centro_custo == "7111" %}
+                    <tr>
+                    <td class="tabelado" style="width: 950px; border: 1px solid #333;">{{row.nome}}</td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">{{row.Saldo}} </td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">
+                    {% if row.status == "Positivo" %}
+                    <span style="color: green;" >{{row.status}} </span>
+                    {% else %}
+                    <span style="color: red;" >{{row.status}} </span>
+                    {% endif %} </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                <tr>
+                    <td class="tabelado" style="width: 950px;"><b>Inspeção de Produto </b></td>
+                    <td class="tabelado" style="width: 995px;"><b>SALDO ACUMULADO</b></td>
+                    <td class="tabelado" style="width: 995px;"><b>OBS</b></td>
+    
+                </tr>
+                {% for row in rows %}
+                {% if row.centro_custo == "7112     " %}
+                    <tr>
+                    <td class="tabelado" style="width: 950px; border: 1px solid #333;">{{row.nome}}</td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">{{row.Saldo}} </td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">
+                    {% if row.status == "Positivo" %}
+                    <span style="color: green;" >{{row.status}} </span>
+                    {% else %}
+                    <span style="color: red;" >{{row.status}} </span>
+                    {% endif %} </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                {% for row in pessoas %}
+                {% if row.centro_custo == "7112" %}
+                    <tr>
+                    <td class="tabelado" style="width: 950px; border: 1px solid #333;">{{row.nome}}</td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">{{row.Saldo}} </td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">
+                    {% if row.status == "Positivo" %}
+                    <span style="color: green;" >{{row.status}} </span>
+                    {% else %}
+                    <span style="color: red;" >{{row.status}} </span>
+                    {% endif %} </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                <tr>
+                    <td class="tabelado" style="width: 950px;"><b>Inspeção de Recebimento </b></td>
+                    <td class="tabelado" style="width: 995px;"><b>SALDO ACUMULADO</b></td>
+                    <td class="tabelado" style="width: 995px;"><b>OBS</b></td>
+    
+                </tr>
+                {% for row in rows %}
+                {% if row.centro_custo == "7113     " %}
+                   <tr>
+                    <td class="tabelado" style="width: 950px; border: 1px solid #333;">{{row.nome}}</td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">{{row.Saldo}} </td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">
+                    {% if row.status == "Positivo" %}
+                    <span style="color: green;" >{{row.status}} </span>
+                    {% else %}
+                    <span style="color: red;" >{{row.status}} </span>
+                    {% endif %} </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                {% for row in pessoas %}
+                {% if row.centro_custo == "7113" %}
+                    <tr>
+                    <td class="tabelado" style="width: 950px; border: 1px solid #333;">{{row.nome}}</td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">{{row.Saldo}} </td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">
+                    {% if row.status == "Positivo" %}
+                    <span style="color: green;" >{{row.status}} </span>
+                    {% else %}
+                    <span style="color: red;" >{{row.status}} </span>
+                    {% endif %} </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                <tr>
+                    <td class="tabelado" style="width: 950px;"><b>Inspeção Teste</b></td>
+                    <td class="tabelado" style="width: 995px;"><b>SALDO ACUMULADO</b></td>
+                    <td class="tabelado" style="width: 995px;"><b>OBS</b></td>
+    
+                </tr>
+                {% for row in rows %}
+                {% if row.centro_custo == "7114     " %}
+                   <tr>
+                    <td class="tabelado" style="width: 950px; border: 1px solid #333;">{{row.nome}}</td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">{{row.Saldo}} </td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">
+                    {% if row.status == "Positivo" %}
+                    <span style="color: green;" >{{row.status}} </span>
+                    {% else %}
+                    <span style="color: red;" >{{row.status}} </span>
+                    {% endif %} </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                {% for row in pessoas %}
+                {% if row.centro_custo == "7114" %}
+                    <tr>
+                    <td class="tabelado" style="width: 950px; border: 1px solid #333;">{{row.nome}}</td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">{{row.Saldo}} </td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">
+                    {% if row.status == "Positivo" %}
+                    <span style="color: green;" >{{row.status}} </span>
+                    {% else %}
+                    <span style="color: red;" >{{row.status}} </span>
+                    {% endif %} </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                <tr>
+                    <td class="tabelado" style="width: 950px;"><b>Assistência Técnica </b></td>
+                    <td class="tabelado" style="width: 995px;"><b>SALDO ACUMULADO</b></td>
+                    <td class="tabelado" style="width: 995px;"><b>OBS</b></td>
+    
+                </tr>
+                {% for row in rows %}
+                
+                {% if row.centro_custo == "7115     " %}
+                    <tr>
+                    <td class="tabelado" style="width: 950px; border: 1px solid #333;">{{row.nome}}</td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">{{row.Saldo}} </td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">
+                    {% if row.status == "Positivo" %}
+                    <span style="color: green;" >{{row.status}} </span>
+                    {% else %}
+                    <span style="color: red;" >{{row.status}} </span>
+                    {% endif %} </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                {% for row in pessoas %}
+                {% if row.centro_custo == "7115" %}
+                    <tr>
+                    <td class="tabelado" style="width: 950px; border: 1px solid #333;">{{row.nome}}</td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">{{row.Saldo}} </td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">
+                    {% if row.status == "Positivo" %}
+                    <span style="color: green;" >{{row.status}} </span>
+                    {% else %}
+                    <span style="color: red;" >{{row.status}} </span>
+                    {% endif %} </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            <tr>
+                <td class="tabelado" style="width: 950px;"><b>Solda Linha</b></td>
+                <td class="tabelado" style="width: 995px;"><b>SALDO ACUMULADO</b></td>
+                <td class="tabelado" style="width: 995px;"><b>OBS</b></td>
+
+            </tr>
+            {% for row in rows %}
+            {% if row.centro_custo == "5141     " %}
+                <tr>
+                    <td class="tabelado" style="width: 950px; border: 1px solid #333;">{{row.nome}}</td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">{{row.Saldo}} </td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">
+                    {% if row.status == "Positivo" %}
+                    <span style="color: green;" >{{row.status}} </span>
+                    {% else %}
+                    <span style="color: red;" >{{row.status}} </span>
+                    {% endif %} </td>
+                </tr>
+            {% endif %}
+            {% endfor %}
+            {% for row in pessoas %}
+                {% if row.centro_custo == "5141" %}
+                    <tr>
+                    <td class="tabelado" style="width: 950px; border: 1px solid #333;">{{row.nome}}</td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">{{row.Saldo}} </td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">
+                    {% if row.status == "Positivo" %}
+                    <span style="color: green;" >{{row.status}} </span>
+                    {% else %}
+                    <span style="color: red;" >{{row.status}} </span>
+                    {% endif %} </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                <tr>
+                    <td class="tabelado" style="width: 950px;"><b>Solda Especial</b></td>
+                    <td class="tabelado" style="width: 995px;"><b>SALDO ACUMULADO</b></td>
+                    <td class="tabelado" style="width: 995px;"><b>OBS</b></td>
+
+                </tr>
+                {% for row in rows %}
+                {% if row.centro_custo == "5182     " %}
+                    <tr>
+                    <td class="tabelado" style="width: 950px; border: 1px solid #333;">{{row.nome}}</td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">{{row.Saldo}} </td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">
+                    {% if row.status == "Positivo" %}
+                    <span style="color: green;" >{{row.status}} </span>
+                    {% else %}
+                    <span style="color: red;" >{{row.status}} </span>
+                    {% endif %} </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                {% for row in pessoas %}
+                {% if row.centro_custo == "5182" %}
+                    <tr>
+                    <td class="tabelado" style="width: 950px; border: 1px solid #333;">{{row.nome}}</td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">{{row.Saldo}} </td>
+                    <td class="tabelado" style="width: 995px; text-align: center; border: 1px solid #333;">
+                    {% if row.status == "Positivo" %}
+                    <span style="color: green;" >{{row.status}} </span>
+                    {% else %}
+                    <span style="color: red;" >{{row.status}} </span>
+                    {% endif %} </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>  
+    </table>
+
+    <style>
+        table {
+         border: 0px double #333; 
+         border-collapse: solid; 
+         width: 100%;
+         border-spacing: 7px 11px;
+        }
+        tbody {
+         padding-bottom: 0px;
+         padding-left: 15px;
+         padding-right: 15px;
+         padding-top: 15px;
+         border: 0px solid #000000;
+         border-spacing: 20px 11px;
+         font-size: 16px;
+        }
+        td{
+         border: 1px solid #000000;
+    
+        }
+        thead {
+         padding: 15px; 
+         border: 0px solid #000000;
+         border-spacing: 20px 11px;
+        }
+    </style>

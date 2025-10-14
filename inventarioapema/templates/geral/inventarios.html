@@ -1,0 +1,55 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class='perfil'>
+        <div style="margin: 20px;">
+        <h1>INVENTARIOS</h1>
+        </div>
+        <div style="display: inline-flex; width: -webkit-fill-available; margin-left: 300px;">
+            <div class="inventario">
+        <a href="{{ url_for('usuarios') }}">
+            <img src="../static/img/usuarios.png" class="user" style=" z-index: 1;">
+        <h2  >USUARIOS</h2></a>
+        </div>
+        
+        <div class="inventario">
+        <a href="{{ url_for('cameras') }}">
+            <img src="../static/img/cameras.png" class="came" style=" z-index: 1;">
+            <h2 >CAMERAS</h2></a>
+        </div>
+        <div class="inventario">
+        <a href="{{ url_for('antenas') }}">
+            <img src="../static/img/antenas.png" class="ant" style=" z-index: 1;">
+            <h2 >ANTENAS</h2></a>
+        </div>
+        </div>
+        <div style="display: inline-flex; margin-left: 356px;">
+            <div class="inventario">
+            <a href="{{ url_for('computadores') }}">
+                <img src="../static/img/computadores.png" class="computer" style=" z-index: 1;">
+            <h2 >COMPUTADORES</h2></a>
+            </div>
+            <div class="inventario">
+                <a href="{{ url_for('impressoras') }}">
+                <img src="../static/img/impressoras.png" class="impre" style=" z-index: 1;">
+                <h2 >IMPRESSORA</h2></a>
+            </div>
+            <div class="inventario">
+            <a href="{{ url_for('toners') }}">
+                <img src="../static/img/toners.png" class="toner" style=" z-index: 1;">
+            <h2 >TONER</h2></a>
+            </div>
+    </div>
+
+<style>
+.inventario{
+    margin: 50px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+
+}
+h2{
+    text-align: center;
+}
+</style>
+{% endblock %}

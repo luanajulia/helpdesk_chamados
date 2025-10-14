@@ -1,0 +1,41 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class='perfil'>
+        <h1>Buscas para: {{ usuario }}</h1>
+        <div class="status" style="top: 60px;">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <input type="text" id="valor_busca" value="{{ usuario }}" class="form-control" style="width: 600px; display: inline; margin-right: 5px;  "/>
+        <input type="submit" value="Pesquisar" onclick="myFunction()" style="background-color: #008cff; border-color: #008cff; border-radius: 5px; font-size: 16px; color: white; padding: 5px;" />
+
+       
+    </div>
+            
+    <table class="table" style="z-index: -1;width: 1160px;">
+        <tr>
+            <th scope="col">Nome de usuario</th>
+            <th scope="col">Nome(TE)</th>
+            <th scope="col">Processador</th>
+            <th scope="col">memoria</th>
+            <th scope="col">Disco Rigido</th>
+            <th scope="col">Disco Rigido 2</th>
+            <th scope="col">Tipo</th>
+        </tr>
+        {% for computador in computadores %}
+        <tr>
+            <td>{{ computador.usuario }}</td>
+                <td>{{ computador.te }}</td>
+                <td>{{ computador.processador }}</td>
+                <td>{{ computador.memoria }}</td>
+                <td>{{ computador.disco_rigido }}</td>
+                <td>{{ computador.disco_rigido_2 }}</td>
+                <td>{{ computador.tipo }}</td>
+            <td><a style="width: 100px;" href='{{url_for("delete_computador",id=computador.id)}}' class='btn btn-danger' onclick='return confirm("Voce tem certeza, que deseja excluir  {{ computadores.usuario }}?")'>Deletar</a></td>
+            <td><a href='{{url_for("edit_computador",id=computador.id)}}' class='btn btn-primary'>Editar</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+{% endblock %}

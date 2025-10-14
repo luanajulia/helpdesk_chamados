@@ -1,0 +1,45 @@
+{% extends "home.html" %}
+
+{% block body %}
+<div class='perfil' style="margin: 20px;" >
+  <div style="width: 500px;">
+      <h1>Ausencia Colaborador</h1>
+            <form method="POST" action="" enctype="multipart/form-data" style="left: 309px; z-index: -5; top: 142px;">
+              {% for colaborador in colaboradores %}
+
+                <div class='form-group'>
+                    <label class="form-label">Nome de Usuario:</label>
+                    <input  type='text' name='colaborador'  required class="form-control" value="{{ colaborador.colaborador }}" >
+                  </div>
+                <div class='form-group'>
+                    <label class="form-label">Area</label>
+                    <input  type='text' name='area' required class="form-control"  value="{{ colaborador.area }}">
+                  </div>
+                  <div class='form-group'>
+                    <label class="form-label">Matricula</label>
+                    <input  type='text' name='matricula' required class="form-control"  value="{{ colaborador.matricula }}">
+                  </div>
+                  <div class='form-group'>
+                    <label class="form-label">Data</label>
+                    <br>
+                    <input  type='date' name='data' required class="form-control"  value="{{ colaborador.data }}" >
+                  </div>
+                  <div class='form-group'>
+                    <label class="form-label">Descricao de Atividades</label>
+                    <br>
+                    <input  type='text' name='atividade' required class="form-control" value="{{ colaborador.atividade }}">
+                  </div>
+                  <div class='form-group'>
+                    <label class="form-label">Periodo Trabalhado</label>
+                    <br>
+                    <input  type='text' name='periodo' required class="form-control" value="{{ colaborador.colaborador }}">
+                  </div>
+                  <button type='submit' value='Submit' class='btn btn-primary'>Enviar</button>
+            </form>
+            {% endfor %}
+          
+          </div>
+    </main>
+    
+</body>
+{% endblock %}

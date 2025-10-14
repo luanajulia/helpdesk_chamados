@@ -1,0 +1,45 @@
+{% extends "home.html" %}
+
+
+{% block body %}
+<body>
+    <main>
+      <div>
+        <h1>CADASTRO DE USUARIO </h1>
+        <div style="width: 500px;margin: 20px;">
+            <form method="POST">
+
+                <label for="username" class="form-label">Nome de Usuario</label>
+                <input type="text" class="form-control" id="username" name="username">
+
+                <label for="departamento" class="form-label">Departamento</label>
+                <input type="text" class="form-control" id="departamento" name="departamento">
+
+                <label for="ramal" class="form-label">Ramal</label>
+                <input type="text" class="form-control" id="ramal" name="ramal">
+
+                <label for="email" class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="email" name="email">
+
+                <label for="nivel" class="form-label">Nivel de acesso</label>
+                  <select id="nivel" name="nivel" class="form-select">
+                    <option value="usuario" selected>Usuario</option>
+                    <option value="gestor">Gestor</option>
+                    <option value="Tecnico">Tecnico</option>
+                    <option value="Administrador">Administrador</option>
+                    <option value="Manutenção">Manutencao</option>
+
+                  </select>
+
+                  <label for="senha" class="form-label">Senha</label>
+                  <input type="password" class="form-control" id="senha" name="senha">
+
+                <br>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+
+            </form>
+        </div>
+        </div>
+    </main>
+</body>
+{% endblock %}

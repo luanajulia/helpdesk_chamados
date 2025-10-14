@@ -1,0 +1,70 @@
+{% extends "home.html" %}]
+
+{% block body %}
+    <div class='perfil'>
+      <h1>Enviar Chamado</h1>
+      {% if current_user.nivel == 'Manutenção' %}
+    <div class="dropdown" style="left: 373%; position: relative;">
+    <button class="dropbtn" >Inventarios</button>
+    <div class="dropdown-content" >
+      <a  style="width: 100%;" href="{{ url_for('portal', id_usuario=current_user.id) }}">Chamados TI</a>
+      <a  style="width: 100%;" href="{{ url_for('manutencao', id_usuario=current_user.id) }}">Manutencao</a>
+    </div>
+  </div>
+  {% endif %}
+      <form method="post" name="equipamentos_id" id="equipamentos_id" action='{{url_for("equipamentos_id")}}' style=" left: 262px; position: relative; top: -24px; background: none;">
+        <br>
+        <label class="label">Equipamento</label><br>
+        {% if os == None %}
+        <input type="text" name="os" id="os"  placeholder="Codigo do equipamento" class="input" style="width: 250px; margin-right: 5px;  "/>
+        <button type='submit' value='Submit' class='btn btn-primary'>Pesquisar</button>
+        
+        {% else %}
+        <input type="text" name="os" id="os" value="{{ os }}" placeholder="BUSCA CODIGO" class="input" style="width: 250px; margin-right: 5px;  "/>
+        {% endif %}
+      </form>
+            {% block formulario %}
+            <form method="POST" action="" enctype="multipart/form-data" style="left: 260px; z-index: -5; top: 222px;">
+              {% for row in rows %}
+                <input type="text" class="input" name="equipamento" id="equipamento" value='{{row["equipamento"]}}' placeholder="equipamento" class="form-control" style="width: 250px; margin-right: 5px; left: 270px;"/>
+                <input type="text" class="input" name="localizacao" id="localizacao" value='{{row["localizacao"]}}' placeholder="localização" class="form-control" style="width: 250px; margin-right: 5px; left: 270px;"/>
+                {% endfor %}
+                <br>
+                <br>
+                <br>
+                {{ form.csrf_token }}
+                {{ form.tipo.label(class="label") }}
+                <br>
+                {{ form.tipo(class="input") }}
+                <br>
+                <div class='form-group'>
+                  <label class="label">Status do Chamado:</label>
+                  <input  type='text' name='status'  class="input" value='novo' readonly>
+                </div>
+                <br>
+                <div class='form-group'>
+                    <label class="label">Nome de Usuario:</label>
+                    <input  type='text' name='username'  required class="input" value='{{usuarios.username}}' readonly>
+                  </div>
+                <div class='form-group'>
+                    <label class="label">Departamento</label>
+                    <input  type='text' name='departamento' required class="input" value='{{usuarios.departamento}}' readonly>
+                  </div>
+                <div class='form-group'>
+                    <label class="label">E-mail</label>
+                    <input type='text' name='email' required class="input" value='{{usuarios.email}}' readonly>
+                  </div>
+                <br>
+                {{ form.descricao.label(class="label", style="position: relative; top:-420px; left: 600px;") }}
+                <br>
+                {{ form.descricao(class="descricao", cols="35", rows="10", style="top:-410px;", placeholder="Descrição do Chamado") }}
+                <br>
+                {{ form.enviar_chamado(class="btn-outline-primary", style="position: relative; top: -264px; width: 197px; left: 610px;") }}
+                <input type="text" name="os" id="os" value="{{ os }}" placeholder="BUSCA CODIGO" class="input" style="width: 250px; margin-right: 5px; left: -604px; "/>
+            </form>
+            {% endblock %}
+        </div>
+    </main>
+    
+</body>
+{% endblock %}

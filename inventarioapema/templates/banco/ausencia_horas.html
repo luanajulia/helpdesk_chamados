@@ -1,0 +1,38 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class='perfil' style="margin: 20px;" >
+        <h1>Banco de Horas - Colaboradores </h1>
+        <table class="table table-striped" style=" margin: 20px; width: -webkit-fill-available;">
+                <tr>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Departamento</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Periodo</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                <tr>
+                    {% for dados_banco in dados_banco %}
+                <tr>
+                    <td>{{ dados_banco.colaborador }}</td>
+                    <td>{{ dados_banco.area }}</td>
+                    <td>{{ dados_banco.data|datetimeformat('%d/%m/%Y') }}</td>
+                    <td>{{ dados_banco.atividade }}</td>
+                    <td style="color: #0084ff;">{{ dados_banco.periodo }}</td>
+                    <td style="padding-top: 0px;"><a href='{{url_for("edit_adcionar",id_usuario=dados_banco.id)}}' class="btn btn-primary"  style="width: 100px; " >Editar</a></td>
+                    <td style="padding-top: 0px;"><a href='{{url_for("banco_form",id=dados_banco.id)}}' class="btn btn-light"  style="width: 100px;">Imprimir</a></td>
+                    <td style="padding-top: 0px;"><a href='{{url_for("delete_banco",id=dados_banco.id)}}' class="btn btn-danger"  style="width: 100px;"  onclick='return confirm("Voce tem certeza, que deseja excluir  {{ dados_banco.colaborador }}?")'>Deletar</a></td>
+                </tr>
+            
+            {% endfor %}
+            
+           
+    </table>
+</div> 
+</div>
+
+</body>
+{% endblock %}

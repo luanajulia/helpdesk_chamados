@@ -1,0 +1,306 @@
+{% extends "home.html" %}
+
+{% block body %}
+   <div class="perfil" style="margin: 20px;" >
+    <h1>Descricao do Chamado</h1>
+    <div class="status" style="left: 250%;">
+        <a href="" class="btn btn-light" id="imprimirBtn"  style="width: 115px;"> Imprimir <ion-icon name="print-outline"></ion-icon></a>
+    </div>
+   </div>
+   <script>
+    // Obtém uma referência para o botão de impressão
+    const imprimirBtn = document.getElementById('imprimirBtn');
+    
+    
+    imprimirBtn.addEventListener('click', function() {
+        const div = document.getElementById('status');
+        window.print(div);
+    });
+    </script>
+   <style>
+    table {
+     border: 0px double #333; 
+     border-collapse: solid; 
+     width: 100%;
+     border-spacing: 7px 11px;
+    }
+    tbody {
+     padding-bottom: 0px;
+     padding-left: 15px;
+     padding-right: 15px;
+     padding-top: 15px;
+     border: 0px solid #000000;
+     border-spacing: 20px 11px;
+     font-size: 20px;
+    }
+    td{
+     border: 1px solid #000000;
+
+    }
+    thead {
+     padding: 15px; 
+     border: 0px solid #000000;
+     border-spacing: 20px 11px;
+    }
+   </style>
+   {% for dado in dados  %}
+        <div id="table" name="table">
+            <table class="fixo"  style=" left: 15%; border: 0px  solid black;  border-right-width: 0px;  width: 1075px; border-spacing: 7px 11px;" >
+                <tbody >
+                    <tr>
+                        <td style="width: 238px; position: relative; left: 38px;"><img src="../static/img/logotipo_apema.png" class="tabimg" ></a></td>
+                        <td style="width: 800px; font-size: 30px; text-align: center; font-family: Arial, Helvetica, sans-serif;" ><b>REGISTRO DE BANCO DE HORAS</b></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td class="tabelado" colspan="3" style="width: 750px;"><b>Área: </b><br>{{ dado.area }}</td>
+                        <td class="tabelado" style="width: 290px;" ><b>Data:</b><br> {{ dado.data|datetimeformat('%d/%m/%Y') }}</td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td class="tabelado" style="width: 233px;"><b>Matricula:</b><br> {% if dados.matricula == None %} <hr>  {% else %} {{ dado.matricula }}{% endif %}</td>
+                        <td class="tabelado" colspan="3" style="width: 806px;"><b>Colaborador:</b><br>{{ dado.colaborador }}</td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td class="tabelado" colspan="4" style="width: 1038px;"><b>Descrição de Atividades:</b><br>{{ dado.atividade }}</td>
+                    </tr>
+                    <tr>
+                        <td class="tabelado" colspan="3"><b>Periodo Trabalhado:</b><br>{{ dado.periodo }}</td>
+                        <td class="tabelado" ><b>Total de Horas:</b><br><hr></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td class="tabelado" colspan="4"><b>Autorizo a transferência das horas de trabalho do período acima registrado, para posterior 
+                            compensação, conforme os procedimentos definidos para o Programa Anual de Banco de Horas. <br><br>
+                            Ass. Colaborador:_________________________________________________________________________________________________</b></td>
+                    </tr>
+                </tbody>
+                <tbody style="padding-bottom: 15px;">
+                    <tr>
+                        <td class="tabelado" colspan="2" style="width: 500px;"><b>Chefia:</b><br><hr></td>
+                        <td class="tabelado" colspan="2" style="width: 541px;"><b>Gerência:</b><br><hr></td>
+                    </tr>
+                </tbody>
+                <td style="width: 1075px; border: 0px;" >F.06-33 Rev.4(IT 06.26)</td>
+            </table>
+        </div>
+	{% endfor %}
+</body>
+
+<style>
+.tabimg{
+    max-width: 150px;
+    max-height: 100px;
+}
+
+@media  print {
+    html, body {
+        width: 210mm;
+        height: 297mm;        
+    }
+    p{
+        top: 978px; 
+        left: 0px; 
+        width: 500px;
+        position: relative;
+    }
+    /* esconder tudo */
+    body * {
+      visibility: hidden;
+    }
+    .impressoras{
+        position: relative;
+        top: 50px;
+    }
+    .ton{
+        position: relative;
+        top: -300px;
+    }
+    .cam{
+        position: relative;
+        top: 100px;
+    }
+    .software{
+        position: relative;
+        top: 200px;
+    
+    }
+    .antena{
+        position: relative;
+        top: 600px;
+    }
+    .pie{
+        position: relative;
+        top: -670px;
+    }
+    .memoria{
+        position: relative;
+        top: -640px;
+    }
+    .h7{
+        position: relative;
+        top: 200px;
+        width: 500px;
+        z-index: 2; 
+    }
+    .linha{
+        top: -340px;
+    }
+    h5{
+        position: relative;
+        top: 140px;
+        width: 500px; 
+    }
+
+    .torta{
+        top: 140px;
+    }
+    h4{
+        width: 500px;
+    }
+    .h9{
+        position: relative;
+        top: -700px;
+        width: 500px; 
+    }
+    .h10{
+        position: relative;
+        top: -300px;
+        width: 500px; 
+    }
+    .h11{
+        position: relative;
+        top: -150px;
+        width: 500px;
+    }
+    .h12{
+        position: relative;
+        top: -990px;
+        width: 500px;  
+    }
+    .h14{
+        position: relative;
+        top: -1070px;
+    }
+    
+
+    div a {
+        height: 50px;
+        width: 20px;
+    }
+    
+    h2{
+        position: absolute;
+        left: -270px;
+        top: -250px;
+        width: 500px;
+    }
+    .bloco-imagem img{
+        position: relative;
+        left: -50px;
+        top: -80px;
+    }
+
+    /* exibir somente o que tem na div para imprimir */
+    #status, #table * {
+      visibility: visible;
+    }
+    #table {
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 20%;
+        height: 0%;
+        font-size: 18px;
+        width: 0;
+    }
+    .fixo{
+        top: -200px;
+    }
+    
+    th,
+    td {
+        padding: 0;
+      }
+ }
+  
+ .fixed {
+    width:350px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    left: 15%;
+  }
+  .fixed th {
+    text-decoration: underline;
+  }
+  .fixed th,
+  .fixed td {
+    padding: 5px;
+    text-align: left;
+    min-width: 15px;
+  }
+  .fixed tbody td{
+    min-height: 26px
+  }
+  
+  .fixed thead {
+    background-color: #103a78;
+    color: #fdfdfd;
+    width: 150px;
+    position: relative;
+  }
+  .fixed thead tr {
+    display: block;
+    position: relative;
+  }
+  .fixed tbody {
+    display: block;
+    overflow: auto;
+    width: 100%;
+    height: 650px;
+    overflow-y: scroll;
+      overflow-x: hidden;
+  }
+
+  .fixo {
+    width:350px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    left: 15%;
+  }
+  .fixo th {
+    text-decoration: underline;
+  }
+  .fixo th,
+  .fixo td {
+    padding: 5px;
+    text-align: left;
+    min-width: 15px;
+  }
+  .fixo tbody td{
+    min-height: 26px
+  }
+  
+  .fixo thead {
+    background-color: #103a78;
+    color: #fdfdfd;
+    position: relative;
+  }
+  .fixo thead tr {
+    display: block;
+    position: relative;
+    
+  }
+  .fixo tbody {
+    display: block;
+    overflow: auto;
+    width: 100%;
+  }
+  
+</style>
+{% endblock %}

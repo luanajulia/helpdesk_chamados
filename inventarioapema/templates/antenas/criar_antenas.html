@@ -1,0 +1,45 @@
+{% extends "home.html" %}
+
+{% block body %}
+
+<body>
+    <main>
+      <div>
+        <h1>Cadastro Antenas</h1>
+        <div style="width: 500px;margin: 20px;">
+            <form method="POST">
+
+                <label for="antena" class="form-label">Nome da Antena</label>
+                <input type="text" class="form-control" id="antena" name="antena">
+
+
+                <label for="departamento" class="form-label">Departamento</label>
+                  <select id="departamento" name="departamento" class="form-select">
+                  <option value="Almoxarifado">Almoxarifado</option>
+                    <option value="Administrativo" selected>Administrativo</option>
+                    <option value="Compras">Compras</option>
+                    <option value="Engenharia">Engenharia</option>
+                    <option value="Expedicao">Expedicao</option>
+                    <option value="Faturamento Engenharia" selected>Faturamento Engenharia</option>
+                    <option value="Inspetores">Inspetores</option>
+                    <option value="Lideres">Lideres</option>
+                    <option value="Manutenção">Manutenção</option>
+                    <option value="Marketing">Markenting</option>
+                    <option value="PCP">PCP</option>
+                    <option value="Portaria">Portaria</option>
+                    <option value="Processos">Processos</option>
+                    <option value="Qualidade">Qualidade</option>
+                    <option value="SIPAT">SIPAT</option>
+                    <option value="RH">RH</option>
+                    <option value="Vendas">Vendas</option>
+
+                  </select>
+
+                <br>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+      </div>
+    </main>
+</body>
+{% endblock %}

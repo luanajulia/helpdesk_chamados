@@ -1,0 +1,33 @@
+{% extends "home.html" %}
+
+{% block body %}
+<div class='perfil'>
+  <div class="grupo" style="margin: 20px;">
+
+    <h1>Controle de usuarios</h1>
+        <a href="{{ url_for('controle', niveis='usuario') }}" class="btn btn-primary" style=" width: 110px;">Usuario</a>
+        <a href="{{ url_for('controle', niveis='Tecnico') }}" class="btn btn-primary" style="width: 130px;">Tecnico</a>
+        <a href="{{ url_for('controle', niveis='Administrador') }}" class="btn btn-primary" style="width: 170px;">Administrador</a>
+        <a href="{{ url_for('controle', niveis='Manutenção') }}" class="btn btn-primary" style="width: 170px;">Manutenção</a>
+        </div>
+<table class="table table-striped" style=" margin: 20px; width: -webkit-fill-available;">
+    <tr>
+        <th scope="col">Usuario</th>
+        <th scope="col">Nivel</th>
+        <th scope="col">Editar</th>
+        <th scope="col"></th>
+    </tr>
+    <tr>
+        {% for usuarios in usuarios %}
+    <tr>
+        <td>{{ usuarios.username }}</td>
+        <td>{{ usuarios.nivel }}</td>
+        <td><a style="width: 100px;" href='{{url_for("delete_user",id=usuarios.id)}}' class='btn btn-danger' onclick='return confirm("Voce tem certeza, que deseja excluir  {{ usuarios.username }}?")'>Deletar</a></td>
+        <td><a href='{{url_for("edit_user", id=usuarios.id)}}' class='btn btn-primary'>Editar</a></td>
+        {% endfor %}
+    </tr>
+</table>
+
+</body>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "home.html" %}
+
+{% block body %}
+{% for toner in toners %}
+    <div class='perfil'>
+        <h1>Editar Toners</h1>
+        <div class="status" style="left: 280px;">
+        <a href="{{ url_for('toners') }}" class="btn btn-link" style="display: inline-flex;  padding-right: 0%;  z-index: -1; width: 150px;">Toners <ion-icon name="chevron-forward"></ion-icon></a>
+        </div>
+        <div class='col-18 mx-auto'>
+          <form method='post' action='{{url_for("edit_toners",id=toner.id)}}'  style="width: 600px; left: 14.5%; top: 220px; z-index: -1;">
+            <div class='form-group'>
+              <label>Nome do Toner:</label>
+              <input type='text' name='toners' required class='form-control' value='{{ toner.toners }}'>
+            </div>
+            <br>
+            <div class='form-group'>
+                <label>Quantidade de toners:</label>
+                <input type='text' name='quant_toners' required class='form-control' value='{{toner.quant_toners}}'>
+            </div>
+            <br>
+            <div class='form-group'>
+            <button type='submit' value='Submit' class='btn btn-primary'>Enviar</button>
+          </div>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+{% endblock %}

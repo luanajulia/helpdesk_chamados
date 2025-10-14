@@ -1,0 +1,132 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class="perfil">
+        <h1>Chamados</h1>
+        <div class="status" style=" left: 49%; top: 20px;">
+            {% for ativosstatus in ativosstatus %}
+            {% for desativado in desativado %}
+            {% for concluido in concluido %}
+            {% for aberto in aberto %}
+            <a href="{{ url_for('Novo') }}" class="badge bg-primary" style="width: 115px;">Novo:<br>{{ ativosstatus|first }}</a>
+            {% if current_user.nivel == 'Administrador' %}
+            <a href="{{ url_for('atribuido', atribuido=current_user.username) }}" class="badge bg-warning text-dark" style="width: 115px;" >Atribuido:<br>{{ desativado|first }} </a>
+            {% else %}
+            <a href="{{ url_for('atribuido', atribuido=current_user.username) }}" class="badge bg-warning text-dark" style="width: 115px;" >Atribuido:<br>{{ desativado|first }} </a>
+            {% endif %}
+            <a href="{{ url_for('Fechado') }}" class="badge bg-success" style="width: 115px;" >Fechado:<br> {{ concluido|first }} </a>
+            <a href="{{ url_for('Reaberto') }}" class="badge bg-danger" style="width: 115px;" >Reaberto:<br>{{ aberto|first }} </a>
+            <a href="" class="btn btn-light" id="imprimirBtn"  style="width: 115px; height: 50px; top: -10px; position: relative; padding-top: 13px">Imprimir <ion-icon name="print-outline"></ion-icon></a>
+            {% endfor %}
+            {% endfor %}
+            {% endfor %}
+            {% endfor %}
+        </div>
+            <script>
+                // Obtém uma referência para o botão de impressão
+                const imprimirBtn = document.getElementById('imprimirBtn');
+                
+                
+                imprimirBtn.addEventListener('click', function() {
+                    const div = document.getElementById('status');
+                    window.print(div);
+                });
+                </script>
+        {% if nivel == 'Administrador' %}
+       
+        <div id="table" name="table" style="width: 170px; top:180px;">
+            <table class="table" style=" width: 1600px;">
+            <tr>
+                <th scope="col">Usuario</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Departamento</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Data Abertura</th>
+                <th scope="col">Status</th>
+            </tr>
+            {% for chamado in chamados %}
+            <tr>
+                <td>{{ chamado["username"] }}</td>
+                <td>{{ chamado["email"] }}</td>
+                <td>{{ chamado["departamento"] }}</td>
+                <td>{{ chamado["tipo"] }}</td>
+                <td>{{ chamado["data"] }}</td>
+                {% if chamados.status == 'novo' %}
+                <td  type="button" style="padding-top: 0px; padding-bottom: 0px;"><a style="width: 90px; padding-left: 9px;" class="btn btn-outline-primary" href="{{ url_for('Novo') }}" >Novo</a></td>
+                {% else %}
+                {% if chamados.status == 'atribuido' %}
+                <td  type="button"  style="padding-top: 0px; padding-bottom: 0px;"><a style="width: 90px;  padding-left: 9px;" class="btn btn-outline-warning text-dark" href="{{ url_for('atribuido', atribuido=current_user.id) }}" >Atribuido</a></td>
+                {% else %}
+                {% if chamados.status == 'fechado' %}
+                <td  type="button"  style="padding-top: 0px; padding-bottom: 0px;"><a  style="width: 90px; padding-left: 9px;" class="btn btn-outline-success" href="{{ url_for('Fechado') }}" >Fechado</a></td>
+                {% else %}
+                {% if chamados.status == 'reaberto' %}
+                <td  type="button"  style="padding-top: 0px; padding-bottom: 0px;"><a  style="width: 90px; padding-left: 9px;" class="btn btn-outline-danger" href="{{ url_for('Reaberto') }}" >Reaberto</a></td>
+                {% endif %}
+                {% endif %}
+                {% endif %}
+                {% endif %}
+                {% if chamados.atribuido  %}
+                <td>{{ chamados.atribuido }}</td>
+                {% else %}
+                <td>   </td>
+                {% endif %}
+                <td style="padding-top: 0px;"><a style="width: 100px;" href='{{url_for("delete_chamados",id=chamados.id)}}' class='btn btn-danger' onclick='return confirm("Voce tem certeza, que deseja excluir?")'>Deletar</a></td>
+                <td style="padding-top: 0px;"><a style="width: 100px;" href='{{url_for("edit_chamados",id=chamados.id)}}' class='btn btn-primary'>Editar</a></td></td>
+                <td style="padding-top: 0px;"><a href='{{url_for("descricaoadm", id=chamados.id)}}' class='btn btn-primary' style="width: 100%; background-color: black; border-color: black;">Descrição</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+        {%  else %}
+        <div id="table" name="table" style="width: 170px; top:180px;">
+
+        <table class="table" style=" width: 1600px;">
+            <tr>
+                <th scope="col">Usuario</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Departamento</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Data Abertura</th>
+                <th scope="col">Status</th>
+            </tr>
+            {% for chamado in chamados %}
+            <tr>
+                <td>{{ chamado["username"] }}</td>
+                <td>{{ chamado["email"] }}</td>
+                <td>{{ chamado["departamento"] }}</td>
+                <td>{{ chamado["tipo"] }}</td>
+                <td>{{ chamado["data"]|datetimeformat("%d/%m/%Y") }}</td>
+                {% if chamado.status == 'novo' %}
+                <td  type="button" style="padding-top: 0px; padding-bottom: 0px;"><a style="width: 90px; padding-left: 9px;" class="btn btn-outline-primary">Novo</a></td>
+                {% else %}
+                {% if chamado.status == 'atribuido' %}
+                <td  type="button"  style="padding-top: 0px; padding-bottom: 0px;"><a style="width: 90px;  padding-left: 9px;" class="btn btn-outline-warning text-dark"  >Atribuido</a></td>
+                {% else %}
+                {% if chamado.status == 'fechado' %}
+                <td  type="button"  style="padding-top: 0px; padding-bottom: 0px;"><a  style="width: 90px; padding-left: 9px;" class="btn btn-outline-success" >Fechado</a></td>
+                {% else %}
+                {% if chamado.status == 'reaberto' %}
+                <td  type="button"  style="padding-top: 0px; padding-bottom: 0px;"><a  style="width: 90px; padding-left: 9px;" class="btn btn-outline-danger"  >Reaberto</a></td>
+                {% endif %}
+                {% endif %}
+                {% endif %}
+                {% endif %}
+                {% if chamado.atribuido  %}
+                <td>{{ chamado.atribuido }}</td>
+                {% else %}
+                <td>   </td>
+                {% endif %}
+                <td style="padding-top: 0px;"><a style="width: 100px;" href='{{url_for("edit_chamados",id=chamado.id)}}' class='btn btn-primary'>Editar</a></td></td>
+                <td style="padding-top: 0px;"><a href='{{url_for("descricaoadm", id=chamado.id)}}' class='btn btn-primary' style="width: 100%; background-color: black; border-color: black;">Descrição</a></td>
+                </tr>
+            {% endfor %}
+        </div>
+        </table>
+        {% endif %}
+    </div>
+    </div>
+    </div>
+</body>
+{% endblock %}
+

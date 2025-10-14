@@ -1,0 +1,28 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class='perfil' style="margin: 20px;">
+        <h1>Equipamentos - Cadastrados</h1>
+        <div style="margin: 30px;">
+       
+            
+                <table class="table table-striped" style=" margin: 20px; width: -webkit-fill-available;">
+                <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Equipamento</th>
+                    <th scope="col">Centro de Custo</th>
+            
+                </tr>
+                <tr>
+                    {% for usuarios in usuarios %}
+                <tr style="border-style: dotted;">
+                    <td>{{ usuarios["H1_CODIGO"] }}</td>
+                    <td >{{ usuarios["H1_DESCRI"] }}</td>
+                    <td>{{ usuarios["CTT_DESC01"] }}</td>
+                </tr>
+            {% endfor %}
+    </table>
+</div> 
+</div>
+</body>
+{% endblock %}

@@ -1,0 +1,570 @@
+{% extends "home.html" %}
+
+{% block body %}
+<div style="margin: 20px;">
+<div ><form style="display: inline-flex;" method="post">
+    <input type="date" name="data" id="data"class="form-control" style="width: 150px;"  value="{% for data in datas %}{{data["date"]}}{% endfor %}">
+    <button type="submit" class="btn btn-success" >ENVIAR</button>
+  </form></div>
+<div class="div" style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: flex-start;align-items: flex-end; left: 14%;position: absolute;">
+<div class="card" style="   width: 18rem;">
+    <div class="card-body">
+        <p >Fabrica</p>
+        <p >Responsavel: Sebastiao Andrade</p><br>
+        <a href="{{url_for("departamento_colaboradores_banco", departamento="Fabrica")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+      </div>
+</div>
+
+<div class="div">
+<div class="card" style="    width: 18rem;">
+    <div class="card-body">
+        <p >Compras</p>
+        <p >Responsavel: Antonio Cardoso </p><br>
+        <a href="{{url_for("departamento_colaboradores_banco", departamento="Compras")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+    </div>
+</div>
+</div>
+<div class="div">
+<div class="card" style="    width: 18rem;">
+    <div class="card-body">
+        <p >Vendas</p>
+        <p >Responsavel: Rodolfo Zampieri</p><br>
+        <a href="{{url_for("departamento_colaboradores_banco", departamento="Vendas")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+    </div>
+</div>
+</div>
+
+<div class="div">
+<div class="card" style="    width: 18rem;">
+    <div class="card-body">
+        <p>Orçamentos</p>
+        <p >Responsavel: Solange Inoue</p><br>
+        <a href="{{url_for("departamento_colaboradores_banco", departamento="Orcamentos")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+    </div>
+</div>
+</div>
+<div class="div">
+<div class="card" style="    width: 18rem;">
+    <div class="card-body">
+        <p>Desenvolvimento de Projetos</p>
+        <p >Responsavel: Rick Souza</p><br>
+        <a href="{{url_for("departamento_colaboradores_banco", departamento="Desenvolvimento de Projetos")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+    </div>
+</div>
+</div>
+<div class="div">
+<div class="card" style="    width: 18rem;">
+    <div class="card-body">
+        <p>Qualidade</p>
+        <p>Responsavel: Jose Mendes</p><br>
+        <a href="{{url_for("departamento_colaboradores_banco", departamento="Qualidade")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+    </div>
+</div>
+</div>
+<div class="div">
+<div class="card" style="    width: 18rem;">
+    <div class="card-body">
+        <p>TI</p>
+        <p >Responsavel: Marco Pessolato</p><br>
+        <a href="{{url_for("departamento_colaboradores_banco", departamento="TI")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+    </div>
+</div>
+</div>
+<div class="div">
+<div class="card" style="    width: 18rem;">
+    <div class="card-body">
+        <p>Diretoria</p>
+        <p >Responsavel: Nelson Rocha</p><br>
+        <a href="{{url_for("departamento_colaboradores_banco", departamento="Diretoria")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+    </div>
+</div>
+</div>
+<div class="div">
+<div class="card" style="    width: 18rem;">
+    <div class="card-body">
+        <p>Montagem</p>
+        <p >Responsavel: Sebastiao Andrade</p><br>
+        <a href="{{url_for("departamento_colaboradores_banco", departamento="Montagem")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+    </div>
+</div>
+</div>
+<div class="div">
+<div class="card" style="    width: 18rem;">
+    <div class="card-body">
+        <p>Processos</p>
+        <p >Responsavel: Arthur Bos</p><br>
+        <a href="{{url_for("departamento_colaboradores_banco", departamento="Processos")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+    </div>
+</div>
+</div>
+<div class="div">
+<div class="card" style="    width: 18rem;">
+    <div class="card-body">
+        <p>Linha</p>
+        <p >Responsavel: Sebastiao Andrade</p><br>
+        <a href="{{url_for("departamento_colaboradores_banco", departamento="Linha")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+    </div>
+</div>
+</div>
+<div class="div">
+<div class="card" style="    width: 18rem;">
+    <div class="card-body">
+        <p>Usinagem</p>
+        <p >Responsavel: Sebastiao Andrade</p><br>
+        <a href="{{url_for("departamento_colaboradores_banco", departamento="Usinagem")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+    </div>
+</div>
+</div>
+<div class="div">
+  <div class="card" style="    width: 18rem;">
+      <div class="card-body">
+          <p >Almoxarifado</p>
+          <p >Responsavel: Henrique Santarelli</p><br>
+          <a href="{{url_for("departamento_colaboradores_banco", departamento="Almoxarifado")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+      </div>
+  </div>
+  </div>
+  <div class="div">
+    <div class="card" style="    width: 18rem;">
+        <div class="card-body">
+            <p>Expedição</p>
+            <p >Responsavel: Sebastiao Andrade</p><br>
+            <a href="{{url_for("departamento_colaboradores_banco", departamento="Expedicao")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+        </div>
+    </div>
+    </div>
+<div class="div">
+<div class="card" style="    width: 18rem;">
+    <div class="card-body">
+        <p>RH</p>
+        <p >Responsavel: Soraia Moura</p><br>
+        <a href="{{url_for("departamento_colaboradores_banco", departamento="RH")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+    </div>
+</div>
+</div>
+<div class="div">
+  <div class="card" style="    width: 18rem;">
+      <div class="card-body">
+          <p>Financeiro</p>
+          <p >Responsavel: Jonas Onofrio</p><br>
+          <a href="{{url_for("departamento_colaboradores_banco", departamento="Financeiro")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+      </div>
+  </div>
+  </div>
+<div class="div">
+  <div class="card" style="    width: 18rem;">
+      <div class="card-body">
+          <p>Fiscal</p>
+          <p >Responsavel: Elisabete Cabral</p><br>
+          <a href="{{url_for("departamento_colaboradores_banco", departamento="Fiscal")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+      </div>
+</div>
+</div>
+<div class="div">
+  <div class="card" style="    width: 18rem;">
+      <div class="card-body">
+          <p>Corte</p>
+          <p >Responsavel: Sebastiao Andrade</p><br>
+          <a href="{{url_for("departamento_colaboradores_banco", departamento="Corte")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+      </div>
+</div>
+</div>
+<div class="div">
+  <div class="card" style="    width: 18rem;">
+      <div class="card-body">
+          <p>Manutenção</p>
+          <p >Responsavel: Garibaldi Sales</p><br>
+          <a href="{{url_for("departamento_colaboradores_banco", departamento="Manutencao")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+      </div>
+</div>
+</div>
+<div class="div">
+    <div class="card" style="    width: 18rem;">
+        <div class="card-body">
+            <p>Fabrica</p>
+            <p >Responsavel: RH</p><br>
+            <a href="{{url_for("colaboradores_banco")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+        </div>
+    </div>
+    </div>
+    <div class="div">
+      <div class="card" style="    width: 18rem;">
+          <div class="card-body">
+              <p>Predio</p>
+              <p >Responsavel: RH</p><br>
+              <a href="{{url_for("colaboradores_banco_predio")}}" class="btn btn-primary" style="width: 100%;">CONSULTAR</a>
+          </div>
+      </div>
+      </div>
+</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="Fabrica" tabindex="-1" aria-labelledby="Fabrica" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Enviar E-mail</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Voce tem Certeza que deseja enviar o relatorio de Fabrica para:
+          sebastiaoandrade@apema.com.br?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <a type="button" class="btn btn-primary" href="{{url_for("enviar", departamento="Fabrica")}}">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="modal fade" id="Compras" tabindex="-1" aria-labelledby="Compras" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Enviar E-mail</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Voce tem Certeza que deseja enviar o relatorio de Compras para:
+          antoniocardoso@apema.com.br?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <a type="button" class="btn btn-primary" href="{{url_for("enviar", departamento="Compras")}}">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="Vendas" tabindex="-1" aria-labelledby="Vendas" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Enviar E-mail</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Voce tem Certeza que deseja enviar o relatorio de Vendas para:
+          rodolfozampieri@apema.com.br?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <a type="button" class="btn btn-primary" href="{{url_for("enviar", departamento="Vendas")}}">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="Orçamentos" tabindex="-1" aria-labelledby="Orçamentos" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Enviar E-mail</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Voce tem Certeza que deseja enviar o relatorio de Orçamentos para:
+          solangeinoue@apema.com.br?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <a type="button" class="btn btn-primary" href="{{url_for("enviar", departamento="Orcamentos")}}">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="Desenvolvimento" tabindex="-1" aria-labelledby="Desenvolvimento" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Enviar E-mail</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Voce tem Certeza que deseja enviar o relatorio de Desenvolvimento de Projetos para:
+          ricksouza@apema.com.br?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <a type="button" class="btn btn-primary" href="{{url_for("enviar", departamento="Desenvolvimento de Projetos")}}">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="Qualidade" tabindex="-1" aria-labelledby="Qualidade" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Enviar E-mail</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Voce tem Certeza que deseja enviar o relatorio de Qualidade para:
+          josemendes@apema.com.br?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <a type="button" class="btn btn-primary" href="{{url_for("enviar", departamento="Qualidade")}}">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="TI" tabindex="-1" aria-labelledby="TI" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Enviar E-mail</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Voce tem Certeza que deseja enviar o relatorio de TI para:
+          marcopessolato@apema.com.br?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <a type="button" class="btn btn-primary" href="{{url_for("enviar", departamento="TI")}}">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="Diretoria" tabindex="-1" aria-labelledby="Diretoria" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Enviar E-mail</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Voce tem Certeza que deseja enviar o relatorio de Diretoria para:
+          nelsonrocha@apema.com.br?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <a type="button" class="btn btn-primary" href="{{url_for("enviar", departamento="Diretoria")}}">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="Manutenção" tabindex="-1" aria-labelledby="Manutenção" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Enviar E-mail</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Voce tem Certeza que deseja enviar o relatorio de Manutenção para:
+          garibaldi@apema.com.br?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <a type="button" class="btn btn-primary" href="{{url_for("enviar", departamento="Manutencao")}}">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="Corte" tabindex="-1" aria-labelledby="Corte" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Enviar E-mail</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Voce tem Certeza que deseja enviar o relatorio de Corte para:
+          jubertmendes@apema.com.br?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <a type="button" class="btn btn-primary" href="{{url_for("enviar", departamento="Corte")}}">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="Linha" tabindex="-1" aria-labelledby="Linha" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Enviar E-mail</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Voce tem Certeza que deseja enviar o relatorio de Linha para:
+          robertimmartins@apema.com.br?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <a type="button" class="btn btn-primary" href="{{url_for("enviar", departamento="Linha")}}">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="RH" tabindex="-1" aria-labelledby="RH" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Enviar E-mail</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Voce tem Certeza que deseja enviar o relatorio de RH para:
+          soraiamoura@apema.com.br?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <a type="button" class="btn btn-primary" href="{{url_for("enviar", departamento="RH")}}">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="Financeiro" tabindex="-1" aria-labelledby="Financeiro" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Enviar E-mail</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Voce tem Certeza que deseja enviar o relatorio de Financeiro para:
+          jonasonofrio@apema.com.br?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <a type="button" class="btn btn-primary" href="{{url_for("enviar", departamento="Financeiro")}}">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="Fiscal" tabindex="-1" aria-labelledby="Fiscal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Enviar E-mail</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Voce tem Certeza que deseja enviar o relatorio de Fiscal para:
+          elisabetecabral@apema.com.br?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <a type="button" class="btn btn-primary" href="{{url_for("enviar", departamento="Fiscal")}}">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="Usinagem" tabindex="-1" aria-labelledby="Usinagem" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Enviar E-mail</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Voce tem Certeza que deseja enviar o relatorio de Usinagem para:
+          adrianopurcino@apema.com.br?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <a type="button" class="btn btn-primary" href="{{url_for("enviar", departamento="Usinagem")}}">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="Processos" tabindex="-1" aria-labelledby="Processos" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Enviar E-mail</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Voce tem Certeza que deseja enviar o relatorio de Processos para:
+          arthurbos@apema.com.br?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <a type="button" class="btn btn-primary" href="{{url_for("enviar", departamento="Processos")}}">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="Montagem" tabindex="-1" aria-labelledby="Montagem" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Enviar E-mail</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Voce tem Certeza que deseja enviar o relatorio de Montagem para:
+          carlos@apema.com.br?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <a type="button" class="btn btn-primary" href="{{url_for("enviar", departamento="Montagem")}}">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="Expedição" tabindex="-1" aria-labelledby="Expedição" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Enviar E-mail</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Voce tem Certeza que deseja enviar o relatorio de Expedição para:
+          evanildosantana@apema.com.br?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <a type="button" class="btn btn-primary" href="{{url_for("enviar", departamento="Expedicao")}}">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="Almoxarifado" tabindex="-1" aria-labelledby="Almoxarifado" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Enviar E-mail</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Voce tem Certeza que deseja enviar o relatorio de Almoxarifado para:
+          suporte@apema.com.br?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <a type="button" class="btn btn-primary" href="{{url_for("enviar", departamento="Almoxarifado")}}">Sim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+ 
+</body>
+<style>
+.card {
+    position: relative;
+    display: flex
+;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 6px solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class='perfil'>
+        <h1>Editar computador</h1>
+        <div class="status" style="left: 280px;">
+        <a href="{{ url_for('computadores') }}" class="btn btn-link" style="display: inline-flex;  padding-right: 0%;  z-index: -1; width: 150px;">Computadores <ion-icon name="chevron-forward"></ion-icon></a>
+        </div>
+        {% for computador in computadores %}
+        <div class='col-12 mx-auto'></div>
+            <h2 style="left: 16.5%;">Editar {{computador.usuario}}</h2><hr>
+                <form method='post' action='{{url_for("edit_computador",id=computador.id)}}' style="width: 600px; left: 14.5%; top: 220px; z-index: -1;">
+                    <div class='form-group'>
+                    <label>User Name</label>
+                    <input type='text' name='usuario' required class='form-control' value='{{computador.usuario}}'>
+                    </div>
+                    <br>
+                    <div class='form-group'>
+                        <label>TE</label>
+                        <input type='text' name='te' required class='form-control' value='{{computador.te}}'>
+                    </div>
+                    <br>
+                    <div class='form-group'>
+                        <label>Processador:</label>
+                        <input type='text' name='processador' required class='form-control' value='{{computador.processador}}'>
+                    </div>
+                    <br>
+                    <div class='form-group'>
+                    <label>Memoria:</label>
+                    <input type='text' name='memoria' required class='form-control' value='{{computador.memoria}}'>
+                    </div>
+                    <br>
+                    <div class='form-group'>
+                    <label>Disco Rigido</label>
+                    <input type='text' name='disco_rigido' required class='form-control' value='{{computador.disco_rigido}}'>
+                    </div>
+                    <br>
+                    <div class='form-group'>
+                    <label>Disco Rigido 2</label>
+                    <input type='text' name='disco_rigido_2' required class='form-control' value='{{computador.disco_rigido_2}}'>
+                    </div>
+                    <br>
+                    <div class='form-group'>
+                    <label>Tipo</label>
+                    <input type='text' name='tipo' required class='form-control' value='{{computador.tipo}}'>
+                    </div>
+                    <button type='submit' value="Submit" class='btn btn-primary' style="top: 50px; position: relative;">Enviar</button>
+                </div>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    {% endblock %}

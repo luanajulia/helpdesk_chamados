@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+#loom-companion-mv3{
+    display: none;
+}
+body {
+    background-image: url("../img/fundo.png");
+    background-repeat: no-repeat;
+    color: white;
+    font-weight: 500;
+    display: flex;
+    min-height: 100vh;
+}
+
+main {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main h1 {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+}
+
+main img{
+    align-items: center;
+    justify-content: center;
+}
+
+div {
+    background-color: rgba(0, 0, 0, 0.9);
+    left: 50%;
+    padding: 80px;
+    border-radius: 15px;
+}
+
+main form {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    border-radius: 15px;
+}
+
+div.col-md-4 {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    border-radius: 15px;
+}
+
+button {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 0;
+}
+
+input.btn.btn-primary{
+    border: 50%;
+}

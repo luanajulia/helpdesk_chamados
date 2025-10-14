@@ -1,0 +1,67 @@
+{% extends "home.html" %}
+
+{% block body %}
+
+    <div class="perfil">
+        <div style="margin: 20px;">
+        <h1>ANTENAS - CADASTRADOS</h1>
+        <div class="grupo" style="left: 33%;">
+        {% for ativosstatus in ativosstatus %}
+        {% for desativado in desativado %}
+        {% for pendente in pendente %}
+        {% for concluido in concluido %}
+        <a href="{{ url_for('inventario') }}" class="btn btn-link" style="display: inline-block; display: inline-flex; padding-top: 15px; height: 50px; width: 100%;">Inventario</ion-icon><ion-icon name="chevron-forward"></ion-icon></a><br>
+        <a href="{{ url_for('antenas_6') }}" class="btn btn-primary" style="width: 150px;">Antena 6:{{ ativosstatus|first }}</a>
+        <a href="{{ url_for('antenas_fininha') }}" class="btn btn-primary" style="width: 200px;">Antena Fininha:{{ desativado|first }} </a>
+        <a href="{{ url_for('antenas_lr') }}" class="btn btn-primary" style="width: 150px;">Antena LR:{{ pendente|first }}</a>
+        <a href="{{ url_for('antenas_pro') }}" class="btn btn-primary" style="width: 200px;">Antena Pro-1: {{ concluido|first }} </a>
+        <a href="{{ url_for('criarantena') }}" class="btn btn-success" >ADCIONAR</a> 
+        {% endfor %}
+        {% endfor %}
+        {% endfor %}
+        {% endfor %}
+    </div>
+<br>
+    <script>
+        // Obtém uma referência para o botão de impressão
+        const imprimirBtn = document.getElementById('imprimirBtn');
+        
+        
+        imprimirBtn.addEventListener('click', function() {
+            const div = document.getElementById('status');
+            window.print(div);
+        });
+        </script>
+    <div class="status" style="left: 33%;">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <input type="text" id="valor_busca" class="form-control" style="width: 600px; display: inline; margin-right: 5px;  "/>
+        <input type="submit" value="Pesquisar" onclick="myFunction()" style="background-color: #008cff; border-color: #008cff; border-radius: 5px; font-size: 16px; color: white; padding: 5px;" />
+    </div> 
+        <script>
+        function myFunction() {
+            var valor_busca = document.getElementById("valor_busca").value;
+        location.href = "search_antenas/"+valor_busca;
+        }
+        </script>
+    </div>
+    <div id="table" name="table" >
+        <table class="table table-striped" style=" margin: 20px; width: -webkit-fill-available;">
+            <tr>
+                <th scope="col">Modelo Antenas<a href="{{ url_for('modelo_antenas') }}" style="display: inline-flex;  color: #000;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+                <th scope="col">Departamento<a href="{{ url_for('antenas') }}" style="display: inline-flex;  color: #000;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            <tr>
+                {% for antena in antena %}
+                <td>{{antena["antenas"]}}</td>
+                <td>{{antena["departamento"]}}</td>
+                <td><a style="width: 150px;" href='{{url_for("delete_antenas",id=antena.id)}}' class='btn btn-danger' onclick='return confirm("Voce tem certeza, que deseja excluir  {{ antena.antenas }}?")'>Deletar</a></td>
+                <td><a style="width: 150px;" href='{{url_for("edit_antenas",id=antena.id)}}' class='btn btn-primary'>Editar</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "home.html" %}
+
+{% block body %}
+{% for camera in  cameras %}
+    <div class='perfil'>
+        <h1>Editar Cameras</h1>
+        <div class="status" style="left: 280px;">
+        <a href="{{ url_for('cameras') }}" class="btn btn-link" style="display: inline-flex;  padding-right: 0%;  z-index: -1; width: 150px;">Cameras <ion-icon name="chevron-forward"></ion-icon></a>
+        </div>
+        <div class='col-18 mx-auto'>
+          <h2 style="left: 16.5%;">Editar {{camera.cameras}}</h2>
+          <form method='post' action='{{url_for("edit_cameras",id=camera.id)}}'  style="width: 600px; left: 14.5%; top: 220px; z-index: -1;">
+            <div class='form-group'>
+              <label>Nome da Camera:</label>
+              <input type='text' name='cameras' required class='form-control' value='{{ camera.cameras }}'>
+            </div>
+            <br>
+            <div class='form-group'>
+                <label>Local:</label>
+                <input type='text' name='departamento' required class='form-control' value='{{camera.departamento}}'>
+            </div>
+            <br>
+            <div class='form-group'>
+                <label>Quantidade de cameras no Local:</label>
+                <input type='text' name='quant_cameras' required class='form-control' value='{{camera.quant_cameras}}'>
+            </div>
+            <br>
+            <div class='form-group'>
+            <button type='submit' value='Submit' class='btn btn-primary'>Enviar</button>
+          </div>
+          </form>
+        </div>
+      </div>
+      {%  endfor %}
+{% endblock %}

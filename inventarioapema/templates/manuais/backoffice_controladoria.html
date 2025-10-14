@@ -1,0 +1,24 @@
+{% extends "home.html" %}
+
+{% block body %}
+<div class='perfil'>
+    <h1>Base de Conhecimento -  Controladoria <ion-icon name="checkmark-outline"></ion-icon></h1>
+<div id="conteudo" style="margin: 20px;">
+    <a  href="{{url_for("sped")}}"><div style="width: 500px;" class="alert alert-primary" role="alert">
+      PROTHEUS SPED CONTABIL V12 AP01 OK
+    </div></a>
+    <a  href="{{url_for("fechamento")}}"><div style="width: 500px;" class="alert alert-primary" role="alert">
+      PROTHEUS FECHAMENTO CONTABIL V12 AP01 OK
+    </div></a>
+    <a  href="{{url_for("contabilidade")}}"><div style="width: 500px;" class="alert alert-primary" role="alert">
+      PROTHEUS CONTABILIDADE GERENCIAL V12 AP01 OK
+    </div></a>
+    <a  href="{{url_for("livros_fiscais")}}"><div style="width: 500px;" class="alert alert-primary" role="alert">
+      PROTHEUS ATIVO FIXO V12 AP01 OK
+    </div></a>
+   
+
+
+</div>
+{% endblock %}
+

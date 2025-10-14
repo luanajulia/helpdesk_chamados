@@ -1,0 +1,38 @@
+{% extends "home.html" %}
+
+{% block body %}
+<div class='perfil'>
+    <div style="margin: 20px;">
+    <h1>Base de Conhecimento - Fiscal <ion-icon name="search-outline"></ion-icon></h1></div>
+    <div id="conteudo"  style="margin: 20px;">
+    <a  href="{{url_for("MP_speed")}}"><div style="width: 500px;" class="alert alert-primary" role="alert">
+        Apostila MP SPED Fiscal
+    </div></a>
+    <a  href="{{url_for("bloco")}}"><div style="width: 500px;" class="alert alert-primary" role="alert">
+        BLOCO K V12 AP01
+    </div></a>
+    <a  href="{{url_for("formacao")}}"><div style="width: 500px;" class="alert alert-primary" role="alert">
+        FORMAÇÃO LIVROS FISCAIS V12 AP01
+    </div></a>
+    <a  href="{{url_for("livros_fiscais")}}"><div style="width: 500px;" class="alert alert-primary" role="alert">
+        LIVROS FISCAIS V12 AP01
+    </div></a>
+    <a  href="{{url_for("PisCofins")}}"><div style="width: 500px;" class="alert alert-primary" role="alert">
+        MP Sped PisCofins V11.80
+    </div></a>
+    <a  href="{{url_for("roteiro")}}"><div style="width: 500px;" class="alert alert-primary" role="alert">
+        ROTEIRO DE FÓRMULA V12 AP01
+    </div></a>
+    <a  href="{{url_for("sped")}}"><div style="width: 500px;" class="alert alert-primary" role="alert">
+        SPED FISCAL E SPED CONTRIBUICOES V12 AP01
+    </div></a>  
+    <a  href="{{url_for("taf")}}"> <div style="width: 500px;" class="alert alert-primary" role="alert" >
+        TAF ECF V12 AP01
+    </div></a>
+    <a  href="{{url_for("tes")}}"> <div style="width: 500px;" class="alert alert-primary" role="alert" >
+        TES 2 OK
+   </div></a>
+
+
+</div>
+{% endblock %}

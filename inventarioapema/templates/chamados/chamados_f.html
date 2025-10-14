@@ -1,0 +1,85 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class="perfil">
+        <h1>Chamados Fechados</h1>
+        <div class="status" style="left: 110%;">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-link" style="display: inline-flex;  padding-right: 0%;  z-index: -1; width: 110px;">Graficos <ion-icon name="chevron-forward"></ion-icon></a>
+        <a href="{{ url_for('chamados') }}" class="btn btn-link"  style="display: inline-flex; padding-left: 0%;  width: 150px;" >Chamados <ion-icon name="chevron-forward"></ion-icon></a><br>
+        {% for ativosstatus in ativosstatus %}
+            <span class="badge bg-success" >Fechado:<br>{{ ativosstatus|first }}</span>
+            <a href="" class="btn btn-light" id="imprimirBtn"  style="width: 115px; height: 50px; top: -10px; position: relative; padding-top: 13px">Imprimir <ion-icon name="print-outline"></ion-icon></a>
+            {% endfor %}
+        </div>
+        <script>
+            // Obtém uma referência para o botão de impressão
+            const imprimirBtn = document.getElementById('imprimirBtn');
+            
+            
+            imprimirBtn.addEventListener('click', function() {
+                const div = document.getElementById('status');
+                window.print(div);
+            });
+            </script>
+            {% if current_user.nivel == 'Administrador' %}
+            <div id="table" name="table" style="width: 170px; top:180px;">
+            <table class="table" style="width: 1600px;">
+            <tr>
+                <th scope="col">Usuario</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Departamento</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Data Abertura</th>
+                <th scope="col">Status</th>
+            </tr>
+            {% for chamados in chamados %}
+            {% if chamados.status == 'fechado' %}
+            <tr>
+                <td>{{ chamados.username }}</td>
+                <td>{{ chamados.email }}</td>
+                <td>{{ chamados.departamento }}</td>
+                <td>{{ chamados.tipo }}</td>
+                <td>{{ chamados["data"]|datetimeformat("%d/%m/%Y") }}</td>
+                <td  type="button" class="btn btn-outline-success">{{ chamados.status }}</td>
+                <td>   </td>
+                <td style="padding-top: 0px;"><a style="width: 100px;" href='{{url_for("delete_chamados",id=chamados.id)}}' class='btn btn-danger' onclick='return confirm("Voce tem certeza, que deseja excluir?")'>Deletar</a></td>
+                <td style="padding-top: 0px;"><a href='{{url_for("edit_chamados",id=chamados.id)}}' class='btn btn-primary'>Editar</a></td></td>
+                <td style="padding-top: 0px;"><a href='{{url_for("descricaoadm", id=chamados.id)}}' class='btn btn-primary' style="width: 100%; background-color: black;border-color: black;">Descrição</a></td>
+            </tr>
+        </div>
+            {% endif %}
+            {% endfor %}
+        </table>
+        {% else %}
+        <div id="table" name="table" style="width: 170px; top:180px;">
+            <table class="table" style="width: 1600px;">
+            <tr>
+                <th scope="col">Usuario</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Departamento</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Data Abertura</th>
+                <th scope="col">Status</th>
+            </tr>
+            {% for chamados in chamados %}
+            {% if chamados.status == 'fechado' %}
+            <tr>
+                <td>{{ chamados.username }}</td>
+                <td>{{ chamados.email }}</td>
+                <td>{{ chamados.departamento }}</td>
+                <td>{{ chamados.tipo }}</td>
+                <td>{{ chamados["data"]|datetimeformat("%d/%m/%Y") }}</td>
+                <td  type="button" class="btn btn-outline-success">{{ chamados.status }}</td>
+                <td>   </td>
+                <td style="padding-top: 0px;"><a href='{{url_for("edit_chamados",id=chamados.id)}}' class='btn btn-primary'>Editar</a></td></td>
+                <td style="padding-top: 0px;"><a href='{{url_for("descricaoadm", id=chamados.id)}}' class='btn btn-primary' style="width: 100%; background-color: black;border-color: black;">Descrição</a></td>
+            </tr>
+        </div>
+            {% endif %}
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+</body>
+{% endblock %}
+

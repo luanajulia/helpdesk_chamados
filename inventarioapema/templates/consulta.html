@@ -1,0 +1,57 @@
+{% extends "home.html" %}
+
+{% block body %}
+<div id="conteudo">
+    <h1>Tabela - Protheus</h1>
+ </div>
+ <div class="status" id="status" name="status"> 
+  <form method="post" name="consulta" id="consulta" action='{{url_for("consulta")}}' >
+    <label>Num. OS</label><br>
+    <input type="text" name="os" id="os"  placeholder="BUSCA NUM. OS" class="form-control" style="width: 250px; display: inline; margin-right: 5px;  "/>
+    <label style="top: -30px; position: relative;">Usuario</label>
+    <input type="text" name="usuario" id="usuario" placeholder="BUSCA NOME" class="form-control" style="width: 250px; display: inline; margin-right: 5px; left: -50px; position: relative;"/>
+    <label style="top: -30px; position: relative; left: -50px;">Email</label>
+    <input type="text" name="email" id="email"  placeholder="BUSCA EMAIL" class="form-control" style="width: 250px; display: inline; margin-right: 5px;  left: -85px; position: relative;"/>
+    <label style="top: -30px; position: relative; left: -80px;">Departamento</label>
+    <input type="text" name="departamento" id="departamento"  placeholder="BUSCA ESTADO" class="form-control" style="width: 250px; display: inline; margin-right: 5px;  left: -110px; position: relative;"/>
+    <label style="top: -30px; position: relative; left: -110px;">Tipo de Problema</label>
+    <input type="text" name="tipo" id="tipo"  placeholder="BUSCA PROBLEMA" class="form-control" style="width: 250px; display: inline; margin-right: 5px; left: -150px; position: relative;"/>
+    <br><br>
+    <label style="top: -30px; position: relative; ">Data Abertura</label>
+    <input type="date" name="abertura" id="abertura" placeholder="yyyy-mm-dd" class="form-control" style="width: 250px; left: -90px; display: inline; margin-right: 5px; position: relative;"/>
+    <label style="top: -30px; position: relative; left: -50px; ">Status</label>
+    <input type="text" name="status" id="status"  placeholder="yyyy-mm-dd" class="form-control" style="width: 250px; left: -140px; display: inline; margin-right: 5px; position: relative;"/>
+    <input type="submit" value="Pesquisar"  onclick="myFunction()" style="left: -140px; background-color: #008cff; border-color: #008cff; border-radius: 5px; font-size: 16px; color: white; padding: 5px;position: relative; "/>
+  </form>
+  </div>
+  </div>
+<table class="table">
+  <tr>
+    <tbody>
+      <th style="width: 130px;">A1_COD<a href="{{ url_for('search_cod') }}" style="display: inline-flex;  color: #000;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+      <th style="width: 130px;">A1_LOJA<a href="{{ url_for('search_loja') }}" style="display: inline-flex;  color: #000;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+      <th>A1_NOME<a href="{{ url_for('search_nome') }}" style="display: inline-flex;  color: #000;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+      <th>A1_END<a href="{{ url_for('search_endereco') }}" style="display: inline-flex;  color: #000;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+      <th style="width: 130px;">A1_EST<a href="{{ url_for('search_est') }}" style="display: inline-flex;  color: #000;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+      <th style="width: 130px;">A1_ULTCOM<a href="{{ url_for('search_data') }}" style="display: inline-flex;  color: #000;"><ion-icon name="chevron-down-outline"></ion-icon></a></th>
+      <th><a href="{{ url_for('static', filename='arquivoquery.xlsx')}}"  role="button" class="btn btn-success" style="z-index: 10;" >Download</a></th>
+    <tr>
+  {% for row in rows %}
+  <tr>
+    <td>{{row.A1_COD}}</td>
+    <td>{{row.A1_LOJA}}</td>
+    <td>{{row.A1_NOME}}</td>
+    <td>{{row.A1_END}}</td>
+    <td>{{row.A1_EST}}</td>
+    <td>{{row.A1_ULTCOM|datetimeformat('%d/%m/%Y')}}</td>
+  </tr>
+  {% endfor %}
+</tbody>
+  </table>
+  <div class="pagination">
+    {{ pagination.links }}
+</div>
+</body>
+{% endblock %}
+
+</html>

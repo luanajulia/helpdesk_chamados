@@ -1,0 +1,112 @@
+{% extends "home.html" %}
+
+{% block body %}
+<body>
+    <main>
+      <div>
+        <div style="margin: 20px; width: 500px;">
+        <h1>Editar manutencao</h1>
+        {% for manutencao in manutencaos %}
+          <form method='post' >
+            {% if manutencao.os %}
+            <label class="form-label">Maquina:</label>
+            <input type='text'   name='tipo' required class='form-control' value='{{manutencao.equipamento}} - {{manutencao.localizacao}}'  readonly>
+            {% endif %}
+            <div style="    display: inline-flex;flex-direction: row;flex-wrap: wrap;">
+            <div class='form-group'>
+            <label class="form-label">Tipo de suporte:</label>
+            <input type='text'   name='tipo' required class='form-control' value='{{manutencao.tipo}}'  readonly>
+            </div><br>
+            <div class='form-group'>
+              <label class="form-label">Nome de Usuario:</label>
+              <input type='text' style="width: 150%; margin-left: 10px;" name='username' required class='form-control' value='{{manutencao.username}}'  readonly>
+            </div>
+            <div class='form-group'>
+                <label class="form-label" >Departamento:</label>
+                <input type='text' name='departamento'  required class='form-control' value='{{manutencao.departamento}}'  readonly>
+              </div>
+            <div class='form-group'>
+              <label class="form-label" >E-mail:</label>
+              <input type='text' style="width: 150%; margin-left: 10px;" name='email'  required class='form-control' value='{{manutencao.email}}'  readonly>
+            </div>
+            <div class='form-group' style="width: 41%;">
+            <label class="label" >status:</label><br>
+                  <select class="form-select" id="autoSizingSelect" name='status' value="{{manutencao.status }}">
+                    <option value="{{manutencao.status }}" >{{manutencao.status }}</option>
+                    <option value="novo">Novo</option>
+                    <option value="atribuido">Atribuido</option>
+                    <option value="fechado">Fechado</option>
+                  </select>
+                </div>
+                <div class='form-group'>
+                  <label class="label" >Operação:</label><br>
+                  <select style="width: 244%; margin-left: 10px;" class="form-select" id="autoSizingSelect" name='operacao' value="{{manutencao.operacao }}">
+                    <option value="{{manutencao.operacao }}" >Escolha...</option>
+                    <option value="preventiva">Preventiva</option>
+                    <option value="corretiva">Corretiva</option>
+                  </select></div>
+            </div>
+            <div style="    display: inline-flex;flex-direction: row;flex-wrap: wrap;">
+                  <div class='form-group'>
+                    <label class="label" >Data Inicio:</label>
+                    <input type='date' name='data_inicio'   required class='form-control' value="{{ manutencao.data_inicio }}">
+                  </div>
+                  <div class='form-group' style="width: 50%; margin-left: 10px;">
+                    <label class="label" >Hora Inicio:</label>
+                    <input type='time' name='hora_inicio'  required class='form-control' value="{{ manutencao.hora_inicio }}">
+                  </div>
+                  <div class='form-group'>
+                    <label class="label" >Data Final:</label>
+                    <input type='date' name='data_final'  required class='form-control' value="{{ manutencao.data_final}}">
+                  </div>
+                  <div class='form-group' style="width: 50%; margin-left: 10px;">
+                    <label class="label" >Hora Final:</label>
+                    <input type='time' name='hora_final'  required class='form-control' value="{{ manutencao.hora_final}}">
+                  </div>
+            </div>
+                  <br>
+                  <label class="form-label" >Tecnico:</label>
+                  <select class="form-select"  id="autoSizingSelect" name='tecnico' value="{{manutencao.tecnico }}">
+                    <option value="{{ manutencao.tecnico }}">Atribuido a quem</option>
+                    {% for usuario in usuario %}
+                    {% if usuario.status != 'desativado' %}
+                    <option >{{ usuario.usuario }}</option>
+                    {% endif %}
+                    {% endfor %}
+                  </select>
+                  <script type="text/javascript">
+                    var select = document.getElementById('autoSizingSelect');
+                    select.onchange = function () {
+                        select.className = this.options[this.selectedIndex].className;
+                    }
+                    </script>
+                    <br>
+            <div class='form-group'>
+                <label class="label">Descrição - {{manutencao.username}}</label>
+                <div class='form-control'   type='text' name='descricao'   rows="5" cols="35" value='{{ manutencaos.descricao }}' readonly >{{ manutencao.descricao }}</div>
+              </div>
+              <br>
+              {% if manutencaos.status == 'fechado' %}   
+                <div class='form-group'>
+                <label    class="label">{{manutencao.tecnico}}</label>
+                  <div  class='form-control'  type='text' placeholder="Enviar uma Resolução" name='feedback'     rows="5" cols="35" value='{{ manutencao.feedback }}' >{{ manutencao.feedback }}</div>
+                </div>
+                {% else %}
+                <div class="form-group" >
+                  <textarea type='text' placeholder="Enviar uma Resolução" name='feedback'  class='form-control'   rows="5" cols="35" value='{{ manutencao.feedback }}'> {% if manutencao.feedback == None %} {% else %} {{ manutencao.feedback }} {% endif %}</textarea>
+                </div>
+              <br>
+              {% if nivel == 'Manutenção' %}
+            <div class='form-group'>
+            <button type='submit' value='Submit' class='btn btn-primary'>Enviar</button>
+          </div>
+          {% endif %}
+          
+                {% endif %}
+        </div>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+     
+{% endblock %}

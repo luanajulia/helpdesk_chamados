@@ -1,0 +1,60 @@
+{% extends "home.html" %}
+
+{% block body %}
+   <div class="perfil">
+    <h1>Descricao do Chamado</h1>
+    <div class="status" style="left: 70%;">
+        <a href="{{ url_for('chamados') }}" class="btn btn-link" style="display: inline-flex; padding-top: 10px; height: 50px;  width: 100%; z-index: 15;">Chamados <ion-icon name="chevron-forward"></ion-icon></a><br>
+        <a href="" class="btn btn-light" id="imprimirBtn"  style="width: 115px;"> Imprimir <ion-icon name="print-outline"></ion-icon></a>
+        </div>
+        <script>
+            // Obtém uma referência para o botão de impressão
+            const imprimirBtn = document.getElementById('imprimirBtn');
+            
+            
+            imprimirBtn.addEventListener('click', function() {
+                const div = document.getElementById('status');
+                window.print(div);
+            });
+            </script>
+        <div id="table" name="table" style="width: 100%; left: 0px; position: relative;">
+        <h2 style="left: 70%; font-size: 20px; z-index: -1; position: relative; top: -40px;"><br>
+        Nome do Usuario:<br> {{ descricao.username }}
+        <br>
+        <br>
+        Departamento:<br> {{ descricao.departamento }}
+        <br>
+        <br>
+        E-mail:<br> {{ descricao.email }}
+        <br>
+        <br>
+        Tipo de Problema:<br> {{ descricao.tipo }}
+        <br>
+        <br>
+        Descricao:<br> {{ descricao.descricao }}
+        <br>
+        <br>
+        Status:<br> {{ descricao.status }}
+        <br>
+        <br>
+        {% if current_user.nivel == 'Manutenção'  %}
+        <br>
+        {% else %}
+        Feedback do erro:<br> {{ descricao.feedback }}
+        <br>
+        <br>
+        Imagem de erro:
+        </h2>
+            <div class="conteudo" style="left: 15%; position: relative;">
+                <div class="bloco-imagem" style="left: 65%; top: -750px;position: relative;">
+                    <img src="{{ url_for('static', filename='fotos_post/{}'.format(descricao.imagem)) }}" >
+                </div>
+            </div> 
+    </div>
+    {% endif %}
+   </div>    
+   </div>
+</div>
+</div>
+</body>
+{% endblock %}

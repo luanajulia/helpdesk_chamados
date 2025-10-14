@@ -1,0 +1,433 @@
+{% extends "home.html" %}
+
+{% block body %}
+
+   <div class="perfil" style="margin: 20px;">
+    <h1>Descricao do Chamado</h1>
+    <div class="status" style="left: 220%;">
+        <a href="" class="btn btn-light" id="imprimirBtn"  style="width: 115px;"> Imprimir <ion-icon name="print-outline"></ion-icon></a>
+    </div>
+   </div>
+    <script>
+        // Obtém uma referência para o botão de impressão
+        const imprimirBtn = document.getElementById('imprimirBtn');
+        
+        
+        imprimirBtn.addEventListener('click', function() {
+            const div = document.getElementById('status');
+            window.print(div);
+        });
+        </script>
+		{% for chamado in chamados %}
+        <div style="margin: 50px;">
+        <div id="table" name="table">
+            <table class="fixo"  style=" left: 15%; border: 1px  solid black;  border-right-width: 1px;  width: 1075px; " >
+                <tbody style="background: none; color: black; height: 138px;">
+                    <tr>
+                        <td style="border-width: 1px; " ><img src="../static/img/logotipo_apema.png" class="tabimg" ></a></td>
+                        <td  style="border-width: 1px; width: 600px; font-size: 37px; text-align: center;">Ordem de Serviço <br> de Manutenção </td>
+                        <td  style="border-width: 1px; width: 174px;">
+                        {% if chamado.operacao == 'preventiva' %}
+                        <input type="checkbox" style="width: 40px; height: 40px; "  checked> Preventiva<hr>  <input type="checkbox" style="width: 40px; height: 40px;"> Corretiva
+                        {% endif %}
+                        {% if chamado.operacao == 'corretiva' %}
+                        <input type="checkbox" style="width: 40px; height: 40px; "> Preventiva<hr>  <input type="checkbox" style="width: 40px; height: 40px;" checked> Corretiva
+                        {% endif %}
+                        {% if chamado.operacao == None %}
+                        <input type="checkbox" style="width: 40px; height: 40px; "  > Preventiva<hr>  <input type="checkbox" style="width: 40px; height: 40px;"> Corretiva
+                        {% endif %}</td>
+                        <td style="border-width: 1px; width: 180px; text-align: center;" >Numero da OS: <hr >{{ chamado.id }}</td>
+                    </tr>
+                </tbody>
+                <tbody >
+                    <tr>
+                    <td rowspan="5"  style="border-width: 1px; max-width: 20px; writing-mode: vertical-lr; transform: rotate(180deg); width: 10px;">Preenchido pelo emitente </td>
+                    <tr>
+                        {% if chamado.equipamento == None %}
+                        <td colspan="2" style="border-width: 1px; text-align: center;  position: relative;">Numero do Equipamento:<br><hr></td>
+                        <td colspan="2" style="width: 2098px; border-width: 1px;  border-right: none; border-left: none; text-align: center;  position: relative;">Nome Equipamento:<br><hr></td>
+                        <td  style="border-width: 1px; width: 250px;text-align: center;  position: relative;">Setor Local do Equipamento:<br><hr></td>
+                        {% else %}
+                        <td colspan="2" style="border-width: 1px;  width: 250px;text-align: center;  position: relative;">Numero do Equipamento:<br>{{ chamado.os }}</td>
+                        <td colspan="2" style="width: 537px; border-width: 1px;  border-right: none; border-left: none; text-align: center;  position: relative;">Nome Equipamento:<br>{{ chamado.equipamento }}</td>
+                        <td  style="border-width: 1px; width: 250px;text-align: center;  position: relative;">Setor Local do Equipamento:<br>{{ chamado.localizacao }}</td>
+                        {% endif %}
+                        </tr>
+                        <tr>
+                            <td colspan="5" style="border-width: 1px; height: 12px;"><b>Descrição do Serviço (Defeito):</b></td>
+                            
+                        </tr>
+                        <tr>
+                            <td colspan="5" style="border-width: 1px;  border-left: none;">{{ chamado.descricao }}</td>
+                        </tr>
+                            <td colspan="3" style="border-width: 1px; border-right: none; border-left: none; ">Emitido por: {{ chamado.username }}</td>
+                            {% if chamado.data_inicio == None %}
+                            <td  colspan="2" style="border-width: 1px; ">Data/Hora: </td>
+                            {% else %}
+                            <td  colspan="2" style="border-width: 1px; ">Data/Hora: {{ chamado.data_criacao|datetimeformat_completa('%H:%M %d/%m/%Y') }}</td>
+                            {% endif %}
+                        </tr>
+                    <td rowspan="29"  style="border-width: 1px; max-width: 20px; writing-mode: vertical-lr; transform: rotate(180deg); width: 10px; text-align: center;">Preenchido pela Manutenção </td>
+                   
+                            <tr>
+                                <td colspan="3" style="border-width: 1px; border-right: none; border-left: none; height: 32px;">Recebido por: Garibaldi Sales</td>
+                                {% if chamado.data_final == None %}
+                                <td colspan="2" style="border-width: 1px; ">Data/Hora:  </td>
+                                {% else %}
+                                <td colspan="2" style="border-width: 1px; ">Data/Hora:  {{ chamado.hora_final }} {{ chamado.data_final|datetimeformat('%d/%m/%Y') }} </td>
+                                {% endif %}
+                            </tr>   
+                            <tr>
+                                <td colspan="5" style="border-width: 1px; "><b>Descrição de Manutenção:</b></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="border-width: 1px; height: 20px; ">{{chamado.feedback}}</td>
+                            </tr>
+                            
+                                <td colspan="4" style="border-width: 1px; border-right: none; border-left: none;"><b>Lista de materiais / componentes utilizados na Manutenção:</b></td>
+                                
+                                <td  style="border-width: 1px;  border-left: none;"></td>
+                            </tr>
+                            <tr>
+                                <td  style="border-width: 1px; ">Item</td>
+                                <td style="border-width: 1px; ">Codigo</td>
+                                <td colspan="2" style="border-width: 1px; border-right: none; border-left: none;">Descrição do material / componente</td>
+                                <td  style="border-width: 1px; ">Nota Fiscal N°</td>
+                            </tr>
+                            <tr>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td colspan="2"  style="border-width: 1px; border-right: none; border-left: none;"></td>
+                                <td  style="border-width: 1px; "></td>
+                            </tr>
+                            <tr>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td colspan="2"  style="border-width: 1px; border-right: none; border-left: none;"></td>
+                                <td  style="border-width: 1px; "></td>
+                            </tr>
+                            <tr>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td colspan="2"  style="border-width: 1px; border-right: none; border-left: none;"></td>
+                                <td  style="border-width: 1px; "></td>
+                            </tr>
+                            <tr>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td colspan="2"  style="border-width: 1px; border-right: none; border-left: none;"></td>
+                                <td  style="border-width: 1px; "></td>
+                            </tr>
+                            <tr>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td colspan="2"  style="border-width: 1px; border-right: none; border-left: none;"></td>
+                                <td  style="border-width: 1px; "></td>
+                            </tr>
+                            <tr>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td colspan="2"  style="border-width: 1px; border-right: none; border-left: none;"></td>
+                                <td  style="border-width: 1px; "></td>
+                            </tr>
+                            <tr>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td colspan="2"  style="border-width: 1px; border-right: none; border-left: none;"></td>
+                                <td  style="border-width: 1px; "></td>
+                            </tr>
+                            <tr>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td colspan="2"  style="border-width: 1px; border-right: none; border-left: none;"></td>
+                                <td  style="border-width: 1px; "></td>
+                            </tr>
+                            <tr>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td colspan="2"  style="border-width: 1px; border-right: none; border-left: none;"></td>
+                                <td  style="border-width: 1px; "></td>
+                            </tr>
+                            <tr>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td  style="border-width: 1px; height: 20px;"></td>
+                                <td colspan="2"  style="border-width: 1px; border-right: none; border-left: none;"></td>
+                                <td  style="border-width: 1px; "></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5"  style="border-width: 1px;"> <b>Nota: Se não existir nota fiscal de compra correspondente ao material/componente, passar um traço no campo</b> </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="border-width: 1px; ">Observação:</td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="border-width: 1px; height: 20px; "></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="border-width: 1px; height: 20px; "></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="border-width: 1px; height: 20px; "></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5"  style="border-width: 1px;"> <b>Nota: Se não existir nota fiscal de compra correspondente ao material/componente, passar um traço no campo</b> </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="border-width: 1px; ">Observação:</td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="border-width: 1px; height: 20px; "></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="border-width: 1px; height: 20px; "></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="border-width: 1px; height: 20px; "></td>
+                            </tr>
+                            <tr>
+                                {% if chamado.data_final == None %}
+                                <td colspan="3" style="border-width: 1px; ">Periodo de indisponilidade do equipamento(horas): </td>
+                                {% else %}
+                                <td colspan="3" style="border-width: 1px; ">Periodo de indisponilidade do equipamento(horas):{% for row in rows %}  {{ row|first }} {% endfor %}</td>
+                                {% endif %}
+                                <td colspan="2" style="border-width: 1px; ">Tempo Ultilizado para manutencao(horas):  {% for row in rows %}  {{ row|last }} {% endfor %} </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" style="border-width: 1px; text-align: center;">Execultado por:</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border-width: 1px; ">Nome:{% if chamado.tecnico %}   {{ chamado.tecnico }} {% else %}<br><hr> {% endif %}</td>
+                                <td  style="border-width: 1px; width: 298px;">Responsavel Pelo setor MNT:<br><hr></td>
+                                {% if chamado.data_final == None %}
+                                <td  style="border-width: 1px; text-align: center; ">Data:<br></td>
+                                {% else %}
+                                <td  style="border-width: 1px; text-align: center; ">Data:<br>{{ chamado.data_final|datetimeformat(('%d/%m/%Y'))}}</td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <td rowspan="4" scope="row" style="border-width: 1px;  writing-mode: vertical-lr; transform: rotate(180deg); text-align: center;">Emitente</td>
+                            </tr>
+                                <tr>
+                                    <td colspan="3" style="border-width: 1px; height: 32px; text-align: center;"><b>Verificado Por</b></td>
+                                    <td colspan="2" style="border-width: 1px; text-align: center;">Responsavel Pela Produção</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="border-width: 1px;  border-right: none; border-left: none; ">Laudo <br><br><input type="checkbox" style="width: 40px; height: 40px; "> Satisfatorio <br><input type="checkbox" style="width: 40px; height: 40px;"> Não-Satisfatorio</td>
+                                    <td  style="border-width: 1px;  border-right: none; border-left: none; ">Visto<br><br><hr> Data <hr></td>
+
+                                    <td  style="border-width: 1px; position: relative; top: -53px;">Visto</td>
+                                    <td  style="border-width: 1px; position: relative; top: -53px; text-align: center;">Data:</td>
+                                </tr>
+                </tbody>
+            </table>
+        </div>
+</div>
+{% endfor %}
+<style>
+    @media  print {
+        html, body {
+            width: 210mm;
+            height: 297mm;        
+        }
+        p{
+            top: 978px; 
+            left: 0px; 
+            width: 500px;
+            position: relative;
+        }
+        /* esconder tudo */
+        body * {
+          visibility: hidden;
+        }
+        .impressoras{
+            position: relative;
+            top: 50px;
+        }
+        .ton{
+            position: relative;
+            top: -300px;
+        }
+        .cam{
+            position: relative;
+            top: 100px;
+        }
+        .software{
+            position: relative;
+            top: 200px;
+        
+        }
+        .antena{
+            position: relative;
+            top: 600px;
+        }
+        .pie{
+            position: relative;
+            top: -670px;
+        }
+        .memoria{
+            position: relative;
+            top: -640px;
+        }
+        .h7{
+            position: relative;
+            top: 200px;
+            width: 500px;
+            z-index: 2; 
+        }
+        .linha{
+            top: -340px;
+        }
+        h5{
+            position: relative;
+            top: 140px;
+            width: 500px; 
+        }
+    
+        .torta{
+            top: 140px;
+        }
+        h4{
+            width: 500px;
+        }
+        .h9{
+            position: relative;
+            top: -700px;
+            width: 500px; 
+        }
+        .h10{
+            position: relative;
+            top: -300px;
+            width: 500px; 
+        }
+        .h11{
+            position: relative;
+            top: -150px;
+            width: 500px;
+        }
+        .h12{
+            position: relative;
+            top: -990px;
+            width: 500px;  
+        }
+        .h14{
+            position: relative;
+            top: -1070px;
+        }
+        
+    
+        div a {
+            height: 50px;
+            width: 20px;
+        }
+        
+        h2{
+            position: absolute;
+            left: -270px;
+            top: -250px;
+            width: 500px;
+        }
+        .bloco-imagem img{
+            position: relative;
+            left: -50px;
+            top: -80px;
+        }
+    
+        /* exibir somente o que tem na div para imprimir */
+        #status, #table * {
+          visibility: visible;
+        }
+        #table {
+            position: relative;
+            left: -50px;
+            top: -400px;
+            height: 1130px;
+            margin: 0;
+        }
+        .fixo{
+            top: -200px;
+        }
+       
+        
+        th,
+        td {
+            padding: 0;
+          }
+     }
+    
+        
+    .fixed {
+        width:350px;
+        table-layout: fixed;
+        border-collapse: collapse;
+        left: 15%;
+      }
+      .fixed th {
+        text-decoration: underline;
+      }
+      .fixed th,
+      .fixed td {
+        padding: 5px;
+        text-align: left;
+        min-width: 15px;
+      }
+      .fixed tbody td{
+        min-height: 26px
+      }
+      
+      .fixed thead {
+        background-color: #103a78;
+        color: #fdfdfd;
+        width: 150px;
+        position: relative;
+      }
+      .fixed thead tr {
+        display: block;
+        position: relative;
+      }
+      .fixed tbody {
+        display: block;
+        overflow: auto;
+        width: 100%;
+        height: 650px;
+        overflow-y: scroll;
+          overflow-x: hidden;
+      }
+    
+      .fixo {
+        width:350px;
+        table-layout: fixed;
+        border-collapse: collapse;
+        left: 15%;
+      }
+      .fixo th {
+        text-decoration: underline;
+      }
+      .fixo th,
+      .fixo td {
+        padding: 5px;
+        text-align: left;
+        min-width: 15px;
+      }
+      .fixo tbody td{
+        min-height: 26px
+      }
+      
+      .fixo thead {
+        background-color: #103a78;
+        color: #fdfdfd;
+        position: relative;
+      }
+      .fixo thead tr {
+        display: block;
+        position: relative;
+        
+      }
+      .fixo tbody {
+        display: block;
+        overflow: auto;
+        width: 100%;
+      }
+    
+    </style>
+</body>
+{% endblock %}

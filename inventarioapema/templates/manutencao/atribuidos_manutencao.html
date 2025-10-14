@@ -1,0 +1,49 @@
+{% extends "home.html" %}
+
+{% block body %}
+    <div class='perfil' style="margin: 20px;">
+        <h1>Chamados Atribuidos </h1>
+        <div class="status" style="left: 110%;">
+            {% for ativosstatus in ativosstatus %}
+                <span class="btn btn-warning  text-dark">Atribuidos: {{ ativosstatus|first }}</span>
+                {% endfor %}
+            </div>
+            <script>
+                // Obtém uma referência para o botão de impressão
+                const imprimirBtn = document.getElementById('imprimirBtn');
+                
+                
+                imprimirBtn.addEventListener('click', function() {
+                    const div = document.getElementById('status');
+                    window.print(div);
+                });
+                </script>
+       <table class="table table-striped" style=" margin: 20px; width: -webkit-fill-available;">
+            <tr>
+                <th scope="col">Usuario</th>
+                <th scope="col">Tipo de problemas</th>
+                <th scope="col">Departamento</th>
+                <th scope="col">Data</th>
+                <th scope="col">Atribuido</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Descricao</th>
+
+            </tr>
+            <tr> 
+            {% for chamados in chamados %}
+            {% if chamados.status == 'atribuido'  %}
+                <td>{{ chamados.username }}</td>
+                <td>{{ chamados.tipo }}</td>
+                <td>{{ chamados.departamento }}</td>
+                <td>{{ chamados["data"]|datetimeformat("%d/%m/%Y") }}</td>
+                <td><a  type="button" class="btn btn-outline-warning text-dark">{{ chamados.status }} </a></td>
+                <td><a style="width: 100px;" href='{{url_for("edit_chamados_manutencao",id=chamados.id)}}' class='btn btn-primary'>Editar</a></td></td>
+                <td><a href='{{url_for("descricaoadm", id=chamados.id)}}' class='btn btn-primary' style="width: 100%; background-color: black;border-color: black;">Descrição</a></td>
+                {% endif %}
+            </tr>
+            {% endfor %} 
+        </table>
+        </div>
+    </div>
+</body>
+{% endblock %}

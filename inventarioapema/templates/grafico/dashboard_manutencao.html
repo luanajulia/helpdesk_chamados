@@ -1,0 +1,408 @@
+{% extends "home.html" %}
+{% block body %}
+<style>
+  .barra{
+      left: 15%;
+      padding: 10px;
+      padding-top: 30px;
+      position: absolute;
+      top: 636px;
+      max-width: 550px;
+      max-height: 430px;
+      background-color: #f1f1f1;
+      border: 2px solid #cdcdcd;
+      border-radius: 10px;
+  }
+  .tecnico{
+      left: 50%;
+      padding: 10px;
+      position: absolute;
+      top: 834px;
+      padding-top: 30px;
+      max-width: 700px;
+      max-height: 290px;
+      background-color: #f1f1f1;
+      border: 2px solid #cdcdcd;
+      border-radius: 10px;
+  }
+  
+  
+  h5 {
+      left: 50%;
+      padding: 10px;
+      position: absolute;
+      top: 324px;
+      max-width: 450px;
+      max-height: 300px;
+      font-family: "Poppins", sans-serif;
+      font-size: 18px;
+  }
+  
+  .lista{
+      left: 55%;
+      padding: 10px;
+      position: absolute;
+    top: 200px;
+      font-size: 24px;
+  }
+  
+  h4{
+      left: 15%;
+      padding: 10px;
+      position: absolute;
+      top: 760px;
+      max-width: 450px;
+      max-height: 300px;
+      font-family: "Poppins", sans-serif;
+      font-size: 18px;
+  }
+  .linha{
+      left: 15%;
+      padding: 10px;
+      padding: 30px;
+      position: absolute;
+      top: 326px;
+      max-width: 550px;
+      max-height: 400px;
+      background-color: #f1f1f1;
+      border: 2px solid #cdcdcd;
+      border-radius: 10px;
+  }
+  
+  .processador{
+      left: 13.5%;
+      top: 200px;
+      padding: 10px;
+      padding: 30px;
+      position: absolute;
+      max-width: 400px;
+      max-height: 350px;
+      background-color: #f1f1f1;
+      border: 2px solid #cdcdcd;
+      border-radius: 10px;
+  }
+  
+  .pie{
+      left:36%;
+      padding: 10px;
+      padding-top: 30px;
+      position: absolute;
+      top: 200px;
+      max-width:250px;
+      max-height:400px;background-color:#f1f1f1;
+      border: 2px solid #cdcdcd;
+      border-radius: 10px;
+  }
+  
+  .torta{
+      left: 50%;
+      padding: 10px;
+      padding: 30px;
+      position: absolute;
+      top: 321px;
+      max-width: 650px;
+      max-height: 400px;
+      background-color: #f1f1f1;
+      border: 2px solid #cdcdcd;
+      border-radius: 10px;
+  }
+  
+  .software{
+      left: 75%;
+      padding: 10px;
+      position: relative;
+      top: -700px;
+      max-width: 400px;
+      max-height: 350px;
+      background-color: #f1f1f1;
+      border: 2px solid #cdcdcd;
+      border-radius: 10px;
+  }
+  
+  .memoria{
+      position: relative;
+      left: 75.5%;
+      top: -350px;
+      max-width: 400px;
+      max-height: 350px;
+      background-color: #f1f1f1; border:
+      2px solid #cdcdcd;
+      border-radius: 10px;
+  }
+  
+  .status{
+      left: 40%;
+      font-size: 24px;
+      right: 50px;
+      position: relative;
+      height: 100px;
+      z-index: 1;
+      padding-top: 10px;
+  }
+  
+  .voltar_status{
+      left: 115%;
+      font-size: 24px;
+      right: 50px;
+      position: relative;
+      height: 100px;
+      z-index: 1;
+      padding-top: 10px;
+  }
+  
+  .voltar{
+      left: 95%;
+      font-size: 24px;
+      right: 50px;
+      position: relative;
+      height: 100px;
+      z-index: 1;
+      padding-top: 10px;
+  }
+  
+  </style>
+<div class="perfil" >
+  <h1>Graficos</h1>
+  </div>
+  <form method="post" action='{{url_for("dashboard_manutencao")}}' >
+    <label class="label" style="z-index: 15; position: relative; left: 15%; display: inline-block;">De:</label>
+    <input type="date" name="data_criacao" id="data_criacao" value="{{ data_criacao }}"class="form-control" style="z-index: 15; position: relative; left: 15%; display: inline-block; width: 10%;" required/>
+    <label class="label" style="z-index: 15; position: relative; display: inline-block; left: 277px;">até</label>
+    <input type="date" name="data_fim" id="data_fim" value="{{ data_fim }}"class="form-control" style="z-index: 15; position: relative; display: inline-block; width: 10%; left: 280px;" required/>
+    <input type="submit" value="Pesquisar" class="btn btn-success" style="left: 19%; position: relative; Z-INDEX: 10; "/>
+  </form>
+      <div class="alert alert-primary" role="alert" style="width: 550px; left: 50%;">
+        Horas utilizadas para Manutenção de:{% if data_criacao %} {{ data_criacao|datetimeformat('%d/%m/%Y') }} até: {{ data_fim|datetimeformat('%d/%m/%Y') }} {% endif %}<br>{% for row in rows %}  {{ row|first }} {% endfor %}
+      </div>
+      <div class="alert alert-warning" role="alert" style="width: 550px; left: 50%;">
+        Horas utilizadas para Manutenção(Producao) de:{% if data_criacao %} {{ data_criacao|datetimeformat('%d/%m/%Y') }} até: {{ data_fim|datetimeformat('%d/%m/%Y') }} {% endif %}<br>{% for producao in producaos %}  {{ producao|first }} {% endfor %}
+      </div>
+      <div class="alert alert-success" role="alert" style="width: 550px; left: 50%;">
+        Excel com dados do periodo:<a href="{{ url_for('static', filename='periodo_de_tempo.xlsx')}}"   role="button" class="btn btn-success" style="left: 181px;  width: 115px;  position: relative;">Excel</a>
+     </div>
+     <div class="alert alert-info" role="alert" style="width: 550px; left: 50%;">
+      Ordem de Serviço Produção:<a href="{{ url_for('static', filename='chamados_equipamentos.xlsx')}}"   role="button" class="btn btn-info" style="left: 181px;  width: 115px;  position: relative;">Excel</a>
+   </div>
+      <div class="alert alert-light" role="alert" style="width: 550px; left: 50%;">
+        Quantidade de Chamados com base no periodo:  {% for row in rows %}  {{ row|last }} {% endfor %} 
+        {% if data_criacao %}
+      </div>
+            <canvas id="pie" class="torta" style="max-width: 458px; max-height: 356px; left: 15%; position: relative; top: -450px; z-index: -5;"></canvas>
+          </div>
+          {% else %}
+        </div>
+        <canvas id="pie" class="torta" style="max-width: 458px; max-height: 356px; left: 15%; position: relative; top: -383px; z-index: -5;"></canvas>
+      </div>
+      {% endif %}
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Udemology/chartjs-plugin-sorting@main/chartjs-plugin-sorting.js"></script>
+            <h5 style="top: 245px; left: 15%;">Tipos de Problemas</h5>
+        <script>
+        let usuarios_data = JSON.parse({{ chamados | tojson }})
+        let labels_data = JSON.parse({{ equipa | tojson }})
+        const stackedBar = document.getElementById('pie');
+         
+          new Chart(stackedBar , {
+            type: 'doughnut',
+            data: {
+              labels: labels_data,
+              datasets: [{
+                label: 'departamento',
+                data: usuarios_data,
+                backgroundColor: [
+                    'rgb(138, 0, 212)',
+                    'rgb(213, 39, 183)',
+                    'rgb(247, 130, 194)',
+                    'rgb(249, 196, 107)',
+                    'rgb(227, 227, 227)',
+                    'rgb(165, 228, 228)',
+                    'rgb(110, 200, 214)'],
+                  borderWidth: 1,
+                  borderColor: [
+                    'rgb(94, 0, 145)',
+                    'rgb(182, 36, 157)',
+                    'rgb(216, 27, 130)',
+                    'rgb(255, 168, 22)',
+                    'rgb(194, 193, 193)',
+                    'rgb(36, 148, 148)',
+                    'rgb(33, 164, 184)'
+                  ],
+                    hoverBorderColor: "black",
+                    hoverBorderWidth: 2,
+                    pointHoverRadius: 5
+            }],
+              series: [{
+            dataSorting: {
+                enabled: true
+            },
+            data: usuarios_data
+        }]
+                  },
+                  options: {
+          plugins: {
+            legend: {
+                position: "right",
+                    labels: {
+                    fontColor: "gray"
+                },
+                display: true,
+        },
+      },
+
+            elements: {
+                hitRadius: 3,
+            },
+          
+        onClick: (event, elements, chart) => {
+          if (elements[0]) {            
+            const i = elements[0].index;
+            window.open('http://127.0.0.1:5000/dados/' + chart.data.labels[i]);
+    }
+    }}})
+        </script>
+        {% if data_criacao %}
+        <div>
+          <canvas id="linha" class="linha" style="top: 749px; height: 357px; width: 549px; left: 51%; z-index: -5;" ></canvas>
+        </div>
+        {% else %}
+        <div>
+          <canvas id="linha" class="linha" style="top: 676px; height: 357px; width: 549px; left: 51%; z-index: -5;" ></canvas>
+        </div>
+        {% endif %}
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <h6 style=" font-size: 22px; top: -306px; z-index: -5; left: 53%; position: relative; width: 520px;">Status dos chamados - Quantidade </h6>
+        <script>
+        let status_data = JSON.parse({{ status | tojson }})
+        let chamados_label_data = JSON.parse({{ cham | tojson }})
+        
+        const ctx3 = document.getElementById('linha');
+          new Chart(ctx3, {
+            type: 'polarArea',
+            data: {
+            type: 'line',
+            text: 'Status do Chamado',
+            labels: chamados_label_data,
+                  datasets: [{
+                  label: 'status',
+                  data: status_data,
+                  backgroundColor: [
+                  'rgb(255, 99, 132)',
+                  'rgb(75, 192, 192)',
+                  'rgb(255, 205, 86)',
+                  'rgb(201, 203, 207)',
+                  'rgb(54, 162, 235)'
+                  ],
+                  borderWidth: 1,
+                  hoverBorderColor: "black",
+                  hoverBorderWidth: 2,
+                  pointHoverRadius: 5,
+                }],
+                  },
+                options: {
+                title: {
+                    display: true,
+                    position: 'top',
+                    text: ['Título','Subtítulo'],
+                    fontSize: 14
+                },
+                    legend: {
+                        position: "right",
+                            labels: {
+                            fontColor: "gray"
+                        },
+                        display: true,
+                },
+        
+                elements: {
+                hitRadius: 3,
+            },
+          
+        onClick: (event, elements, chart) => {
+          if (elements[0]) {            
+            const i = elements[0].index;
+            window.open('http://127.0.0.1:5000/status/' + chart.data.labels[i]);
+    }
+    }}})
+        </script>
+        <div>
+          <canvas id="myChart" class="barra" style="left:15%; z-index: -5; top: 636px;"></canvas>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <h4 style="left: 15%; top: 628px;">Usuario por Chamados</h4>
+        <script>
+          let chamados_data = JSON.parse({{ usuarios | tojson }})
+          let equipamentos_de_label_data = JSON.parse({{ depart | tojson }})
+          const ctx = document.getElementById('myChart');
+        
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: equipamentos_de_label_data,
+              datasets: [{
+                label: 'categoria',
+                data: chamados_data,
+                backgroundColor: [
+                'rgb(13, 71, 161)',
+                'rgb(21, 101, 192)',
+                'rgb(25, 118, 210)',
+                'rgb(30, 136, 229)',
+                'rgb(33, 150, 243)',
+                'rgb(66, 165, 245)',
+                'rgb(100, 181, 246)',
+                'rgb(187, 222, 251)',
+                'rgb(179, 229, 252)',
+                'rgb(129, 212, 250)',
+                'rgb(79, 195, 247)',
+                'rgb(3, 169, 244)',
+                'rgb(3, 155, 229)',
+                'rgb(2, 136, 209)',
+                'rgb(2, 119, 189)',
+                'rgb(2, 119, 189)',
+                'rgb(1, 87, 155)'
+                ],
+                borderWidth: 1,
+                hoverBorderColor: "black",
+                hoverBorderWidth: 2,
+                pointHoverRadius: 5
+        }],
+          series: [{
+        dataSorting: {
+            enabled: true
+        },
+        data: usuarios_data
+    }]
+              },
+          options: {
+            indexAxis: 'y',
+               title: {
+                      display: true,
+                          text: "Income Categories",
+                              fontSize: 20,
+              },
+                  legend: {
+                      position: "right",
+                          labels: {
+                          fontColor: "gray"
+                      },
+                      display: true,
+              },
+    
+              elements: {
+                hitRadius: 3,
+            },
+          
+        onClick: (event, elements, chart) => {
+          if (elements[0]) {            
+            const i = elements[0].index;
+            window.open('http://127.0.0.1:5000/usuario_manutencao/' + chart.data.labels[i]);
+    }
+    }}})
+        </script>
+        
+        
+        </body>
+        </head>
+        </html>
+        
+
+ {% endblock %}

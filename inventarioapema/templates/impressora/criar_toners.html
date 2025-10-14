@@ -1,0 +1,26 @@
+{% extends "home.html" %}
+
+{% block body %}
+<body>
+    <main>
+      <div>
+        <div style="margin: 20px; width: 500px;">
+        <h1>Adcionar Toner</h1>
+            <form method="POST">
+
+                <label for="quant_toners" class="form-label">Quant. Toners</label>
+                <input type="number" class="form-control" id="quant_toners" name="quant_toners">
+
+                <label for="toners" class="form-label">Toners</label>
+                <select id="toners" name="toners" class="form-select">
+                    <option value="Samsung M4080FX">Samsung M4080FX</option>
+                      <option value="Kiocera  Ecosys m4125idn" selected>Kiocera  Ecosys m4125idn</option>
+                      <option value="HP Laser Colorida 4303FDW">HP Laser Colorida 4303FDW</option>
+                </select>
+<br>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div></div>
+    </main>
+</body>
+{% endblock %}

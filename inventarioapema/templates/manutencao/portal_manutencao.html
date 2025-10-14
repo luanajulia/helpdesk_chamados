@@ -1,0 +1,71 @@
+{% extends "home.html" %}
+
+{% block body %}
+<script>
+  $(document).ready(function() {
+      $('#os').select2();
+  });
+</script>
+    <div style="margin: 20px; width: 500px;">
+      <h1>Enviar Chamado</h1>
+    
+            {% for usuario in usuarios %}
+            <form method="POST" action="" enctype="multipart/form-data" >
+              <label for="os" style="margin-right: 15px;" class="form-label">Equipamento </label>
+              <select type="text"  class="form-select" id="os" name="os" >
+                <option value="" >Pesquise o Equipamento</option>
+               {% for maquina in maquinas  %}
+              <option value="{{maquina["H1_CODIGO"]}}" >    {{maquina["H1_DESCRI"]}} -  {{maquina["CTT_DESC01"]}}   </option>
+            {% endfor %}
+              </select>
+                    <label for="tipo" class="form-label">Tipo</label>               
+                     <br>
+                     <select id="tipo" name="tipo" class="form-select">
+                      <option selected value="Outro">Escolha...</option>
+                        <option value="Mudanca" selected>Mudanca</option>
+                        <option value="Equipamento">Equipamento</option>
+                        <option value="NoBreak">NoBreak</option>
+                        <option value="Lanterna">Lanterna</option>
+                        <option value="Tomada">Tomada</option>
+                        <option value="Teste">Teste</option>
+                        <option value="Outro">Outro</option>
+                      </select>
+                  
+                  <label for="status" class="form-label">Status</label><br>
+                  <select id="status" name="status" class="form-select">
+                    <option value="novo" selected>Novo</option>
+                    <option value="atribuido">Atribuido</option>
+                    <option value="fechado">Fechado</option>
+                  </select>
+                <br>
+                <div class='form-group'>
+                    <label class="form-label">Nome de Usuario:</label>
+                    <input  type='text' name='username'  required class="form-control" value='{{usuario.username}}' readonly>
+                  </div>
+                <div class='form-group'>
+                    <label class="form-label">Departamento</label>
+                    <input  type='text' name='departamento' required class="form-control" value='{{usuario.departamento}}' readonly>
+                  </div>
+                <div class='form-group'>
+                    <label class="form-label">E-mail</label>
+                    <input type='text' name='email' required class="form-control" value='{{usuario.email}}' readonly>
+                  </div>
+                <br>
+                <label for="descricao" class="form-label" style="position: relative; top:-420px; left: 600px;">Descricao</label>
+
+                <br>
+                <textarea type="text" class="form-control" id="descricao" name="descricao" cols="35" rows="10" style="position: relative; top:-400px; left: 610px;"></textarea>
+
+        
+                <br>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary" style="position: relative; top:-390px; left: 610px;">Enviar</button>
+                </div>
+            </form>
+            {% endfor %}
+
+        </div>
+    </main>
+    
+</body>
+{% endblock %}

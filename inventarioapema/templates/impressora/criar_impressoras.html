@@ -1,0 +1,52 @@
+{% extends "home.html" %}
+
+{% block body %}
+
+<body>
+    <main>
+      <div>
+        <div style="margin: 20px; width: 500px;">
+        <h1>Criar Impressora</h1>
+            <form method="POST">
+
+                <label for="nome_impressora" class="form-label">Nome da Impressora</label>
+                <input type="text" class="form-control" id="nome_impressora" name="nome_impressora">
+
+                <label for="departamento" class="form-label">Departamento</label>
+                  <select id="departamento" name="departamento" class="form-select">
+                  <option value="Almoxarifado">Almoxarifado</option>
+                    <option value="Administrativo" selected>Administrativo</option>
+                    <option value="Compras">Compras</option>
+                    <option value="Engenharia">Engenharia</option>
+                    <option value="Expedicao">Expedicao</option>
+                    <option value="Faturamento Engenharia" selected>Faturamento Engenharia</option>
+                    <option value="Inspetores">Inspetores</option>
+                    <option value="Lideres">Lideres</option>
+                    <option value="Manutenção">Manutenção</option>
+                    <option value="Marketing">Markenting</option>
+                    <option value="PCP">PCP</option>
+                    <option value="Portaria">Portaria</option>
+                    <option value="Processos">Processos</option>
+                    <option value="Qualidade">Qualidade</option>
+                    <option value="SIPAT">SIPAT</option>
+                    <option value="RH">RH</option>
+                    <option value="Vendas">Vendas</option>
+                  </select>
+
+                <label for="modelo_impressora" class="form-label">Modelo da Impressora</label>
+                <select id="modelo_impressora" name="modelo_impressora" class="form-select">
+                    <option value="Samsung M4080FX">Samsung M4080FX</option>
+                      <option value="Kiocera  Ecosys m4125idn" selected>Kiocera  Ecosys m4125idn</option>
+                      <option value="HP Laser Colorida 4303FDW">HP Laser Colorida 4303FDW</option>
+                </select>
+
+                <label for="ip" class="form-label">IP da Impressora</label>
+                <input type="text" class="form-control" id="ip" name="ip">
+
+                <br>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div></div>
+    </main>
+</body>
+{% endblock %}

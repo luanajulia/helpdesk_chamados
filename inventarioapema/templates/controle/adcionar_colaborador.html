@@ -1,0 +1,31 @@
+{% extends "home.html" %}
+
+{% block body %}
+      <div>
+        <h1>CADASTRO DE COLABORADOR </h1>
+        <div style="width: 500px;margin: 20px;">
+            <form method="POST">
+
+                <label for="username" class="form-label">NOME</label>
+                <input type="text" class="form-control" id="username" name="username">
+
+                <label for="mat" class="form-label">MATRICULA</label>
+                <input type="text" class="form-control" id="mat" name="mat">
+
+                <label for="ccusto" class="form-label">DEPARTAMENTO</label>
+                  <select id="ccusto" name="ccusto" class="form-select">
+                    {% for departament in depart %}
+                    {% for colaborador in departamentos %}
+                    {% if departament.centro_custo == colaborador.CTT_CUSTO %}
+                    <option value="{{colaborador.CTT_CUSTO}}" >{{colaborador.DESC_CUSTO}}</option>
+                    {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+                  </select>
+                <br>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+
+            </form>
+        </div>
+        </div>
+{% endblock %}
