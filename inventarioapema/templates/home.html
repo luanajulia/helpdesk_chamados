@@ -22,23 +22,13 @@
 		<script type="text/javascript" src="../static/js/jquery.mask.min.js"></script>
     
 
-    <title>PORTAL APEMA</title>
+    <title>HELPDESK</title>
     
   <link rel="shortcut icon" type="img" href="../static/img/logotipo_apema.jpg"/>
 </head>
 <style>
-.btn-secondary {
-    color: #fff;
-    background-color: #e97f29;
-    border-color: #e97f29; 
-}
-.bg-light {
-    background-color: #103a78 !important;
-}
-.body{
-  background-color: #f2f2f2;
 
-}
+
 </style>
 <body >
   {% if nivel == 'Administrador' %}
@@ -58,11 +48,7 @@
           <a style="margin-left: 20px;" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar" href="{{url_for("inventario")}}">INVENTÁRIO</a>
           </li>
         <li class="nav-item dropdown">
-          <li><a  style="margin-left: 20px;" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar" href="{{url_for("manuais")}}">MANUAIS</a></li>
-              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                <li><a class="dropdown-item" href="{{ url_for("manuais")}}">MANUAIS</a></li>
-              </ul>
-            </li>
+          
         <li class="nav-item dropdown">
           <a style="margin-left: 20px;" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar" href="{{ url_for('atribuido', atribuido=id) }}">ATRIBUÍDOS</a>
           </li>
@@ -78,16 +64,16 @@
                 <li><a class="dropdown-item" href="{{ url_for('manutencao', id_usuario=id)}}">MANUTENÇÃO</a></li>
               </ul>
             </li>
-      <li><a class="btn btn-secondary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar"  style="margin-left: 20px;" href="http://192.168.1.51:8081/site_apema/index.php/pt/">SAÍDA</a></li>
+      <li><a class="btn btn-secondary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar"  style="margin-left: 20px;" href="{{ url_for("homepage") }}">SAÍDA</a></li>
       
       </li>
       </ul>
       
       <div class="col-md-3 text">
-        <p class="titulo" style="color: #fff;"><strong>HELPDESK - Portal de Chamados</strong></p>
+        <p class="titulo" style="color: #000000;"><strong>HELPDESK - Portal de Chamados</strong></p>
       </div>
       <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-        <img src="../static/img/logotipo_apema.png" width="100" height="50" class="logo" alt="" style="padding-left: 10px;">
+        <img src="../static/img/logotipo_apema.png" width="180" height="50" class="logo" alt="" style="padding-left: 10px;">
       </div>
     </div>
   </div>
@@ -117,26 +103,18 @@
         <li class="nav-item dropdown">
           <a style="margin-left: 20px;" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar" href="{{ url_for('ramais') }}">RAMAIS</a>
           </li>
-          <li class="nav-item dropdown">
-            <li><a  style="margin-left: 20px;" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar" href="{{url_for("manuais")}}">MANUAIS</a></li>
-                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                  <li><a class="dropdown-item" href="{{ url_for("manuais")}}">MANUAIS</a></li>
-                </ul>
-              </li>
-              <li>
-                <a style="margin-left: 20px;" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar" href="{{url_for("departamento_banco")}}">FLEXTIME</a>
-            </li>
+          
             
-      <li><a class="btn btn-secondary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar"  style="margin-left: 20px;" href="http://192.168.1.51:8081/site_apema/index.php/pt/">SAÍDA</a></li>
+      <li><a class="btn btn-secondary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar"  style="margin-left: 20px;" href="{{ url_for("homepage") }}">SAÍDA</a></li>
       
       </li>
       </ul>
       
       <div class="col-md-3 text">
-        <p class="titulo" style="color: #fff;"><strong>HELPDESK - Portal de Chamados</strong></p>
+        <p class="titulo" style="color: #000000;"><strong>HELPDESK - Portal de Chamados</strong></p>
       </div>
       <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-        <img src="../static/img/logotipo_apema.png" width="100" height="50" class="logo" alt="" style="padding-left: 10px;">
+        <img src="../static/img/logotipo_apema.png" width="180" height="50" class="logo" alt="" style="padding-left: 10px;">
       </div>
     </div>
   </div>
@@ -170,16 +148,16 @@
                 <li><a class="dropdown-item" href="{{ url_for('banco', id=id)}}">AUSÊNCIA</a></li>
               </ul>
             </li>
-      <li><a class="btn btn-secondary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar"  style="margin-left: 20px;" href="http://192.168.1.51:8081/site_apema/index.php/pt/">SAÍDA</a></li>
+      <li><a class="btn btn-secondary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar"  style="margin-left: 20px;" href="{{ url_for("homepage") }}">SAÍDA</a></li>
       
       </li>
       </ul>
       
       <div class="col-md-3 text">
-        <p class="titulo" style="color: #fff;"><strong>HELPDESK - Portal de Chamados</strong></p>
+        <p class="titulo" style="color: #000000;"><strong>HELPDESK - Portal de Chamados</strong></p>
       </div>
       <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-        <img src="../static/img/logotipo_apema.png" width="100" height="50" class="logo" alt="" style="padding-left: 10px;">
+        <img src="../static/img/logotipo_apema.png" width="180" height="50" class="logo" alt="" style="padding-left: 10px;">
       </div>
     </div>
   </div>
@@ -218,16 +196,16 @@
                 <li><a class="dropdown-item" href="{{ url_for('manutencao', id_usuario=id)}}">MANUTENÇÃO</a></li>
               </ul>
             </li>
-      <li><a class="btn btn-secondary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar"  style="margin-left: 20px;" href="http://192.168.1.51:8081/site_apema/index.php/pt/">SAÍDA</a></li>
+      <li><a class="btn btn-secondary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar"  style="margin-left: 20px;" href="{{ url_for("homepage") }}">SAÍDA</a></li>
       
       </li>
       </ul>
       
       <div class="col-md-3 text">
-        <p class="titulo" style="color: #fff;"><strong>HELPDESK - Portal de Chamados</strong></p>
+        <p class="titulo" style="color: #000000;"><strong>HELPDESK - Portal de Chamados</strong></p>
       </div>
       <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-        <img src="../static/img/logotipo_apema.png" width="100" height="50" class="logo" alt="" style="padding-left: 10px;">
+        <img src="../static/img/logotipo_apema.png" width="180" height="50" class="logo" alt="" style="padding-left: 10px;">
       </div>
     </div>
   </div>
@@ -248,24 +226,17 @@
         <li class="nav-item dropdown">
           <a style="margin-left: 20px;" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar" href="{{ url_for('ramais') }}">RAMAIS</a>
           </li>
-        <li class="nav-item dropdown">
-          <a style="margin-left: 20px;" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar" href="{{ url_for('historico', id_usuario=id) }}">HISTORICO</a>
-          </li>
-          <li><a  style="margin-left: 20px;" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar" href="{{url_for("manuais")}}">MANUAIS</a></li>
-          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li><a class="dropdown-item" href="{{ url_for("manuais")}}">MANUAIS</a></li>
-          </ul>
-        </li>
-      <li><a class="btn btn-secondary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar"  style="margin-left: 20px;" href="http://192.168.1.51:8081/site_apema/index.php/pt/">SAÍDA</a></li>
+        
+      <li><a class="btn btn-secondary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar"  style="margin-left: 20px;" href="{{ url_for("homepage") }}">SAÍDA</a></li>
       
       </li>
       </ul>
       
       <div class="col-md-3 text">
-        <p class="titulo" style="color: #fff;"><strong>HELPDESK - Portal de Chamados</strong></p>
+        <p class="titulo" style="color: #000000;"><strong>HELPDESK - Portal de Chamados</strong></p>
       </div>
       <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-        <img src="../static/img/logotipo_apema.png" width="100" height="50" class="logo" alt="" style="padding-left: 10px;">
+        <img src="../static/img/logotipo_apema.png" width="180" height="50" class="logo" alt="" style="padding-left: 10px;">
       </div>
     </div>
   </div>
@@ -290,24 +261,18 @@
         <li class="nav-item dropdown">
           <a style="margin-left: 20px;" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar" href="{{ url_for('historico', id_usuario=id) }}">HISTORICO</a>
           </li>
-          <li><a  style="margin-left: 20px;" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar" href="{{url_for("manuais")}}">MANUAIS</a></li>
-          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li><a class="dropdown-item" href="{{ url_for("manuais")}}">MANUAIS</a></li>
-          </ul>
-        </li>
-        <li>
-          <a style="margin-left: 20px;" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar" href="{{url_for("departamento_gestor")}}">FLEXTIME</a>
-      </li>
-      <li><a class="btn btn-secondary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar"  style="margin-left: 20px;" href="http://192.168.1.51:8081/site_apema/index.php/pt/">SAÍDA</a></li>
+          
+        
+      <li><a class="btn btn-secondary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar"  style="margin-left: 20px;" href="{{ url_for("homepage") }}">SAÍDA</a></li>
       
       </li>
       </ul>
       
       <div class="col-md-3 text">
-        <p class="titulo" style="color: #fff;"><strong>HELPDESK - Portal de Chamados</strong></p>
+        <p class="titulo" style="color: #000000;"><strong>HELPDESK - Portal de Chamados</strong></p>
       </div>
       <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-        <img src="../static/img/logotipo_apema.png" width="100" height="50" class="logo" alt="" style="padding-left: 10px;">
+        <img src="../static/img/logotipo_apema.png" width="180" height="50" class="logo" alt="" style="padding-left: 10px;">
       </div>
     </div>
   </div>
@@ -323,18 +288,10 @@
                 <li><a class="dropdown-item" href="{{ url_for("manutencao_portal")}}">MANUTENÇÃO</a></li>
               </ul>
             </li>
-        <li>
-            <a style="margin-left: 20px;" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar" href="{{url_for("dashboard_pesquisa")}}">GRÁFICOS</a>
-        </li>
         <li class="nav-item dropdown">
           <a style="margin-left: 20px;" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar" href="{{url_for("fila_de_espera_man")}}">FILA DE ESPERA</a>
           </li>
-        <li class="nav-item dropdown">
-          <li><a  style="margin-left: 20px;" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar" href="{{url_for("equipamentos")}}">INVENTÁRIO</a></li>
-              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                <li><a class="dropdown-item" href="{{ url_for("manuais")}}">MANUAIS</a></li>
-              </ul>
-            </li>
+         
         <li class="nav-item dropdown">
           <a style="margin-left: 20px;" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar" href="{{ url_for('atribuidosss') }}">ATRIBUÍDOS</a>
           </li>
@@ -350,16 +307,16 @@
                 <li><a class="dropdown-item" href="{{ url_for('manutencao', id_usuario=id)}}">MANUTENÇÃO</a></li>
               </ul>
             </li>
-      <li><a class="btn btn-secondary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar"  style="margin-left: 20px;" href="http://192.168.1.51:8081/site_apema/index.php/pt/">SAÍDA</a></li>
+      <li><a class="btn btn-secondary"  data-bs-toggle="tooltip" data-bs-placement="top" title="Pressione para Selecionar"  style="margin-left: 20px;" href="{{ url_for("homepage") }}">SAÍDA</a></li>
       
       </li>
       </ul>
       
       <div class="col-md-3 text">
-        <p class="titulo" style="color: #fff;"><strong>HELPDESK - Portal de Chamados</strong></p>
+        <p class="titulo" style="color: #000000;"><strong>HELPDESK - Portal de Chamados</strong></p>
       </div>
       <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-        <img src="../static/img/logotipo_apema.png" width="100" height="50" class="logo" alt="" style="padding-left: 10px;">
+        <img src="../static/img/logotipo_apema.png" width="180" height="50" class="logo" alt="" style="padding-left: 10px;">
       </div>
     </div>
   </div>

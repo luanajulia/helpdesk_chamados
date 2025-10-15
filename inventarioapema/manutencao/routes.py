@@ -591,7 +591,7 @@ def tech():
     emails = session['email'] 
     nivel = session['nivel'] 
     id = session['id']
-    usuarios = Tecnico.query.order_by(Tecnico.id).all()
+    usuarios =conx_manutencao.execute("SELECT *  FROM tecnico").fetchall()
     return render_template("manutencao/tecnicos.html", usuarios=usuarios, nivel=nivel, id=id)
 
 @app.route("/tecnicos_desativado")
@@ -601,7 +601,7 @@ def tecnicos_desativado():
     emails = session['email'] 
     nivel = session['nivel'] 
     id = session['id']
-    usuarios = Tecnico.query.order_by(Tecnico.id).all()
+    usuarios = conx_manutencao.execute("SELECT *  FROM tecnico").fetchall()
     return render_template("manutencao/tecnico_desativado.html", usuarios=usuarios, nivel=nivel, id=id)
 
 @app.route("/centro_custo", methods=["GET", "POST"])

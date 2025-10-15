@@ -11,7 +11,7 @@
     display: none;
 }
 body {
-    background-image: url("../img/fundo.png");
+    background-image: url("../img/fundo.jpg");
     background-repeat: no-repeat;
     color: white;
     font-weight: 500;
@@ -29,7 +29,6 @@ main {
 
 main h1 {
     font-size: 3rem;
-    margin-bottom: 3rem;
 }
 
 main img{
@@ -71,4 +70,21 @@ button {
 
 input.btn.btn-primary{
     border: 50%;
+}
+
+.input {
+  width: 100%;
+  font-size: 16px;
+  padding: 15px;
+  border: 2px solid #cdcdcd;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.div-input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 5px;
 }

@@ -255,11 +255,10 @@ def atribuidoss():
     id_usuario = session['id']
     chamados = conx.execute("SELECT  *, CONVERT (DATE, data_criacao) AS data FROM chamados  WHERE  id > '448'").fetchall()
     ativosstatus = conx.execute("SELECT  COUNT(id) FROM chamados WHERE status = 'atribuido' and    id > '448'  ").fetchall()
-    return render_template("chamados/chamados.html",chamados=chamados, ativosstatus=ativosstatus, nivel=nivel, id=id)
+    return render_template("chamados/chamados.html",chamados=chamados, ativosstatus=ativosstatus, nivel=nivel, id=id_usuario)
 
 
-@app.route("/Atribuido/<atribuido>")
-@login_required
+@app.route("/Atribuido/<string:atribuido>")
 def atribuido(atribuido):
     if not session.get('logged_in'):
         return redirect(url_for('homepage'))
